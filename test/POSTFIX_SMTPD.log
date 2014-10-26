@@ -1,0 +1,6 @@
+connect from 061238241086.static.ctinets.com[61.238.241.86]
+disconnect from 061238241086.static.ctinets.com[61.238.241.86]
+4104E3D: client=061238241086.static.ctinets.com[61.238.241.86]
+NOQUEUE: reject: RCPT from 061238241086.static.ctinets.com[61.238.241.86]: 550 5.1.1 <toernooicommissie@example.com>: Recipient address rejected: User unknown in virtual mailbox table; from=<wumt5@cchfdc.com> to=<toernooicommissie@example.com> proto=ESMTP helo=<ecsolved.com>
+lost connection after STARTTLS from unknown[72.13.58.7]
+warning: hostname exemple.com does not resolve to address 185.14.29.32
