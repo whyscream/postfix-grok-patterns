@@ -11,7 +11,7 @@ Usage
 - Add `postfix-patterns.conf` to `/etc/logstash/patterns.d`
 - Restart logstash
 
-The included Logstash config file expects the postfix log data in the `message` field, something that works out of the box when you use Logstash's `syslog` input.
+The included Logstash config file expects the postfix log data in the `message` field, something that works out of the box when you use Logstash's `syslog` input to receive postfix logging.
 
 Tests
 -----
@@ -27,7 +27,7 @@ Also, the example Logstash config file adds some informative tags that aid in fi
 Contributing
 ------------
 
-I only have access to my own log samples, and my setup does not support or use every feature in postfix, please do a pull request on github. If you're not very well versed in regular expressions, it'as also fine to only submit a sample unsupported log line.
+I only have access to my own log samples, and my setup does not support or uses every feature in postfix. If you miss anything, please do a pull request on github. If you're not very well versed in regular expressions, it's also fine to only submit sample unsupported log lines.
 
 License
 -------
