@@ -1,2 +1,0 @@
-0F5383D: to=<tom@example.com>, relay=dovecot, delay=4.3, delays=4.1/0.01/0/0.15, dsn=2.0.0, status=sent (delivered via dovecot service)
-153053D: to=<tom@example.com>, orig_to=<admin@example.com>, relay=dovecot, delay=3.4, delays=3.3/0.03/0/0.12, dsn=2.0.0, status=sent (delivered via dovecot service)

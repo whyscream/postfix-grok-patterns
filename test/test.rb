@@ -18,21 +18,6 @@ class TestGrokPatterns < MiniTest::Unit::TestCase
         @grok.add_patterns_from_file(postfix_patterns)
     end
 
-    def test_pattern
-        Dir.new(File.dirname(__FILE__)).each do |file|
-            if file =~ /\.log$/
-                pattern = File.basename(file, ".log")
-                @grok.compile("%{" + pattern +"}")
-
-                File.open(File.expand_path(@test_dir + "/" + file)).each do |line|
-                    # skip comments in log files
-                    next if line =~ /^#/
-                    assert @grok.match(line), "Grok failure using pattern #{pattern} for line: #{line}"
-                end
-            end
-        end
-    end
-
     def test_grok_pattern
         Dir.new(@test_dir).each do |file|
             if file =~ /\.yaml$/
