@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'minitest/autorun'
 require 'grok-pure'
+require 'yaml'
 
 class TestGrokPatterns < MiniTest::Unit::TestCase
 
@@ -27,6 +28,21 @@ class TestGrokPatterns < MiniTest::Unit::TestCase
                     # skip comments in log files
                     next if line =~ /^#/
                     assert @grok.match(line), "Grok failure using pattern #{pattern} for line: #{line}"
+                end
+            end
+        end
+    end
+
+    def test_grok_pattern
+        Dir.new(@test_dir).each do |file|
+            if file =~ /\.yaml$/
+                config = YAML.load(File.read(File.expand_path(@test_dir + "/" + file)))
+
+                assert @grok.compile("%{" + config['pattern'] + "}", true)
+                captures = @grok.match(config['logline']).captures()
+
+                config['results'].each do |field, expected|
+                    assert_includes captures[field], expected
                 end
             end
         end
