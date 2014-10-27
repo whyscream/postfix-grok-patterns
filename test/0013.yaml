@@ -1,4 +1,0 @@
-pattern: POSTFIX_DNSBLOG
-logline: "addr 2607:f8b0:4003:c01::23a listed by domain list.dnswl.org as 127.0.5.1"
-results:
-
