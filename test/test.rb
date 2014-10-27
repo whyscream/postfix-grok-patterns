@@ -6,9 +6,9 @@ require 'yaml'
 class TestGrokPatterns < MiniTest::Unit::TestCase
 
     def setup
-        @test_dir = File.dirname(__FILE__)
-        upstream_patterns = "/opt/logstash/patterns/"
-        postfix_patterns = File.expand_path(@test_dir + "/../postfix-patterns.conf")
+        @test_dir = File.dirname(__FILE__) + "/"
+        upstream_patterns = File.expand_path(@test_dir + "logstash/patterns") + "/"
+        postfix_patterns = File.expand_path(@test_dir + "../postfix-patterns.conf")
 
         @grok = Grok.new
         Dir.new(upstream_patterns).each do |file|
@@ -21,7 +21,7 @@ class TestGrokPatterns < MiniTest::Unit::TestCase
     def test_grok_pattern
         Dir.new(@test_dir).each do |file|
             if file =~ /\.yaml$/
-                config = YAML.load(File.read(File.expand_path(@test_dir + "/" + file)))
+                config = YAML.load(File.read(File.expand_path(@test_dir + file)))
 
                 assert @grok.compile("%{" + config['pattern'] + "}", true)
                 captures = @grok.match(config['logline']).captures()
