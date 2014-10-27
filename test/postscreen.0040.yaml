@@ -1,0 +1,6 @@
+pattern: POSTFIX_POSTSCREEN
+logline: "NOQUEUE: reject: CONNECT from [5.6.7.8]:1337: all server ports busy"
+results:
+    postfix_client_ip: 5.6.7.8
+    postfix_client_port: 1337
+    postfix_postscreen_toobusy_data: all server ports busy

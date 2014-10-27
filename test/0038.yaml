@@ -1,4 +1,0 @@
-pattern: POSTFIX_POSTSCREEN
-logline: "NOQUEUE: reject: CONNECT from [1.2.3.4]:1337: too many connections"
-results:
-

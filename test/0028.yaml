@@ -1,4 +1,0 @@
-pattern: POSTFIX_POSTSCREEN
-logline: "HANGUP after 0 from [66.55.85.58]:54017 in tests before SMTP handshake"
-results:
-
