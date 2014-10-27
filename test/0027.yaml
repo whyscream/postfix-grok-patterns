@@ -1,0 +1,4 @@
+pattern: POSTFIX_POSTSCREEN
+logline: "HANGUP after 63 from [111.73.45.149]:1038 in tests after SMTP handshake"
+results:
+

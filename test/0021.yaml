@@ -1,0 +1,4 @@
+pattern: POSTFIX_POSTSCREEN
+logline: "PASS NEW [2607:f8b0:4003:c01::23a]:36051"
+results:
+

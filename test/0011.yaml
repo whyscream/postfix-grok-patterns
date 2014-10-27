@@ -1,0 +1,4 @@
+pattern: POSTFIX_CLEANUP
+logline: "4104E3D: milter-reject: END-OF-MESSAGE from 061238241086.static.ctinets.com[61.238.241.86]: 5.7.1 Blocked by SpamAssassin; from=<wumt5@cchfdc.com> to=<voorzitter@example.com> proto=ESMTP helo=<ecsolved.com>"
+results:
+
