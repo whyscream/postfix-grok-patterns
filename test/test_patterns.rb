@@ -41,8 +41,10 @@ class TestGrokPatterns < MiniTest::Unit::TestCase
                 assert @grok.compile("%{" + config['pattern'] + "}", true)
                 captures = @grok.match(config['logline']).captures()
 
+                next if config['results'].nil?
                 config['results'].each do |field, expected|
-                    assert_includes captures[field], expected
+                    assert_includes captures.keys, field
+                    assert_includes captures[field], expected.to_s
                 end
             end
         end
