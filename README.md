@@ -16,6 +16,8 @@ The included Logstash config file expects the postfix log data in the `message` 
 Tests
 -----
 
+[![Build Status](https://travis-ci.org/whyscream/postfix-grok-patterns.svg?branch=master)](https://travis-ci.org/whyscream/postfix-grok-patterns)
+
 In the `test/` directory, there is a test suite that tries to make sure that no previously supported log line will break because of changing common patterns and such. It also returns results a lot faster than doing `sudo service logstash restart` :-).
 
 The test suite needs the patterns provided by Logstash, you can easily pull these from github by running `git submodule update --init`. To run the test suite, you also need `ruby 1.9` and the `jls-grok` gem. Then simply execute `ruby test/test.rb`.
