@@ -1,0 +1,6 @@
+pattern: POSTFIX_POSTSCREEN
+logline: "PASS NEW [2607:f8b0:4003:c01::23a]:36051"
+results:
+    postfix_postscreen_access: PASS NEW
+    postfix_client_ip: 2607:f8b0:4003:c01::23a
+    postfix_client_port: 36051

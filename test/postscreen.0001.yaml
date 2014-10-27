@@ -1,4 +1,5 @@
 pattern: POSTFIX_POSTSCREEN
 logline: "cache btree:/var/lib/postfix-in/postscreen_cache full cleanup: retained=242 dropped=7 entries"
 results:
-
+    postfix_postscreen_cache_retained: 242
+    postfix_postscreen_cache_dropped: 7
