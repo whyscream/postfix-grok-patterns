@@ -1,0 +1,11 @@
+pattern: POSTFIX_SMTPD
+logline: "NOQUEUE: reject: RCPT from 061238241086.static.ctinets.com[61.238.241.86]: 550 5.1.1 <toernooicommissie@example.com>: Recipient address rejected: User unknown in virtual mailbox table; from=<wumt5@cchfdc.com> to=<toernooicommissie@example.com> proto=ESMTP helo=<ecsolved.com>"
+results:
+    postfix_action: reject
+    postfix_smtp_stage: RCPT
+    postfix_client_hostname: 061238241086.static.ctinets.com
+    postfix_client_ip: 61.238.241.86
+    postfix_status_code: 550
+#    postfix_status_code_extended: 5.5.1
+    postfix_status_message: "<toernooicommissie@example.com>: Recipient address rejected: User unknown in virtual mailbox table"
+    postfix_keyvalue_data: from=<wumt5@cchfdc.com> to=<toernooicommissie@example.com> proto=ESMTP helo=<ecsolved.com>

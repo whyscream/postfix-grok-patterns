@@ -1,0 +1,6 @@
+pattern: POSTFIX_SMTPD
+logline: "lost connection after STARTTLS from unknown[72.13.58.7]"
+results:
+    postfix_smtp_stage: STARTTLS
+    postfix_client_hostname: unknown
+    postfix_client_ip: 72.13.58.7

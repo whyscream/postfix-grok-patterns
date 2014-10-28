@@ -1,4 +1,4 @@
 pattern: POSTFIX_SMTPD
 logline: "warning: hostname exemple.com does not resolve to address 185.14.29.32"
 results:
-
+    postfix_warning: hostname exemple.com does not resolve to address 185.14.29.32

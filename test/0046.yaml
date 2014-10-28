@@ -1,4 +1,0 @@
-pattern: POSTFIX_SMTPD
-logline: "lost connection after STARTTLS from unknown[72.13.58.7]"
-results:
-
