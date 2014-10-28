@@ -1,0 +1,5 @@
+pattern: POSTFIX_QMGR
+data: "0F5383D: from=<owner-postfix-users@postfix.org>, size=5360, nrcpt=1 (queue active)"
+results:
+    postfix_queueid: 0F5383D
+    postfix_keyvalue_data: from=<owner-postfix-users@postfix.org>, size=5360, nrcpt=1

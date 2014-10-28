@@ -1,8 +1,0 @@
-pattern: POSTFIX_ANVIL
-logline: "statistics: max connection rate 1/60s for (127.0.0.1:2525:127.0.0.1) at Oct 26 18:13:50"
-results:
-    postfix_anvil_conn_rate: 1
-    postfix_anvil_conn_period: 60s
-    postfix_service: 127.0.0.1:2525
-    postfix_client_ip: 127.0.0.1
-    postfix_anvil_timestamp: Oct 26 18:13:50

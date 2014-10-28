@@ -1,0 +1,6 @@
+pattern: POSTFIX_POSTSCREEN
+data: "NOQUEUE: reject: CONNECT from [1.2.3.4]:1337: too many connections"
+results:
+    postfix_client_ip: 1.2.3.4
+    postfix_client_port: 1337
+    postfix_postscreen_toobusy_data: too many connections

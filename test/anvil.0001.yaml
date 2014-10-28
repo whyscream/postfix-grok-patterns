@@ -1,5 +1,0 @@
-pattern: POSTFIX_ANVIL
-logline: "statistics: max cache size 1 at Oct 26 18:13:50"
-results:
-    postfix_anvil_cache_size: 1
-    postfix_anvil_timestamp: Oct 26 18:13:50

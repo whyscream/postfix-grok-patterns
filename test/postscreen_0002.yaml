@@ -1,0 +1,7 @@
+pattern: POSTFIX_POSTSCREEN
+data: "CONNECT from [61.238.241.86]:53024 to [89.105.204.244]:25"
+results:
+    postfix_client_ip: 61.238.241.86
+    postfix_client_port: 53024
+    postfix_server_ip: 89.105.204.244
+    postfix_server_port: 25

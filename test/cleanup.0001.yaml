@@ -1,5 +1,0 @@
-pattern: POSTFIX_CLEANUP
-logline: "0F5383D: message-id=<544D2523.30609@rhsoft.net>"
-results:
-    postfix_queueid: 0F5383D
-    postfix_keyvalue_data: message-id=<544D2523.30609@rhsoft.net>

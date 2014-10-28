@@ -1,0 +1,6 @@
+pattern: POSTFIX_POSTSCREEN
+data: "BLACKLISTED [61.238.241.86]:53024"
+results:
+    postfix_postscreen_access: BLACKLISTED
+    postfix_client_ip: 61.238.241.86
+    postfix_client_port: 53024

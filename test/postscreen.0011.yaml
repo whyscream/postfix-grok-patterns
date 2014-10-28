@@ -1,7 +1,0 @@
-pattern: POSTFIX_POSTSCREEN
-logline: "DNSBL rank 3 for [111.73.45.149]:1038"
-results:
-    postfix_postscreen_violation: DNSBL
-    postfix_postscreen_dnsbl_rank: 3
-    postfix_client_ip: 111.73.45.149
-    postfix_client_port: 1038

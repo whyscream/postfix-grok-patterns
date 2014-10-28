@@ -1,4 +1,0 @@
-pattern: POSTFIX_SMTPD
-logline: "disconnect from 061238241086.static.ctinets.com[61.238.241.86]"
-results:
-

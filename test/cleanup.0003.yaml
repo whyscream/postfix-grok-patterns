@@ -1,7 +1,0 @@
-pattern: POSTFIX_CLEANUP
-logline: "4104E3D: milter-header-redirect: header X-Spam-Status: Yes, score=39.3 required=5.0 tests=ADVANCE_FE from 061238241086.static.ctinets.com[61.238.241.86]; from=<wumt5@cchfdc.com> to=<voorzitter@example.com> proto=ESMTP helo=<ecsolved.com>: tom@example.com"
-results:
-    postfix_queueid: 4104E3D
-    postfix_milter_redirect_data: "header X-Spam-Status: Yes, score=39.3 required=5.0 tests=ADVANCE_FE from 061238241086.static.ctinets.com[61.238.241.86]"
-    postfix_keyvalue_data: from=<wumt5@cchfdc.com> to=<voorzitter@example.com> proto=ESMTP helo=<ecsolved.com>
-    postfix_milter_redirect_target: tom@example.com

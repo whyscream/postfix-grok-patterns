@@ -1,7 +1,0 @@
-pattern: POSTFIX_POSTSCREEN
-logline: "HANGUP after 63 from [111.73.45.149]:1038 in tests after SMTP handshake"
-results:
-    postfix_postscreen_violation: HANGUP
-    postfix_postscreen_hangup_time: 63
-    postfix_client_ip: 111.73.45.149
-    postfix_client_port: 1038

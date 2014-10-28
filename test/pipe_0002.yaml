@@ -1,0 +1,6 @@
+pattern: POSTFIX_PIPE
+data: "153053D: to=<tom@example.com>, orig_to=<admin@example.com>, relay=dovecot, delay=3.4, delays=3.3/0.03/0/0.12, dsn=2.0.0, status=sent (delivered via dovecot service)"
+results:
+    postfix_queueid: 153053D
+    postfix_keyvalue_data: to=<tom@example.com>, orig_to=<admin@example.com>, relay=dovecot, delay=3.4, delays=3.3/0.03/0/0.12, dsn=2.0.0, status=sent
+    postfix_pipe_service: dovecot

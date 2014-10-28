@@ -1,0 +1,7 @@
+pattern: POSTFIX_POSTSCREEN
+data: "COMMAND TIME LIMIT from [182.246.250.243]:51799 after HELO"
+results:
+    postfix_postscreen_violation: COMMAND TIME LIMIT
+    postfix_client_ip: 182.246.250.243
+    postfix_client_port: 51799
+    postfix_smtp_stage: HELO
