@@ -1,0 +1,7 @@
+pattern: POSTFIX_POSTSCREEN
+data: "BARE NEWLINE from [88.208.233.4]:42606 after ."
+results:
+    postfix_postscreen_violation: BARE NEWLINE
+    postfix_client_ip: 88.208.233.4
+    postfix_client_port: 42606
+    postfix_smtp_stage: .
