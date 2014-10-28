@@ -5,4 +5,3 @@ results:
     postfix_client_ip: 93.174.93.51
     postfix_client_port: 45284
     postfix_smtp_stage: CONNECT
-    postfix_postscreen_nonsmtp_data: "GET http://ipv4scan.com/hello/check.txt HTTP/1.1"
