@@ -43,10 +43,11 @@ class TestGrokPatterns < MiniTest::Unit::TestCase
     # data:: Input data that should be grokked, f.i. a log line
     # results:: A list of named captures and their expected contents
     def grok_pattern_tester(pattern, data, results)
-        assert @grok.compile("%{" + pattern + "}", true)
-        captures = @grok.match(data).captures()
+        assert @grok.compile("%{" + pattern + "}", true), "Failed to compile pattern #{pattern}"
+        assert matches = @grok.match(data), "Pattern #{pattern} did not match data."
 
         return if results.nil?
+        captures = matches.captures()
         results.each do |field, expected|
             assert_includes captures.keys, field
             assert_includes captures[field], expected.to_s
