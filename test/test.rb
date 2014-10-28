@@ -5,33 +5,43 @@ require 'yaml'
 
 class TestGrokPatterns < MiniTest::Unit::TestCase
 
-    def setup
-        @test_dir = File.dirname(__FILE__) + "/"
-        upstream_patterns = File.expand_path(@test_dir + "logstash/patterns") + "/"
-        postfix_patterns = File.expand_path(@test_dir + "../postfix-patterns.conf")
+    @@test_dir = File.dirname(__FILE__)
+    @@upstream_pattern_dir = @@test_dir + '/logstash/patterns'
+    @@postfix_pattern_file = File.dirname(@@test_dir) + '/postfix-patterns.conf'
 
+    def setup
         @grok = Grok.new
-        Dir.new(upstream_patterns).each do |file|
+        Dir.new(@@upstream_pattern_dir).each do |file|
             next if file =~ /^\./
-            @grok.add_patterns_from_file(upstream_patterns + file)
+            @grok.add_patterns_from_file(@@upstream_pattern_dir + '/' + file)
         end
-        @grok.add_patterns_from_file(postfix_patterns)
+        @grok.add_patterns_from_file(@@postfix_pattern_file)
     end
 
-    def test_grok_pattern
-        Dir.new(@test_dir).each do |file|
-            if file =~ /\.yaml$/
-                config = YAML.load(File.read(File.expand_path(@test_dir + file)))
+    def grok_pattern_tester(pattern, data, results)
+        assert @grok.compile("%{" + pattern + "}", true)
+        captures = @grok.match(data).captures()
 
-                assert @grok.compile("%{" + config['pattern'] + "}", true)
-                captures = @grok.match(config['logline']).captures()
+        return if results.nil?
+        results.each do |field, expected|
+            assert_includes captures.keys, field
+            assert_includes captures[field], expected.to_s
+        end
+    end
 
-                next if config['results'].nil?
-                config['results'].each do |field, expected|
-                    assert_includes captures.keys, field
-                    assert_includes captures[field], expected.to_s
-                end
-            end
+    # collect all tests
+    tests = Hash.new()
+    Dir.new(@@test_dir).each do |file|
+        next if file !~ /\.yaml$/
+        test = File.basename(file, '.yaml')
+        data = YAML.load(File.read(@@test_dir + '/' + file))
+        tests[test] = data
+    end
+
+    # define test methods for all collected tests
+    tests.each do |name, data|
+        define_method("test_#{name}") do
+            grok_pattern_tester(data['pattern'], data['logline'], data['results'])
         end
     end
 end
