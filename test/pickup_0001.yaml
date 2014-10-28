@@ -1,0 +1,5 @@
+pattern: POSTFIX_PICKUP
+data: "D2FAE20586: uid=0 from=<fail2ban>"
+results:
+    postfix_queueid: D2FAE20586
+    postfix_keyvalue_data: uid=0 from=<fail2ban>
