@@ -1,5 +1,5 @@
 pattern: POSTFIX_POSTSCREEN
-logline: "NON-SMTP COMMAND from [93.174.93.51]:45284 after CONNECT: GET http://ipv4scan.com/hello/check.txt HTTP/1.1"
+data: "NON-SMTP COMMAND from [93.174.93.51]:45284 after CONNECT: GET http://ipv4scan.com/hello/check.txt HTTP/1.1"
 results:
     postfix_postscreen_violation: NON-SMTP COMMAND
     postfix_client_ip: 93.174.93.51

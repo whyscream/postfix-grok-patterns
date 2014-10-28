@@ -1,5 +1,5 @@
 pattern: POSTFIX_SMTP
-logline: "Untrusted TLS connection established to mx4.hotmail.com[65.55.92.136]:25: TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits)"
+data: "Untrusted TLS connection established to mx4.hotmail.com[65.55.92.136]:25: TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits)"
 results:
     postfix_relay_hostname: mx4.hotmail.com
     postfix_relay_ip: 65.55.92.136

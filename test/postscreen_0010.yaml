@@ -1,5 +1,5 @@
 pattern: POSTFIX_POSTSCREEN
-logline: "PREGREET 6 after 1.2 from [216.81.72.72]:43421: RSET\r\n"
+data: "PREGREET 6 after 1.2 from [216.81.72.72]:43421: RSET\r\n"
 results:
     postfix_postscreen_violation: PREGREET
     postfix_postscreen_pregreet_time: 1.2

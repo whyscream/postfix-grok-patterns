@@ -34,14 +34,14 @@ class TestGrokPatterns < MiniTest::Unit::TestCase
     Dir.new(@@test_dir).each do |file|
         next if file !~ /\.yaml$/
         test = File.basename(file, '.yaml')
-        data = YAML.load(File.read(@@test_dir + '/' + file))
-        tests[test] = data
+        conf = YAML.load(File.read(@@test_dir + '/' + file))
+        tests[test] = conf
     end
 
     # define test methods for all collected tests
-    tests.each do |name, data|
+    tests.each do |name, conf|
         define_method("test_#{name}") do
-            grok_pattern_tester(data['pattern'], data['logline'], data['results'])
+            grok_pattern_tester(conf['pattern'], conf['data'], conf['results'])
         end
     end
 end

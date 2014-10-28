@@ -1,5 +1,5 @@
 pattern: POSTFIX_ANVIL
-logline: "statistics: max connection count 1 for (smtpd:2604:8d00:0:1::3) at Oct 26 17:46:59"
+data: "statistics: max connection count 1 for (smtpd:2604:8d00:0:1::3) at Oct 26 17:46:59"
 results:
     postfix_anvil_conn_count: 1
     postfix_service: smtpd

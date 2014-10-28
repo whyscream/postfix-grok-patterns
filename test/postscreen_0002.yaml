@@ -1,5 +1,5 @@
 pattern: POSTFIX_POSTSCREEN
-logline: "CONNECT from [61.238.241.86]:53024 to [89.105.204.244]:25"
+data: "CONNECT from [61.238.241.86]:53024 to [89.105.204.244]:25"
 results:
     postfix_client_ip: 61.238.241.86
     postfix_client_port: 53024

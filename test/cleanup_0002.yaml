@@ -1,5 +1,5 @@
 pattern: POSTFIX_CLEANUP
-logline: "4104E3D: message-id=<>"
+data: "4104E3D: message-id=<>"
 results:
     postfix_queueid: 4104E3D
     postfix_keyvalue_data: message-id=<>

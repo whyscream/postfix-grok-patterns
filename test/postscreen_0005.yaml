@@ -1,5 +1,5 @@
 pattern: POSTFIX_POSTSCREEN
-logline: "PASS OLD [2604:8d00:0:1::3]:52237"
+data: "PASS OLD [2604:8d00:0:1::3]:52237"
 results:
     postfix_postscreen_access: PASS OLD
     postfix_client_ip: 2604:8d00:0:1::3
