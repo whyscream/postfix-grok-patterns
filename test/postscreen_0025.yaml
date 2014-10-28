@@ -1,0 +1,7 @@
+pattern: POSTFIX_POSTSCREEN
+data: "COMMAND PIPELINING from [88.208.233.4]:42606 after .: \n"
+results:
+    postfix_postscreen_violation: COMMAND PIPELINING
+    postfix_client_ip: 88.208.233.4
+    postfix_client_port: 42606
+    postfix_smtp_stage: .
