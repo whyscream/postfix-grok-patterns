@@ -7,8 +7,8 @@ Usage
 -----
 
 - Install logstash
-- Add `filter-postfix.conf` to `/etc/logstash/conf.d`
-- Add `postfix-patterns.conf` to `/etc/logstash/patterns.d`
+- Add `50-filter-postfix.conf` to `/etc/logstash/conf.d`
+- Add `postfix.grok` to `/etc/logstash/patterns.d`
 - Restart logstash
 
 The included Logstash config file expects the postfix log data in the `message` field, something that works out of the box when you use Logstash's `syslog` input to receive postfix logging.
