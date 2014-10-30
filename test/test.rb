@@ -16,7 +16,7 @@ class TestGrokPatterns < MiniTest::Unit::TestCase
 
     @@test_dir = File.dirname(__FILE__)
     @@upstream_pattern_dir = @@test_dir + '/logstash/patterns'
-    @@postfix_pattern_file = File.dirname(File.expand_path(@@test_dir)) + '/postfix-patterns.conf'
+    @@postfix_pattern_file = File.dirname(File.expand_path(@@test_dir)) + '/postfix.grok'
 
     # Prepare a grok object.
     #
