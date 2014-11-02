@@ -16,7 +16,7 @@ class TestGrokPatterns < MiniTest::Unit::TestCase
 
     @@test_dir = File.dirname(__FILE__)
     @@upstream_pattern_dir = @@test_dir + '/logstash/patterns'
-    @@postfix_pattern_file = File.dirname(File.expand_path(@@test_dir)) + '/postfix.grok'
+    @@local_pattern_dir = File.dirname(File.expand_path(@@test_dir))
 
     # Prepare a grok object.
     #
@@ -28,7 +28,10 @@ class TestGrokPatterns < MiniTest::Unit::TestCase
             next if file =~ /^\./
             @grok.add_patterns_from_file(@@upstream_pattern_dir + '/' + file)
         end
-        @grok.add_patterns_from_file(@@postfix_pattern_file)
+        Dir.new(@@local_pattern_dir).each do |file|
+            next if file !~ /\.grok$/
+            @grok.add_patterns_from_file(@@local_pattern_dir + '/' + file)
+        end
     end
 
     # Test a grok pattern.
