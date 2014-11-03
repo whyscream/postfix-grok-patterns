@@ -1,0 +1,6 @@
+pattern: POSTFIX_SMTP
+data: "connect to intern.nl[194.109.6.98]:25: Connection timed out"
+results:
+    postfix_relay_hostname: intern.nl
+    postfix_relay_ip: 194.109.6.98
+    postfix_relay_port: 25
