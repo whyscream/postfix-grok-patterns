@@ -7,5 +7,6 @@ results:
     postfix_client_port: 4984
     postfix_status_code: 550
     postfix_status_code_enhanced: 5.7.1
-    postfix_status_message: Service unavailable; client [27.157.200.233] blocked using zen.spamhaus.org
+    postfix_status_data: 27.157.200.233
+    postfix_status_message: blocked using zen.spamhaus.org
     postfix_keyvalue_data: from=<hcdvbnm@qhhn.com>, to=<4ECEA00F.9040306@example.com>, proto=ESMTP, helo=<qhhn.com>
