@@ -1,4 +1,4 @@
-pattern: POSTFIX_SMTPD
+pattern: POSTFIX_POSTSCREEN
 data: "NOQUEUE: reject: RCPT from [27.157.200.233]:4984: 550 5.7.1 Service unavailable; client [27.157.200.233] blocked using zen.spamhaus.org; from=<hcdvbnm@qhhn.com>, to=<4ECEA00F.9040306@example.com>, proto=ESMTP, helo=<qhhn.com>"
 results:
     postfix_action: reject
