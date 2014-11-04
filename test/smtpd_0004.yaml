@@ -7,5 +7,6 @@ results:
     postfix_client_ip: 61.238.241.86
     postfix_status_code: 550
     postfix_status_code_enhanced: 5.1.1
-    postfix_status_message: "<toernooicommissie@example.com>: Recipient address rejected: User unknown in virtual mailbox table"
+    postfix_status_data: toernooicommissie@example.com
+    postfix_status_message: "Recipient address rejected: User unknown in virtual mailbox table"
     postfix_keyvalue_data: from=<wumt5@cchfdc.com> to=<toernooicommissie@example.com> proto=ESMTP helo=<ecsolved.com>

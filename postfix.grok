@@ -6,6 +6,7 @@ POSTFIX_SMTP_STAGE (CONNECT|HELO|EHLO|AUTH|MAIL|RCPT|DATA|STARTTLS|\.)
 POSTFIX_ACTION (reject|defer)
 POSTFIX_STATUS_CODE \d{3}
 POSTFIX_STATUS_CODE_ENHANCED \d\.\d\.\d
+POSTFIX_DNSBL_MESSAGE Service unavailable; .* \[%{GREEDYDATA:postfix_status_data}\] %{GREEDYDATA:postfix_status_message};
 POSTFIX_PS_ACCESS_ACTION (DISCONNECT|BLACKLISTED|WHITELISTED|WHITELIST VETO|PASS NEW|PASS OLD)
 POSTFIX_PS_VIOLATION (BARE NEWLINE|COMMAND (TIME|COUNT|LENGTH) LIMIT|COMMAND PIPELINING|DNSBL|HANGUP|NON-SMTP COMMAND|PREGREET)
 POSTFIX_TIME_UNIT %{NUMBER}[smhd]
@@ -18,7 +19,7 @@ POSTFIX_SMTPD_CONNECT connect from %{POSTFIX_CLIENT_INFO}
 POSTFIX_SMTPD_DISCONNECT disconnect from %{POSTFIX_CLIENT_INFO}
 POSTFIX_SMTPD_LOSTCONN %{POSTFIX_LOSTCONN:postfix_smtpd_lostconn_data} after %{POSTFIX_SMTP_STAGE:postfix_smtp_stage} from %{POSTFIX_CLIENT_INFO}
 POSTFIX_SMTPD_WARNING warning: %{GREEDYDATA:postfix_warning}
-POSTFIX_SMTPD_NOQUEUE NOQUEUE: %{POSTFIX_ACTION:postfix_action}: %{POSTFIX_SMTP_STAGE:postfix_smtp_stage} from %{POSTFIX_CLIENT_INFO}: %{POSTFIX_STATUS_CODE:postfix_status_code} %{POSTFIX_STATUS_CODE_ENHANCED:postfix_status_code_enhanced} %{GREEDYDATA:postfix_status_message}; %{GREEDYDATA:postfix_keyvalue_data}
+POSTFIX_SMTPD_NOQUEUE NOQUEUE: %{POSTFIX_ACTION:postfix_action}: %{POSTFIX_SMTP_STAGE:postfix_smtp_stage} from %{POSTFIX_CLIENT_INFO}: %{POSTFIX_STATUS_CODE:postfix_status_code} %{POSTFIX_STATUS_CODE_ENHANCED:postfix_status_code_enhanced}( <%{DATA:postfix_status_data}>:)? (%{POSTFIX_DNSBL_MESSAGE}|%{GREEDYDATA:postfix_status_message};) %{GREEDYDATA:postfix_keyvalue_data}
 
 # cleanup patterns
 POSTFIX_CLEANUP_MILTER_REDIRECT %{POSTFIX_QUEUEID:postfix_queueid}: milter-header-redirect: %{GREEDYDATA:postfix_milter_redirect_data}; %{GREEDYDATA:postfix_keyvalue_data}: %{GREEDYDATA:postfix_milter_redirect_target}

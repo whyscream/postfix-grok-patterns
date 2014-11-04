@@ -1,0 +1,11 @@
+pattern: POSTFIX_POSTSCREEN
+data: "NOQUEUE: reject: RCPT from [182.98.255.184]:2413: 550 5.5.1 Protocol error; from=<lvtowxfdp@yahoo.com>, to=<tom@example.com>, proto=SMTP, helo=<mx32.usaindiamunish.net>"
+results:
+    postfix_action: reject
+    postfix_smtp_stage: RCPT
+    postfix_client_ip: 182.98.255.184
+    postfix_client_port: 2413
+    postfix_status_code: 550
+    postfix_status_code_enhanced: 5.5.1
+    postfix_status_message: Protocol error
+    postfix_keyvalue_data: from=<lvtowxfdp@yahoo.com>, to=<tom@example.com>, proto=SMTP, helo=<mx32.usaindiamunish.net>

@@ -53,7 +53,7 @@ class TestGrokPatterns < MiniTest::Unit::TestCase
         captures = matches.captures()
         results.each do |field, expected|
             assert_includes captures.keys, field
-            assert_includes captures[field], expected.to_s
+            assert_includes captures[field], expected.to_s, "Missing expected data in field '#{field}'"
         end
     end
 

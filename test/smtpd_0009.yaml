@@ -1,0 +1,12 @@
+pattern: POSTFIX_SMTPD
+data: "NOQUEUE: reject: RCPT from news.zihan-promo.com[192.36.205.58]: 554 5.7.1 Service unavailable; Helo command [news.zihan-promo.com] blocked using dbl.spamhaus.org; http://www.spamhaus.org/query/dbl?domain=zihan-promo.com; from=<mark.alexander@zihan-promo.com> to=<tom@example.com> proto=ESMTP helo=<news.zihan-promo.com>"
+results:
+    postfix_action: reject
+    postfix_smtp_stage: RCPT
+    postfix_client_hostname: news.zihan-promo.com
+    postfix_client_ip: 192.36.205.58
+    postfix_status_code: 554
+    postfix_status_code_enhanced: 5.7.1
+    postfix_status_data: news.zihan-promo.com
+    postfix_status_message: "blocked using dbl.spamhaus.org; http://www.spamhaus.org/query/dbl?domain=zihan-promo.com"
+    postfix_keyvalue_data: from=<mark.alexander@zihan-promo.com> to=<tom@example.com> proto=ESMTP helo=<news.zihan-promo.com>
