@@ -1,0 +1,5 @@
+pattern: POSTFIX_MASTER
+data: "daemon started -- version 2.11.0, configuration /etc/postfix"
+results:
+    postfix_version: 2.11.0
+    postfix_config_path: /etc/postfix
