@@ -1,0 +1,4 @@
+pattern: POSTFIX_MASTER
+data: "terminating on signal 15"
+results:
+    postfix_termination_signal: 15
