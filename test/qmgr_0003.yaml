@@ -1,0 +1,4 @@
+pattern: POSTFIX_QMGR
+data: "warning: bounce_queue_lifetime is larger than maximal_queue_lifetime - adjusting bounce_queue_lifetime"
+results:
+    postfix_warning: bounce_queue_lifetime is larger than maximal_queue_lifetime - adjusting bounce_queue_lifetime
