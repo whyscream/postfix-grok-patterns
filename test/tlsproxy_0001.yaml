@@ -1,0 +1,5 @@
+pattern: POSTFIX_TLSPROXY
+data: "DISCONNECT [82.118.17.142]:51637"
+results:
+    postfix_client_ip: 82.118.17.142
+    postfix_client_port: 51637

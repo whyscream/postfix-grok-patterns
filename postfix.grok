@@ -45,6 +45,9 @@ POSTFIX_PS_VIOLATIONS %{POSTFIX_PS_VIOLATION:postfix_postscreen_violation}( %{IN
 # dnsblog patterns
 POSTFIX_DNSBLOG_LISTING addr %{IP:postfix_client_ip} listed by domain %{HOST:postfix_dnsbl_domain} as %{IP:postfix_dnsbl_result}
 
+# tlsproxy patterns
+POSTFIX_TLSPROXY_CONN (DIS)?CONNECT( from)? %{POSTFIX_CLIENT_INFO}
+
 # anvil patterns
 POSTFIX_ANVIL_CONN_RATE statistics: max connection rate %{NUMBER:postfix_anvil_conn_rate}/%{POSTFIX_TIME_UNIT:postfix_anvil_conn_period} for \(%{DATA:postfix_service}:%{IP:postfix_client_ip}\) at %{SYSLOGTIMESTAMP:postfix_anvil_timestamp}
 POSTFIX_ANVIL_CONN_CACHE statistics: max cache size %{NUMBER:postfix_anvil_cache_size} at %{SYSLOGTIMESTAMP:postfix_anvil_timestamp}
@@ -64,3 +67,4 @@ POSTFIX_DNSBLOG %{POSTFIX_DNSBLOG_LISTING}
 POSTFIX_ANVIL %{POSTFIX_ANVIL_CONN_RATE}|%{POSTFIX_ANVIL_CONN_CACHE}|%{POSTFIX_ANVIL_CONN_COUNT}
 POSTFIX_SMTP %{POSTFIX_SMTP_DELIVERY}|%{POSTFIX_SMTP_TIMEOUT}|%{POSTFIX_TLSCONN}
 POSTFIX_PICKUP %{POSTFIX_KEYVALUE}
+POSTFIX_TLSPROXY %{POSTFIX_TLSPROXY_CONN}
