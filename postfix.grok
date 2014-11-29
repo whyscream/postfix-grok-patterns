@@ -59,7 +59,7 @@ POSTFIX_SMTP_TIMEOUT connect to %{POSTFIX_RELAY_INFO}: Connection timed out
 POSTFIX_SMTP_LOSTCONN %{POSTFIX_QUEUEID:postfix_queueid}: %{POSTFIX_LOSTCONN} with %{POSTFIX_RELAY_INFO}
 
 # master patterns
-POSTFIX_MASTER_START daemon started -- version %{DATA:postfix_version}, configuration %{PATH:postfix_config_path}
+POSTFIX_MASTER_START (daemon started|reload) -- version %{DATA:postfix_version}, configuration %{PATH:postfix_config_path}
 POSTFIX_MASTER_EXIT terminating on signal %{INT:postfix_termination_signal}
 
 # aggregate all patterns
