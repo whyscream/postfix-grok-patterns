@@ -1,0 +1,6 @@
+pattern: POSTFIX_SMTP
+data: "connect to mail2.crabruzzo.it[2.115.207.21]:25: No route to host"
+results:
+    postfix_relay_hostname: mail2.crabruzzo.it
+    postfix_relay_ip: 2.115.207.21
+    postfix_relay_port: 25
