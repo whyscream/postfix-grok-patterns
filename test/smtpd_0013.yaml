@@ -1,0 +1,7 @@
+pattern: POSTFIX_SMTPD
+data: "lost connection after RSET from unknown[72.13.58.7]"
+results:
+    postfix_smtpd_lostconn_data: lost connection
+    postfix_smtp_stage: RSET
+    postfix_client_hostname: unknown
+    postfix_client_ip: 72.13.58.7
