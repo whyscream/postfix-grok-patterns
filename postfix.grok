@@ -63,7 +63,7 @@ POSTFIX_MASTER_START (daemon started|reload) -- version %{DATA:postfix_version},
 POSTFIX_MASTER_EXIT terminating on signal %{INT:postfix_termination_signal}
 
 # bounce patterns
-POSTFIX_BOUNCE_NOTIFICATION %{POSTFIX_QUEUEID:postfix_queueid}: sender non-delivery notification: %{POSTFIX_QUEUEID:postfix_bounce_queueid}
+POSTFIX_BOUNCE_NOTIFICATION %{POSTFIX_QUEUEID:postfix_queueid}: sender (non-delivery|delivery status|delay) notification: %{POSTFIX_QUEUEID:postfix_bounce_queueid}
 
 # aggregate all patterns
 POSTFIX_SMTPD %{POSTFIX_SMTPD_CONNECT}|%{POSTFIX_SMTPD_DISCONNECT}|%{POSTFIX_SMTPD_LOSTCONN}|%{POSTFIX_WARNING}|%{POSTFIX_SMTPD_NOQUEUE}|%{POSTFIX_TLSCONN}|%{POSTFIX_KEYVALUE}

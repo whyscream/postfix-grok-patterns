@@ -1,0 +1,5 @@
+pattern: POSTFIX_BOUNCE
+data: "264FE1A18: sender delay notification: 0A87A1A08"
+results:
+    postfix_queueid: 264FE1A18
+    postfix_bounce_queueid: 0A87A1A08
