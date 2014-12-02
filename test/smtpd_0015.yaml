@@ -1,0 +1,6 @@
+pattern: POSTFIX_SMTPD
+data: "improper command pipelining after EHLO from unknown[2001:968:9999:20:415c:cd2:da8e:d0cf]: MAIL FROM:<>\nRCPT TO:<tom@example.net>\nDATA\nSubject: pipeline test\n\nThis is a test\n.\nQUIT\n\r\n"
+results:
+    postfix_smtp_stage: EHLO
+    postfix_client_hostname: unknown
+    postfix_client_ip: 2001:968:9999:20:415c:cd2:da8e:d0cf
