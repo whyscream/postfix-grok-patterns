@@ -1,0 +1,9 @@
+pattern: POSTFIX_SMTP
+data: "Trusted TLS connection established to gmail-smtp-in.l.google.com[74.125.136.26]:25: TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits)"
+results:
+    postfix_relay_hostname: gmail-smtp-in.l.google.com
+    postfix_relay_ip: 74.125.136.26
+    postfix_relay_port: 25
+    postfix_tls_version: TLSv1.2
+    postfix_tls_cipher: ECDHE-RSA-AES128-GCM-SHA256
+    postfix_tls_cipher_size: 128/128

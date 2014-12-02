@@ -1,0 +1,9 @@
+pattern: POSTFIX_SMTP
+data: "Verified TLS connection established to mail.sys4.de[2001:1578:400:111::7]:25: TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits)"
+results:
+    postfix_relay_hostname: mail.sys4.de
+    postfix_relay_ip: 2001:1578:400:111::7
+    postfix_relay_port: 25
+    postfix_tls_version: TLSv1
+    postfix_tls_cipher: ECDHE-RSA-AES256-SHA
+    postfix_tls_cipher_size: 256/256
