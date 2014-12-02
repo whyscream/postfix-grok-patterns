@@ -22,7 +22,7 @@ In the `test/` directory, there is a test suite that tries to make sure that no 
 
 The test suite needs the patterns provided by Logstash, you can easily pull these from github by running `git submodule update --init`. To run the test suite, you also need `ruby 1.9` and the `jls-grok` gem. Then simply execute `ruby test/test.rb`.
 
-Adding new test cases can easily be done by creating new yaml files in the test directory. Each file specififes a grok pattern to validate, a sample log line, and a list of expected results.
+Adding new test cases can easily be done by creating new yaml files in the test directory. Each file specifies a grok pattern to validate, a sample log line, and a list of expected results.
 
 Also, the example Logstash config file adds some informative tags that aid in finding grok failures and unparsed lines. If you're not interested in those, you can remove all occurrences of `add_tag` and `tag_on_failure` from the config file.
 
