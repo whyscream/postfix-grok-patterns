@@ -4,4 +4,4 @@ results:
     postfix_smtpd_lostconn_data: timeout
     postfix_smtp_stage: END-OF-MESSAGE
     postfix_client_hostname: unknown
-    postfix_client_ip: "72.13.58.7"
+    postfix_client_ip: 72.13.58.7
