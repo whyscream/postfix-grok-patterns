@@ -1,0 +1,6 @@
+pattern: POSTFIX_SCACHE
+data: "statistics: domain lookup hits=0 miss=1 success=0%"
+results:
+    postfix_scache_hits: 0
+    postfix_scache_miss: 1
+    postfix_scache_success: 0
