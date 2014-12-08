@@ -1,0 +1,4 @@
+pattern: POSTFIX_POSTDROP
+data: "warning: uid=0: File too large"
+results:
+    postfix_warning: "uid=0: File too large"

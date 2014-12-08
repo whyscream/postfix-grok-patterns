@@ -11,7 +11,7 @@ POSTFIX_PS_ACCESS_ACTION (DISCONNECT|BLACKLISTED|WHITELISTED|WHITELIST VETO|PASS
 POSTFIX_PS_VIOLATION (BARE NEWLINE|COMMAND (TIME|COUNT|LENGTH) LIMIT|COMMAND PIPELINING|DNSBL|HANGUP|NON-SMTP COMMAND|PREGREET)
 POSTFIX_TIME_UNIT %{NUMBER}[smhd]
 POSTFIX_KEYVALUE %{POSTFIX_QUEUEID:postfix_queueid}: %{GREEDYDATA:postfix_keyvalue_data}
-POSTFIX_WARNING warning: %{GREEDYDATA:postfix_warning}
+POSTFIX_WARNING (warning|fatal): %{GREEDYDATA:postfix_warning}
 POSTFIX_TLSCONN (Anonymous|Trusted|Untrusted|Verified) TLS connection established (to %{POSTFIX_RELAY_INFO}|from %{POSTFIX_CLIENT_INFO}): %{DATA:postfix_tls_version} with cipher %{DATA:postfix_tls_cipher} \(%{DATA:postfix_tls_cipher_size} bits\)
 POSTFIX_DELAYS %{NUMBER:postfix_delay_before_qmgr}/%{NUMBER:postfix_delay_in_qmgr}/%{NUMBER:postfix_delay_conn_setup}/%{NUMBER:postfix_delay_transmission}
 POSTFIX_LOSTCONN (lost connection|timeout)
@@ -19,7 +19,7 @@ POSTFIX_LOSTCONN (lost connection|timeout)
 # smtpd patterns
 POSTFIX_SMTPD_CONNECT connect from %{POSTFIX_CLIENT_INFO}
 POSTFIX_SMTPD_DISCONNECT disconnect from %{POSTFIX_CLIENT_INFO}
-POSTFIX_SMTPD_LOSTCONN %{POSTFIX_LOSTCONN:postfix_smtpd_lostconn_data} after %{POSTFIX_SMTP_STAGE:postfix_smtp_stage}( \(%{NONNEGINT} bytes\))? from %{POSTFIX_CLIENT_INFO}
+POSTFIX_SMTPD_LOSTCONN %{POSTFIX_LOSTCONN:postfix_smtpd_lostconn_data} after %{POSTFIX_SMTP_STAGE:postfix_smtp_stage}( \(%{INT} bytes\))? from %{POSTFIX_CLIENT_INFO}
 POSTFIX_SMTPD_NOQUEUE NOQUEUE: %{POSTFIX_ACTION:postfix_action}: %{POSTFIX_SMTP_STAGE:postfix_smtp_stage} from %{POSTFIX_CLIENT_INFO}: %{POSTFIX_STATUS_CODE:postfix_status_code} %{POSTFIX_STATUS_CODE_ENHANCED:postfix_status_code_enhanced}( <%{DATA:postfix_status_data}>:)? (%{POSTFIX_DNSBL_MESSAGE}|%{GREEDYDATA:postfix_status_message};) %{GREEDYDATA:postfix_keyvalue_data}
 POSTFIX_SMTPD_PIPELINING improper command pipelining after %{POSTFIX_SMTP_STAGE:postfix_smtp_stage} from %{POSTFIX_CLIENT_INFO}:
 
@@ -79,3 +79,5 @@ POSTFIX_PICKUP %{POSTFIX_KEYVALUE}
 POSTFIX_TLSPROXY %{POSTFIX_TLSPROXY_CONN}
 POSTFIX_MASTER %{POSTFIX_MASTER_START}|%{POSTFIX_MASTER_EXIT}
 POSTFIX_BOUNCE %{POSTFIX_BOUNCE_NOTIFICATION}
+POSTFIX_SENDMAIL %{POSTFIX_WARNING}
+POSTFIX_POSTDROP %{POSTFIX_WARNING}
