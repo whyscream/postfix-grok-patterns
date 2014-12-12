@@ -1,0 +1,14 @@
+# this is a VRFY for an unknown user in a known domain
+
+pattern: POSTFIX_SMTPD
+data: "NOQUEUE: reject: VRFY from unknown[2001:968:9999:20:88b:9b7d:2a54:2bd2]: 550 5.1.1 <does-not-exist@example.com>: Recipient address rejected: User unknown in virtual mailbox table; to=<does-not-exist@example.com> proto=SMTP helo=<me>"
+results:
+    postfix_action: reject
+    postfix_smtp_stage: VRFY
+    postfix_client_hostname: unknown
+    postfix_client_ip: "2001:968:9999:20:88b:9b7d:2a54:2bd2"
+    postfix_status_code: 550
+    postfix_status_code_enhanced: 5.1.1
+    postfix_status_data: does-not-exist@example.com
+    postfix_status_message: "Recipient address rejected: User unknown in virtual mailbox table"
+    postfix_keyvalue_data: to=<does-not-exist@example.com> proto=SMTP helo=<me>
