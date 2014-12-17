@@ -1,0 +1,4 @@
+pattern: POSTFIX_TRIVIAL_REWRITE
+data: "warning: dict_ldap_lookup: Search error -1: Can't contact LDAP server "
+results:
+    postfix_warning: "dict_ldap_lookup: Search error -1: Can't contact LDAP server "
