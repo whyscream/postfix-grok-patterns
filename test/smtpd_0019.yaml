@@ -1,0 +1,7 @@
+pattern: POSTFIX_SMTPD
+data: "SSL_accept error from unknown[72.13.58.7]: lost connection"
+results:
+    postfix_smtpd_lostconn_data: lost connection
+    postfix_action: SSL_accept error
+    postfix_client_hostname: unknown
+    postfix_client_ip: 72.13.58.7
