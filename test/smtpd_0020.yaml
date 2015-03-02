@@ -1,0 +1,13 @@
+pattern: POSTFIX_SMTPD
+data: "proxy-accept: END-OF-MESSAGE: 250 2.0.0 from MTA(smtp:[127.0.0.1]:10013): 250 2.0.0 Ok: queued as DF66E940333; from=<user1@test.example.com> to=<user2@example2.com> proto=ESMTP helo=<[127.0.0.1]>"
+results:
+    postfix_proxy: accept
+    postfix_status_messsage: "250 2.0.0 from MTA(smtp:[127.0.0.1]:10013): 250 2.0.0 Ok: queued as DF66E940333"
+    postfix_status_code: 250
+    postfix_status_code_enhanced: 2.0.0
+    postfix_mta: "smtp:[127.0.0.1]:10013"
+    postfix_queueid: DF66E940333
+    postfix_from: user1@test.example.com
+    postfix_to: user2@example2.com
+    postfix_proto: ESMTP
+    postfix_helo: "[127.0.0.1]"
