@@ -1,0 +1,5 @@
+pattern: POSTFIX_SMTPD
+data: "connect from unknown[unknown]"
+results:
+    postfix_client_hostname: unknown
+    postfix_client_ip: unknown

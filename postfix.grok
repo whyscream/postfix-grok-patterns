@@ -1,6 +1,6 @@
 # common postfix patterns
 POSTFIX_QUEUEID ([0-9A-F]{6,}|[0-9a-zA-Z]{15,}|NOQUEUE)
-POSTFIX_CLIENT_INFO %{HOST:postfix_client_hostname}?\[%{IP:postfix_client_ip}\](:%{INT:postfix_client_port})?
+POSTFIX_CLIENT_INFO %{HOST:postfix_client_hostname}?\[(%{IP:postfix_client_ip}|%{WORD:postfix_client_ip})\](:%{INT:postfix_client_port})?
 POSTFIX_RELAY_INFO %{HOST:postfix_relay_hostname}?\[%{IP:postfix_relay_ip}\](:%{INT:postfix_relay_port})?|%{WORD:postfix_relay_service}
 POSTFIX_SMTP_STAGE (CONNECT|HELO|EHLO|STARTTLS|AUTH|MAIL|RCPT|DATA|RSET|UNKNOWN|END-OF-MESSAGE|VRFY|\.)
 POSTFIX_ACTION (reject|defer)
@@ -52,7 +52,7 @@ POSTFIX_TLSPROXY_CONN (DIS)?CONNECT( from)? %{POSTFIX_CLIENT_INFO}
 # anvil patterns
 POSTFIX_ANVIL_CONN_RATE statistics: max connection rate %{NUMBER:postfix_anvil_conn_rate}/%{POSTFIX_TIME_UNIT:postfix_anvil_conn_period} for \(%{DATA:postfix_service}:%{IP:postfix_client_ip}\) at %{SYSLOGTIMESTAMP:postfix_anvil_timestamp}
 POSTFIX_ANVIL_CONN_CACHE statistics: max cache size %{NUMBER:postfix_anvil_cache_size} at %{SYSLOGTIMESTAMP:postfix_anvil_timestamp}
-POSTFIX_ANVIL_CONN_COUNT statistics: max connection count %{NUMBER:postfix_anvil_conn_count} for \(%{DATA:postfix_service}:%{IP:postfix_client_ip}\) at %{SYSLOGTIMESTAMP:postfix_anvil_timestamp}
+POSTFIX_ANVIL_CONN_COUNT statistics: max connection count %{NUMBER:postfix_anvil_conn_count} for \(%{DATA:postfix_service}:(%{IP:postfix_client_ip}|%{WORD:postfix_client_ip})\) at %{SYSLOGTIMESTAMP:postfix_anvil_timestamp}
 
 # smtp patterns
 POSTFIX_SMTP_DELIVERY %{POSTFIX_KEYVALUE} \(%{GREEDYDATA:postfix_smtp_response}\)
