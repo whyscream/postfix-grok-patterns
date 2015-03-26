@@ -1,0 +1,7 @@
+pattern: POSTFIX_ANVIL
+data: "statistics: max connection count 1 for (submission:unknown) at Mar 25 14:43:23"
+results:
+    postfix_anvil_conn_count: 1
+    postfix_service: submission
+    postfix_client_ip: unknown
+    postfix_anvil_timestamp: Mar 25 14:43:23
