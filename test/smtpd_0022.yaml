@@ -1,8 +1,9 @@
 pattern: POSTFIX_SMTPD
 data: "proxy-reject: END-OF-MESSAGE: 554 5.7.0 Reject, contact postmaster@example.com, id=31619-02 - spam; from=<> to=<user2@example2.com> proto=SMTP helo=<17.33.12.53>"
 results:
-    postfix_proxy: reject
-    postfix_status_message: "554 5.7.0 Reject, contact postmaster@example.com, id=31619-02 - spam"
-    postfix_status_code: 554
-    postfix_status_code_enhanced: 5.7.0
+    postfix_proxy_result: reject
+    postfix_proxy_smtp_stage: END-OF-MESSAGE
+    postfix_proxy_message: "554 5.7.0 Reject, contact postmaster@example.com, id=31619-02 - spam"
+    postfix_proxy_status_code: 554
+    postfix_proxy_status_code_enhanced: 5.7.0
     postfix_keyvalue_data: from=<> to=<user2@example2.com> proto=SMTP helo=<17.33.12.53>

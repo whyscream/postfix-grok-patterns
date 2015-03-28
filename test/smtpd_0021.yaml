@@ -1,5 +1,7 @@
 pattern: POSTFIX_SMTPD
 data: "proxy-reject: END-OF-MESSAGE: ; from=<user1@test.example.com> to=<user2@example2.com> proto=ESMTP helo=<[192.168.0.16]>"
 results:
-    postfix_proxy: reject
+    postfix_proxy_result: reject
+    postfix_proxy_smtp_stage: END-OF-MESSAGE
+    postfix_proxy_message: ""
     postfix_keyvalue_data: from=<user1@test.example.com> to=<user2@example2.com> proto=ESMTP helo=<[192.168.0.16]>
