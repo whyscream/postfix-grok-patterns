@@ -1,0 +1,6 @@
+pattern: POSTFIX_PIPE
+data: "95ECE24E0: to=<tom@example.com>, relay=dovecot, delay=0.12, delays=0.03/0/0/0.08, dsn=5.4.6, status=bounced (mail forwarding loop for tom@example.com)"
+results:
+    postfix_queueid: 95ECE24E0
+    postfix_keyvalue_data: to=<tom@example.com>, relay=dovecot, delay=0.12, delays=0.03/0/0/0.08, dsn=5.4.6, status=bounced
+    postfix_to: tom@example.com
