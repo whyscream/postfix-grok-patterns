@@ -3,7 +3,7 @@ POSTFIX_QUEUEID ([0-9A-F]{6,}|[0-9a-zA-Z]{15,}|NOQUEUE)
 POSTFIX_CLIENT_INFO %{HOST:postfix_client_hostname}?\[%{IP:postfix_client_ip}\](:%{INT:postfix_client_port})?
 POSTFIX_RELAY_INFO %{HOST:postfix_relay_hostname}?\[(%{IP:postfix_relay_ip}|%{DATA:postfix_relay_service})\](:%{INT:postfix_relay_port})?|%{WORD:postfix_relay_service}
 POSTFIX_SMTP_STAGE (CONNECT|HELO|EHLO|STARTTLS|AUTH|MAIL|RCPT|DATA|RSET|UNKNOWN|END-OF-MESSAGE|VRFY|\.)
-POSTFIX_ACTION (reject|defer|accept)
+POSTFIX_ACTION (reject|defer|accept|header-redirect)
 POSTFIX_STATUS_CODE \d{3}
 POSTFIX_STATUS_CODE_ENHANCED \d\.\d\.\d
 POSTFIX_DNSBL_MESSAGE Service unavailable; .* \[%{GREEDYDATA:postfix_status_data}\] %{GREEDYDATA:postfix_status_message};
@@ -17,6 +17,9 @@ POSTFIX_DELAYS %{NUMBER:postfix_delay_before_qmgr}/%{NUMBER:postfix_delay_in_qmg
 POSTFIX_LOSTCONN (lost connection|timeout)
 POSTFIX_PROXY_MESSAGE (%{POSTFIX_STATUS_CODE:postfix_proxy_status_code} )?(%{POSTFIX_STATUS_CODE_ENHANCED:postfix_proxy_status_code_enhanced})?.*
 
+# helper patterns
+GREEDYDATA_NO_COLON [^:]*
+
 # smtpd patterns
 POSTFIX_SMTPD_CONNECT connect from %{POSTFIX_CLIENT_INFO}
 POSTFIX_SMTPD_DISCONNECT disconnect from %{POSTFIX_CLIENT_INFO}
@@ -26,8 +29,7 @@ POSTFIX_SMTPD_PIPELINING improper command pipelining after %{POSTFIX_SMTP_STAGE:
 POSTFIX_SMTPD_PROXY proxy-%{POSTFIX_ACTION:postfix_proxy_result}: (%{POSTFIX_SMTP_STAGE:postfix_proxy_smtp_stage}): %{POSTFIX_PROXY_MESSAGE:postfix_proxy_message}; %{GREEDYDATA:postfix_keyvalue_data}
 
 # cleanup patterns
-POSTFIX_CLEANUP_MILTER_REDIRECT %{POSTFIX_QUEUEID:postfix_queueid}: milter-header-redirect: %{GREEDYDATA:postfix_milter_redirect_data}; %{GREEDYDATA:postfix_keyvalue_data}: %{GREEDYDATA:postfix_milter_redirect_target}
-POSTFIX_CLEANUP_MILTER_REJECT %{POSTFIX_QUEUEID:postfix_queueid}: milter-reject: %{GREEDYDATA:postfix_milter_reject_data}; %{GREEDYDATA:postfix_keyvalue_data}
+POSTFIX_CLEANUP_MILTER %{POSTFIX_QUEUEID:postfix_queueid}: milter-%{POSTFIX_ACTION:postfix_milter_result}: %{GREEDYDATA:postfix_milter_message}; %{GREEDYDATA_NO_COLON:postfix_keyvalue_data}(: %{GREEDYDATA:postfix_milter_data})?
 
 # qmgr patterns
 POSTFIX_QMGR_REMOVED %{POSTFIX_QUEUEID:postfix_queueid}: removed
@@ -75,7 +77,7 @@ POSTFIX_SCACHE_TIMESTAMP statistics: start interval %{SYSLOGTIMESTAMP:postfix_sc
 
 # aggregate all patterns
 POSTFIX_SMTPD %{POSTFIX_SMTPD_CONNECT}|%{POSTFIX_SMTPD_DISCONNECT}|%{POSTFIX_SMTPD_LOSTCONN}|%{POSTFIX_SMTPD_NOQUEUE}|%{POSTFIX_SMTPD_PIPELINING}|%{POSTFIX_TLSCONN}|%{POSTFIX_WARNING}|%{POSTFIX_SMTPD_PROXY}|%{POSTFIX_KEYVALUE}
-POSTFIX_CLEANUP %{POSTFIX_CLEANUP_MILTER_REDIRECT}|%{POSTFIX_CLEANUP_MILTER_REJECT}|%{POSTFIX_WARNING}|%{POSTFIX_KEYVALUE}
+POSTFIX_CLEANUP %{POSTFIX_CLEANUP_MILTER}|%{POSTFIX_WARNING}|%{POSTFIX_KEYVALUE}
 POSTFIX_QMGR %{POSTFIX_QMGR_REMOVED}|%{POSTFIX_QMGR_ACTIVE}|%{POSTFIX_WARNING}
 POSTFIX_PIPE %{POSTFIX_PIPE_DELIVERED}
 POSTFIX_POSTSCREEN %{POSTFIX_PS_CONNECT}|%{POSTFIX_PS_ACCESS}|%{POSTFIX_PS_NOQUEUE}|%{POSTFIX_PS_TOOBUSY}|%{POSTFIX_PS_CACHE}|%{POSTFIX_PS_DNSBL}|%{POSTFIX_PS_VIOLATIONS}|%{POSTFIX_WARNING}
