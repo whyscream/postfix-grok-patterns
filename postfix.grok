@@ -23,7 +23,7 @@ POSTFIX_SMTPD_DISCONNECT disconnect from %{POSTFIX_CLIENT_INFO}
 POSTFIX_SMTPD_LOSTCONN (%{POSTFIX_LOSTCONN:postfix_smtpd_lostconn_data} after %{POSTFIX_SMTP_STAGE:postfix_smtp_stage}( \(%{INT} bytes\))? from %{POSTFIX_CLIENT_INFO}|%{GREEDYDATA:postfix_action} from %{POSTFIX_CLIENT_INFO}: %{POSTFIX_LOSTCONN:postfix_smtpd_lostconn_data})
 POSTFIX_SMTPD_NOQUEUE NOQUEUE: %{POSTFIX_ACTION:postfix_action}: %{POSTFIX_SMTP_STAGE:postfix_smtp_stage} from %{POSTFIX_CLIENT_INFO}: %{POSTFIX_STATUS_CODE:postfix_status_code} %{POSTFIX_STATUS_CODE_ENHANCED:postfix_status_code_enhanced}( <%{DATA:postfix_status_data}>:)? (%{POSTFIX_DNSBL_MESSAGE}|%{GREEDYDATA:postfix_status_message};) %{GREEDYDATA:postfix_keyvalue_data}
 POSTFIX_SMTPD_PIPELINING improper command pipelining after %{POSTFIX_SMTP_STAGE:postfix_smtp_stage} from %{POSTFIX_CLIENT_INFO}:
-POSTFIX_SMTPD_PROXY proxy-%{WORD:postfix_proxy}: END-OF-MESSAGE: (%{POSTFIX_PROXY_STATUS:postfix_status_message})?; from=<(%{DATA:postfix_from})?> to=<%{DATA:postfix_to}> proto=%{WORD:postfix_proto} helo=<%{DATA:postfix_helo}>
+POSTFIX_SMTPD_PROXY proxy-%{WORD:postfix_proxy}: END-OF-MESSAGE: (%{POSTFIX_PROXY_STATUS:postfix_status_message})?; %{GREEDYDATA:postfix_keyvalue_data}
 
 # cleanup patterns
 POSTFIX_CLEANUP_MILTER_REDIRECT %{POSTFIX_QUEUEID:postfix_queueid}: milter-header-redirect: %{GREEDYDATA:postfix_milter_redirect_data}; %{GREEDYDATA:postfix_keyvalue_data}: %{GREEDYDATA:postfix_milter_redirect_target}

@@ -5,6 +5,4 @@ results:
     postfix_status_message: "554 5.7.0 Reject, contact postmaster@example.com, id=31619-02 - spam"
     postfix_status_code: 554
     postfix_status_code_enhanced: 5.7.0
-    postfix_to: user2@example2.com
-    postfix_proto: SMTP
-    postfix_helo: 17.33.12.53
+    postfix_keyvalue_data: from=<> to=<user2@example2.com> proto=SMTP helo=<17.33.12.53>
