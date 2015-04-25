@@ -60,7 +60,7 @@ POSTFIX_ANVIL_CONN_CACHE statistics: max cache size %{NUMBER:postfix_anvil_cache
 POSTFIX_ANVIL_CONN_COUNT statistics: max connection count %{NUMBER:postfix_anvil_conn_count} for \(%{DATA:postfix_service}:%{IP:postfix_client_ip}\) at %{SYSLOGTIMESTAMP:postfix_anvil_timestamp}
 
 # smtp patterns
-POSTFIX_SMTP_DELIVERY %{POSTFIX_KEYVALUE} \(%{GREEDYDATA:postfix_smtp_response}\)
+POSTFIX_SMTP_DELIVERY %{POSTFIX_KEYVALUE} status=%{WORD:postfix_status}( \(%{GREEDYDATA:postfix_smtp_response}\))?
 POSTFIX_SMTP_CONNERR connect to %{POSTFIX_RELAY_INFO}: (Connection timed out|No route to host|Connection refused)
 POSTFIX_SMTP_LOSTCONN %{POSTFIX_QUEUEID:postfix_queueid}: %{POSTFIX_LOSTCONN} with %{POSTFIX_RELAY_INFO}
 

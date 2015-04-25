@@ -2,5 +2,6 @@ pattern: POSTFIX_SMTP
 data: "AD6E41CDC05C: to=<admin@example.com>, relay=sub1.example.com[private/dovecot-lmtp], delay=0.15, delays=0.04/0/0.02/0.08, dsn=2.0.0, status=sent (250 2.0.0 <admin@example.com> qYyyBMsl9FRuZQAAA15QOA Saved)"
 results:
     postfix_queueid: AD6E41CDC05C
-    postfix_keyvalue_data: "to=<admin@example.com>, relay=sub1.example.com[private/dovecot-lmtp], delay=0.15, delays=0.04/0/0.02/0.08, dsn=2.0.0, status=sent"
+    postfix_keyvalue_data: "to=<admin@example.com>, relay=sub1.example.com[private/dovecot-lmtp], delay=0.15, delays=0.04/0/0.02/0.08, dsn=2.0.0,"
+    postfix_status: sent
     postfix_smtp_response: "250 2.0.0 <admin@example.com> qYyyBMsl9FRuZQAAA15QOA Saved"
