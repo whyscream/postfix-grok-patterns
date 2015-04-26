@@ -1,0 +1,8 @@
+pattern: POSTFIX_SMTP
+data: "461283D: host mail1.han.nl[145.74.103.11] said: 450 4.7.1 <user@example.org>: Recipient address rejected: Greylisted for 5 minutes (in reply to RCPT TO command)"
+results:
+    postfix_queueid: 461283D
+    postfix_relay_hostname: mail1.han.nl
+    postfix_relay_ip: 145.74.103.11
+    postfix_smtp_response: "450 4.7.1 <user@example.org>: Recipient address rejected: Greylisted for 5 minutes"
+    postfix_smtp_stage: RCPT TO
