@@ -2,5 +2,6 @@ pattern: POSTFIX_SMTP
 data: "0D9633D: to=<jos@example.com>, orig_to=<bestuur@example.com>, relay=mail1.example.net[10.74.103.11]:25, delay=11, delays=5.4/0.06/5.1/0.03, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as F12DF84004)"
 results:
     postfix_queueid: 0D9633D
-    postfix_keyvalue_data: "to=<jos@example.com>, orig_to=<bestuur@example.com>, relay=mail1.example.net[10.74.103.11]:25, delay=11, delays=5.4/0.06/5.1/0.03, dsn=2.0.0, status=sent"
+    postfix_keyvalue_data: "to=<jos@example.com>, orig_to=<bestuur@example.com>, relay=mail1.example.net[10.74.103.11]:25, delay=11, delays=5.4/0.06/5.1/0.03, dsn=2.0.0,"
+    postfix_status: sent
     postfix_smtp_response: "250 2.0.0 Ok: queued as F12DF84004"

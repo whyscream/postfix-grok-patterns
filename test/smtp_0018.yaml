@@ -1,4 +1,7 @@
 pattern: POSTFIX_SMTP
-data: "warning: problem talking to service private/scache: Connection timed out"
+data: "4E74613FE76: to=<redacted@gmail.com>, relay=gmail-smtp-in.l.google.com[2607:f8b0:400e:c04::1b]:25, delay=1.9, delays=0.05/0/1.1/0.71, dsn=5.7.1, status=bounced (host gmail-smtp-in.l.google.com[2607:f8b0:400e:c04::1b] said: 550-5.7.1 [2607:4100:3:25:100::2      12] Our system has detected that this 550-5.7.1 message is likely unsolicited mail. To reduce the amount of spam sent 550-5.7.1 to Gmail, this message has been blocked. Please visit 550-5.7.1 http://support.google.com/mail/bin/answer.py?hl=en&answer=188131 for 550 5.7.1 more information. qc12si8475009pab.211 - gsmtp (in reply to end of DATA command))"
 results:
-    postfix_warning: "problem talking to service private/scache: Connection timed out"
+    postfix_queueid: 4E74613FE76
+    postfix_keyvalue_data: "to=<redacted@gmail.com>, relay=gmail-smtp-in.l.google.com[2607:f8b0:400e:c04::1b]:25, delay=1.9, delays=0.05/0/1.1/0.71, dsn=5.7.1,"
+    postfix_status: bounced
+    postfix_smtp_response: "host gmail-smtp-in.l.google.com[2607:f8b0:400e:c04::1b] said: 550-5.7.1 [2607:4100:3:25:100::2      12] Our system has detected that this 550-5.7.1 message is likely unsolicited mail. To reduce the amount of spam sent 550-5.7.1 to Gmail, this message has been blocked. Please visit 550-5.7.1 http://support.google.com/mail/bin/answer.py?hl=en&answer=188131 for 550 5.7.1 more information. qc12si8475009pab.211 - gsmtp (in reply to end of DATA command)"

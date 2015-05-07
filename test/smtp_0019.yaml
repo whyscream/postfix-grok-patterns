@@ -1,0 +1,4 @@
+pattern: POSTFIX_SMTP
+data: "warning: problem talking to service private/scache: Connection timed out"
+results:
+    postfix_warning: "problem talking to service private/scache: Connection timed out"
