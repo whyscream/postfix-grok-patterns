@@ -1,0 +1,7 @@
+pattern: POSTFIX_DISCARD
+data: "May  8 01:15:47 mailserver01 postfix/discard[19593]: 25F2E5E061: to=<george.desantis@test.example.com>, relay=none, delay=0.05, delays=0.05/0/0/0, dsn=2.0.0, status=sent (test.example.com)"
+results:
+    postfix_queueid: 25F2E5E061
+    postfix_status: sent
+    postfix_keyvalue_data: "to=<george.desantis@test.example.com>, relay=none, delay=0.05, delays=0.05/0/0/0, dsn=2.0.0,"
+
