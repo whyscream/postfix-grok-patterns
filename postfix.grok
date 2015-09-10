@@ -1,3 +1,8 @@
+# Email pattern (https://tools.ietf.org/html/rfc3696)
+EMAIL_ADDRESS_USER [a-zA-Z0-9!#$%&'*+-/=?^_`.{|}~]+
+EMAIL_ADDRESS_DOMAIN [a-zA-Z0-9.-]+
+EMAIL_ADDRESS %{EMAIL_ADDRESS_USER:postfix_email_user}@%{EMAIL_ADDRESS_DOMAIN:postfix_email_domain}
+
 # common postfix patterns
 POSTFIX_QUEUEID ([0-9A-F]{6,}|[0-9a-zA-Z]{15,}|NOQUEUE)
 POSTFIX_CLIENT_INFO %{HOST:postfix_client_hostname}?\[%{IP:postfix_client_ip}\](:%{INT:postfix_client_port})?
@@ -75,6 +80,17 @@ POSTFIX_BOUNCE_NOTIFICATION %{POSTFIX_QUEUEID:postfix_queueid}: sender (non-deli
 POSTFIX_SCACHE_LOOKUPS statistics: (address|domain) lookup hits=%{INT:postfix_scache_hits} miss=%{INT:postfix_scache_miss} success=%{INT:postfix_scache_success}
 POSTFIX_SCACHE_SIMULTANEOUS statistics: max simultaneous domains=%{INT:postfix_scache_domains} addresses=%{INT:postfix_scache_addresses} connection=%{INT:postfix_scache_connection}
 POSTFIX_SCACHE_TIMESTAMP statistics: start interval %{SYSLOGTIMESTAMP:postfix_scache_timestamp}
+
+# check stage of postfix
+POSTFIX_STAGE_VALUE (postfix\/[a-zA-Z]+|policyd-spf)
+POSTFIX_STAGE %{POSTFIX_STAGE_VALUE:postfix_stage}
+
+# policyd spf (https://launchpad.net/pypolicyd-spf/)
+POSTFIX_POLICYD_SPF_EMAIL_FROM %{EMAIL_ADDRESS_USER:postfix_policyd_from_email_user}@%{EMAIL_ADDRESS_DOMAIN:postfix_policyd_spf_from_email_domain}
+POSTFIX_POLICYD_SPF_EMAIL_TO %{EMAIL_ADDRESS_USER:postfix_policyd_to_email_user}@%{EMAIL_ADDRESS_DOMAIN:postfix_policyd_spf_to_email_domain}
+POSTFIX_POLICYD_SPF_STATUS_CODE (Pass|Fail|None|Neutral|Softfail|Temperror|Permerror)
+POSTFIX_POLICYD_SPF_IDENTITY (helo|mailfrom)
+POSTFIX_POLICYD_SPF %{POSTFIX_POLICYD_SPF_STATUS_CODE:postfix_policyd_spf_result}; identity=%{POSTFIX_POLICYD_SPF_IDENTITY:postfix_policyd_spf_identity}; client-ip=%{IP:postfix_policyd_spf_client_ip}; helo=%{HOST:postfix_policyd_spf_helo}; envelope-from=%{POSTFIX_POLICYD_SPF_EMAIL_FROM}; receiver=%{POSTFIX_POLICYD_SPF_EMAIL_TO}
 
 # aggregate all patterns
 POSTFIX_SMTPD %{POSTFIX_SMTPD_CONNECT}|%{POSTFIX_SMTPD_DISCONNECT}|%{POSTFIX_SMTPD_LOSTCONN}|%{POSTFIX_SMTPD_NOQUEUE}|%{POSTFIX_SMTPD_PIPELINING}|%{POSTFIX_TLSCONN}|%{POSTFIX_WARNING}|%{POSTFIX_SMTPD_PROXY}|%{POSTFIX_KEYVALUE}
