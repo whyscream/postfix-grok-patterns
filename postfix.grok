@@ -1,3 +1,8 @@
+# Email pattern (https://tools.ietf.org/html/rfc3696)
+EMAIL_ADDRESS_USER [a-zA-Z0-9!#$%&'*+-/=?^_`.{|}~]+
+EMAIL_ADDRESS_DOMAIN [a-zA-Z0-9.-]+
+EMAIL_ADDRESS %{EMAIL_ADDRESS_USER:postfix_email_user}@%{EMAIL_ADDRESS_DOMAIN:postfix_email_domain}
+
 # common postfix patterns
 POSTFIX_QUEUEID ([0-9A-F]{6,}|[0-9a-zA-Z]{15,}|NOQUEUE)
 POSTFIX_CLIENT_INFO %{HOST:postfix_client_hostname}?\[%{IP:postfix_client_ip}\](:%{INT:postfix_client_port})?
