@@ -85,6 +85,13 @@ POSTFIX_SCACHE_TIMESTAMP statistics: start interval %{SYSLOGTIMESTAMP:postfix_sc
 POSTFIX_STAGE_VALUE (postfix\/[a-zA-Z]+|policyd-spf)
 POSTFIX_STAGE %{POSTFIX_STAGE_VALUE:postfix_stage}
 
+# policyd spf (https://launchpad.net/pypolicyd-spf/)
+POSTFIX_POLICYD_SPF_EMAIL_FROM %{EMAIL_ADDRESS_USER:postfix_policyd_from_email_user}@%{EMAIL_ADDRESS_DOMAIN:postfix_policyd_spf_from_email_domain}
+POSTFIX_POLICYD_SPF_EMAIL_TO %{EMAIL_ADDRESS_USER:postfix_policyd_to_email_user}@%{EMAIL_ADDRESS_DOMAIN:postfix_policyd_spf_to_email_domain}
+POSTFIX_POLICYD_SPF_STATUS_CODE (Pass|Fail|None|Neutral|Softfail|Temperror|Permerror)
+POSTFIX_POLICYD_SPF_IDENTITY (helo|mailfrom)
+POSTFIX_POLICYD_SPF %{POSTFIX_POLICYD_SPF_STATUS_CODE:postfix_policyd_spf_result}; identity=%{POSTFIX_POLICYD_SPF_IDENTITY:postfix_policyd_spf_identity}; client-ip=%{IP:postfix_policyd_spf_client_ip}; helo=%{HOST:postfix_policyd_spf_helo}; envelope-from=%{POSTFIX_POLICYD_SPF_EMAIL_FROM}; receiver=%{POSTFIX_POLICYD_SPF_EMAIL_TO}
+
 # aggregate all patterns
 POSTFIX_SMTPD %{POSTFIX_SMTPD_CONNECT}|%{POSTFIX_SMTPD_DISCONNECT}|%{POSTFIX_SMTPD_LOSTCONN}|%{POSTFIX_SMTPD_NOQUEUE}|%{POSTFIX_SMTPD_PIPELINING}|%{POSTFIX_TLSCONN}|%{POSTFIX_WARNING}|%{POSTFIX_SMTPD_PROXY}|%{POSTFIX_KEYVALUE}
 POSTFIX_CLEANUP %{POSTFIX_CLEANUP_MILTER}|%{POSTFIX_WARNING}|%{POSTFIX_KEYVALUE}
