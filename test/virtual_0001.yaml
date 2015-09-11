@@ -1,0 +1,7 @@
+pattern: POSTFIX_SMTP
+data: "B657F2DB195D: to=<postmaster@example.com>, relay=virtual, delay=0.52, delays=0.51/0.01/0/0, dsn=2.0.0, status=sent (delivered to maildir)"
+results:
+    postfix_queueid: B657F2DB195D
+    postfix_keyvalue_data: "to=<postmaster@example.com>, relay=virtual, delay=0.52, delays=0.51/0.01/0/0, dsn=2.0.0,"
+    postfix_status: sent
+    postfix_smtp_response: "delivered to maildir"
