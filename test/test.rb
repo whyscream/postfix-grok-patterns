@@ -49,7 +49,7 @@ class TestGrokPatterns < MiniTest::Unit::TestCase
         assert @grok.compile("%{" + pattern + "}", true), "Failed to compile pattern #{pattern}"
         assert matches = @grok.match(data), "Pattern #{pattern} did not match data."
 
-        return if results.nil?
+        refute_equal results, nil, "Test case is flawed, no results are defined"
         captures = matches.captures()
         results.each do |field, expected|
             assert_includes captures.keys, field
