@@ -1,0 +1,6 @@
+pattern: POSTFIX_QMGR
+data: "66C15648577B: from=<uvnhbl@yahoo.com.tw>, status=expired, returned to sender"
+results:
+    postfix_queueid: 66C15648577B
+    postfix_from: uvnhbl@yahoo.com.tw
+    postfix_status: expired

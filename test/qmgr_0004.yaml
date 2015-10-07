@@ -1,0 +1,6 @@
+pattern: POSTFIX_QMGR
+data: "585BC3F: from=<>, status=expired, returned to sender"
+results:
+    postfix_queueid: 585BC3F
+    postfix_from: ""
+    postfix_status: expired
