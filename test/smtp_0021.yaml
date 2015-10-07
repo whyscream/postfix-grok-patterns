@@ -1,0 +1,8 @@
+pattern: POSTFIX_SMTP
+data: "1234ABCDEF: host relay.example.com[192.0.2.1] said: 450 4.1.8 root@localhost.localdomain: Sender address rejected: Domain not found (in reply to RCPT TO command)"
+results:
+    postfix_queueid: 1234ABCDEF
+    postfix_relay_hostname: relay.example.com
+    postfix_relay_ip: 192.0.2.1
+    postfix_smtp_response: "450 4.1.8 root@localhost.localdomain: Sender address rejected: Domain not found"
+    postfix_smtp_stage: RCPT TO
