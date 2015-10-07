@@ -1,0 +1,6 @@
+pattern: POSTFIX_SMTP
+data: "78D6B41: conversation with mx00.gmx.com[74.208.5.4] timed out while receiving the initial server greeting"
+result:
+    postfix_queueid: 78D6B41
+    postfix_relay_hostname: mx00.gmx.com
+    postfix_relay_ip: 74.208.5.4
