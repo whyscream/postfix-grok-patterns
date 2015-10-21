@@ -2,7 +2,7 @@
 POSTFIX_QUEUEID ([0-9A-F]{6,}|[0-9a-zA-Z]{15,}|NOQUEUE)
 POSTFIX_CLIENT_INFO %{HOST:postfix_client_hostname}?\[%{IP:postfix_client_ip}\](:%{INT:postfix_client_port})?
 POSTFIX_RELAY_INFO %{HOST:postfix_relay_hostname}?\[(%{IP:postfix_relay_ip}|%{DATA:postfix_relay_service})\](:%{INT:postfix_relay_port})?|%{WORD:postfix_relay_service}
-POSTFIX_SMTP_STAGE (CONNECT|HELO|EHLO|STARTTLS|AUTH|MAIL|RCPT( TO)?|DATA|RSET|UNKNOWN|END-OF-MESSAGE|VRFY|\.)
+POSTFIX_SMTP_STAGE (CONNECT|HELO|EHLO|STARTTLS|AUTH|MAIL|RCPT( TO)?|(end of )?DATA|RSET|UNKNOWN|END-OF-MESSAGE|VRFY|\.)
 POSTFIX_ACTION (reject|defer|accept|header-redirect)
 POSTFIX_STATUS_CODE \d{3}
 POSTFIX_STATUS_CODE_ENHANCED \d\.\d\.\d
