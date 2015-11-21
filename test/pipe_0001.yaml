@@ -2,5 +2,6 @@ pattern: POSTFIX_PIPE
 data: "0F5383D: to=<tom@example.com>, relay=dovecot, delay=4.3, delays=4.1/0.01/0/0.15, dsn=2.0.0, status=sent (delivered via dovecot service)"
 results:
     postfix_queueid: 0F5383D
-    postfix_keyvalue_data: to=<tom@example.com>, relay=dovecot, delay=4.3, delays=4.1/0.01/0/0.15, dsn=2.0.0, status=sent
-    postfix_pipe_service: dovecot
+    postfix_keyvalue_data: to=<tom@example.com>, relay=dovecot, delay=4.3, delays=4.1/0.01/0/0.15, dsn=2.0.0
+    postfix_status: sent
+    postfix_pipe_response: delivered via dovecot service

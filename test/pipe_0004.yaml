@@ -1,0 +1,7 @@
+pattern: POSTFIX_PIPE
+data: "2F6C83D: to=<user@example.org>, relay=dovecot, delay=5.1, delays=4.4/0.02/0/0.61, dsn=5.1.1, status=bounced (user unknown)"
+results:
+    postfix_queueid: 2F6C83D
+    postfix_keyvalue_data: to=<user@example.org>, relay=dovecot, delay=5.1, delays=4.4/0.02/0/0.61, dsn=5.1.1
+    postfix_status: bounced
+    postfix_pipe_response: user unknown
