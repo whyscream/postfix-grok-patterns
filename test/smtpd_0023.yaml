@@ -1,7 +1,6 @@
 pattern: POSTFIX_SMTPD
 data: "SSL_accept error from unknown[72.13.58.7]: Connection timed out"
 results:
-    postfix_smtpd_lostconn_data: Connection timed out
-    postfix_action: SSL_accept error
+    postfix_smtpd_lostconn_data: SSL_accept error
     postfix_client_hostname: unknown
     postfix_client_ip: 72.13.58.7
