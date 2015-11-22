@@ -1,0 +1,6 @@
+pattern: POSTFIX_SMTPD
+data: "SSL_accept error from eu-smtp-delivery-201.mimecast.com[207.82.80.201]: 0"
+results:
+    postfix_smtpd_lostconn_data: SSL_accept error
+    postfix_client_hostname: eu-smtp-delivery-201.mimecast.com
+    postfix_client_ip: 207.82.80.201
