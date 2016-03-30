@@ -1,0 +1,11 @@
+pattern: POSTFIX_SMTPD
+data: "NOQUEUE: filter: RCPT from unknown[85.25.255.255]: <mail@sender.com>: Sender address triggers FILTER smtp-amavis:[127.0.0.1]:10024; from=<mail@sender.com> to=<user@domain.com> proto=ESMTP helo=<plutoapp.biz>"
+results:
+    postfix_action: filter
+    postfix_smtp_stage: RCPT
+    postfix_client_hostname: unknown
+    postfix_client_ip: 85.25.255.255
+    postfix_status_data: mail@sender.com
+    postfix_status_message: Sender address triggers FILTER smtp-amavis:[127.0.0.1]:10024
+    postfix_keyvalue_data: from=<mail@sender.com> to=<user@domain.com> proto=ESMTP helo=<plutoapp.biz>
+
