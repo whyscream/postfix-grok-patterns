@@ -11,7 +11,7 @@ POSTFIX_PS_ACCESS_ACTION (DISCONNECT|BLACKLISTED|WHITELISTED|WHITELIST VETO|PASS
 POSTFIX_PS_VIOLATION (BARE NEWLINE|COMMAND (TIME|COUNT|LENGTH) LIMIT|COMMAND PIPELINING|DNSBL|HANGUP|NON-SMTP COMMAND|PREGREET)
 POSTFIX_TIME_UNIT %{NUMBER}[smhd]
 POSTFIX_KEYVALUE %{POSTFIX_QUEUEID:postfix_queueid}: %{GREEDYDATA:postfix_keyvalue_data}
-POSTFIX_WARNING (warning|fatal): %{GREEDYDATA:postfix_warning}
+POSTFIX_WARNING (%{POSTFIX_QUEUEID:postfix_queueid}: )?(warning|fatal): %{GREEDYDATA_NO_SEMICOLON:postfix_warning}(; %{GREEDYDATA:postfix_keyvalue_data})?
 POSTFIX_TLSCONN (Anonymous|Trusted|Untrusted|Verified) TLS connection established (to %{POSTFIX_RELAY_INFO}|from %{POSTFIX_CLIENT_INFO}): %{DATA:postfix_tls_version} with cipher %{DATA:postfix_tls_cipher} \(%{DATA:postfix_tls_cipher_size} bits\)
 POSTFIX_DELAYS %{NUMBER:postfix_delay_before_qmgr}/%{NUMBER:postfix_delay_in_qmgr}/%{NUMBER:postfix_delay_conn_setup}/%{NUMBER:postfix_delay_transmission}
 POSTFIX_LOSTCONN (lost connection|timeout|SSL_accept error)
@@ -19,6 +19,7 @@ POSTFIX_PROXY_MESSAGE (%{POSTFIX_STATUS_CODE:postfix_proxy_status_code} )?(%{POS
 
 # helper patterns
 GREEDYDATA_NO_COLON [^:]*
+GREEDYDATA_NO_SEMICOLON [^;]*
 
 # smtpd patterns
 POSTFIX_SMTPD_CONNECT connect from %{POSTFIX_CLIENT_INFO}
