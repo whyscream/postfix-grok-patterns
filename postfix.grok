@@ -40,6 +40,9 @@ POSTFIX_QMGR_EXPIRED %{POSTFIX_QUEUEID:postfix_queueid}: from=<%{DATA:postfix_fr
 # pipe patterns
 POSTFIX_PIPE_ANY %{POSTFIX_QUEUEID:postfix_queueid}: %{GREEDYDATA:postfix_keyvalue_data}, status=%{WORD:postfix_status} \(%{GREEDYDATA:postfix_pipe_response}\)
 
+# error patterns
+POSTFIX_ERROR_ANY %{POSTFIX_QUEUEID:postfix_queueid}: %{GREEDYDATA:postfix_keyvalue_data}, status=%{WORD:postfix_status} \(%{GREEDYDATA:postfix_error_response}\)
+
 # postscreen patterns
 POSTFIX_PS_CONNECT CONNECT from %{POSTFIX_CLIENT_INFO} to \[%{IP:postfix_server_ip}\]:%{INT:postfix_server_port}
 POSTFIX_PS_ACCESS %{POSTFIX_PS_ACCESS_ACTION:postfix_postscreen_access} %{POSTFIX_CLIENT_INFO}
@@ -101,3 +104,4 @@ POSTFIX_TRIVIAL_REWRITE %{POSTFIX_WARNING}
 POSTFIX_TLSMGR %{POSTFIX_WARNING}
 POSTFIX_LOCAL %{POSTFIX_KEYVALUE}
 POSTFIX_VIRTUAL %{POSTFIX_SMTP_DELIVERY}
+POSTFIX_ERROR %{POSTFIX_ERROR_ANY}
