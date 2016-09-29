@@ -1,0 +1,7 @@
+pattern: POSTFIX_ERROR
+data: "2DC5552A34: to=<user@yahoo.com>, relay=none, delay=63495, delays=63350/144/0/0, dsn=4.4.2, status=deferred (delivery temporarily suspended: lost connection with mta7.am0.yahoodns.net[98.136.216.22] while sending RCPT TO)"
+results:
+    postfix_queueid: 2DC5552A34
+    postfix_keyvalue_data: "to=<user@yahoo.com>, relay=none, delay=63495, delays=63350/144/0/0, dsn=4.4.2"
+    postfix_status: deferred
+    postfix_error_response: "delivery temporarily suspended: lost connection with mta7.am0.yahoodns.net[98.136.216.22] while sending RCPT TO"
