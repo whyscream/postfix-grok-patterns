@@ -1,9 +1,9 @@
 # common postfix patterns
-POSTFIX_QUEUEID ([0-9A-F]{6,}|[0-9a-zA-Z]{15,})
+POSTFIX_QUEUEID ([0-9A-F]{6,}|[0123456789BCDFGHJKLMNPQRSTVWXYZbcdfghjklmnpqrstvwxyz]{10,}z[0123456789BCDFGHJKLMNPQRSTVWXYZbcdfghjklmnpqrstvwxy]{1,})
 POSTFIX_CLIENT_INFO %{HOSTNAME:postfix_client_hostname}?\[%{IP:postfix_client_ip}\](:%{INT:postfix_client_port})?
 POSTFIX_RELAY_INFO %{HOSTNAME:postfix_relay_hostname}?\[(%{IP:postfix_relay_ip}|%{DATA:postfix_relay_service})\](:%{INT:postfix_relay_port})?|%{WORD:postfix_relay_service}
-POSTFIX_SMTP_STAGE (CONNECT|HELO|EHLO|STARTTLS|AUTH|MAIL( FROM)?|RCPT( TO)?|(end of )?DATA|RSET|UNKNOWN|END-OF-MESSAGE|VRFY|\.)
-POSTFIX_ACTION (accept|defer|discard|filter|header-redirect|reject)
+POSTFIX_SMTP_STAGE (CONNECT|HELO|EHLO|STARTTLS|AUTH|MAIL( FROM)?|RCPT( TO)?|(end of )?DATA|RSET|QUIT|UNKNOWN|END-OF-MESSAGE|VRFY|\.)
+POSTFIX_ACTION (accept|defer|discard|filter|header-redirect|reject|reject_warning)
 POSTFIX_STATUS_CODE \d{3}
 POSTFIX_STATUS_CODE_ENHANCED \d\.\d\.\d
 POSTFIX_DNSBL_MESSAGE Service unavailable; .* \[%{GREEDYDATA:postfix_status_data}\] %{GREEDYDATA:postfix_status_message};
@@ -14,7 +14,7 @@ POSTFIX_KEYVALUE %{POSTFIX_QUEUEID:postfix_queueid}: %{GREEDYDATA:postfix_keyval
 POSTFIX_WARNING (%{POSTFIX_QUEUEID:postfix_queueid}: )?(warning|fatal): %{GREEDYDATA_NO_SEMICOLON:postfix_warning}(; %{GREEDYDATA:postfix_keyvalue_data})?
 POSTFIX_TLSCONN (Anonymous|Trusted|Untrusted|Verified) TLS connection established (to %{POSTFIX_RELAY_INFO}|from %{POSTFIX_CLIENT_INFO}): %{DATA:postfix_tls_version} with cipher %{DATA:postfix_tls_cipher} \(%{DATA:postfix_tls_cipher_size} bits\)
 POSTFIX_DELAYS %{NUMBER:postfix_delay_before_qmgr}/%{NUMBER:postfix_delay_in_qmgr}/%{NUMBER:postfix_delay_conn_setup}/%{NUMBER:postfix_delay_transmission}
-POSTFIX_LOSTCONN (lost connection|timeout|SSL_accept error)
+POSTFIX_LOSTCONN (lost connection|timeout|SSL_accept error|too many errors|SSL_connect error)
 POSTFIX_PROXY_MESSAGE (%{POSTFIX_STATUS_CODE:postfix_proxy_status_code} )?(%{POSTFIX_STATUS_CODE_ENHANCED:postfix_proxy_status_code_enhanced})?.*
 
 # helper patterns
