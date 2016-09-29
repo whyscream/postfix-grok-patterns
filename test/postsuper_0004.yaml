@@ -1,0 +1,5 @@
+pattern: POSTFIX_POSTSUPER
+data: "D4F2023DB: released from hold"
+results:
+    postfix_queueid: D4F2023DB
+    postfix_postsuper_id_action: released from hold
