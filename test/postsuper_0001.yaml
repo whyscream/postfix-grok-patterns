@@ -2,4 +2,4 @@ pattern: POSTFIX_POSTSUPER
 data: "D4F2023DB: removed"
 results:
     postfix_queueid: D4F2023DB
-    postfix_postsuper_id_action: removed
+    postfix_postsuper_action: removed
