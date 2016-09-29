@@ -43,6 +43,12 @@ POSTFIX_PIPE_ANY %{POSTFIX_QUEUEID:postfix_queueid}: %{GREEDYDATA:postfix_keyval
 # error patterns
 POSTFIX_ERROR_ANY %{POSTFIX_QUEUEID:postfix_queueid}: %{GREEDYDATA:postfix_keyvalue_data}, status=%{WORD:postfix_status} \(%{GREEDYDATA:postfix_error_response}\)
 
+# postsuper patterns
+POSTFIX_POSTSUPER_QUEUEID_ACTION (removed|requeued|placed on hold|released from hold)
+POSTFIX_POSTSUPER_QUEUEID %{POSTFIX_QUEUEID:postfix_queueid}: %{POSTFIX_POSTSUPER_QUEUEID_ACTION:postfix_postsuper_id_action}
+POSTFIX_POSTSUPER_SUMMARY_ACTION (Deleted|Requeued|Placed on hold|Released from hold)
+POSTFIX_POSTSUPER_SUMMARY %{POSTFIX_POSTSUPER_SUMMARY_ACTION:postfix_postsuper_summary_action}: %{NUMBER:postfix_postsuper_summary_count} messages?
+
 # postscreen patterns
 POSTFIX_PS_CONNECT CONNECT from %{POSTFIX_CLIENT_INFO} to \[%{IP:postfix_server_ip}\]:%{INT:postfix_server_port}
 POSTFIX_PS_ACCESS %{POSTFIX_PS_ACCESS_ACTION:postfix_postscreen_access} %{POSTFIX_CLIENT_INFO}
@@ -105,3 +111,4 @@ POSTFIX_TLSMGR %{POSTFIX_WARNING}
 POSTFIX_LOCAL %{POSTFIX_KEYVALUE}
 POSTFIX_VIRTUAL %{POSTFIX_SMTP_DELIVERY}
 POSTFIX_ERROR %{POSTFIX_ERROR_ANY}
+POSTFIX_POSTSUPER %{POSTFIX_POSTSUPER_QUEUEID}|%{POSTFIX_POSTSUPER_SUMMARY}
