@@ -1,0 +1,5 @@
+pattern: POSTFIX_POSTSUPER
+data: "Requeued: 1 message"
+results:
+    postfix_postsuper_summary_action: Requeued
+    postfix_postsuper_summary_count: 1
