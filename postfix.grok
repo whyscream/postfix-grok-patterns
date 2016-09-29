@@ -36,6 +36,7 @@ POSTFIX_CLEANUP_MILTER %{POSTFIX_QUEUEID:postfix_queueid}: milter-%{POSTFIX_ACTI
 # qmgr patterns
 POSTFIX_QMGR_REMOVED %{POSTFIX_QUEUEID:postfix_queueid}: removed
 POSTFIX_QMGR_ACTIVE %{POSTFIX_QUEUEID:postfix_queueid}: %{GREEDYDATA:postfix_keyvalue_data} \(queue active\)
+POSTFIX_QMGR_SKIPPED %{POSTFIX_QUEUEID:postfix_queueid}: skipped, still being delivered
 POSTFIX_QMGR_EXPIRED %{POSTFIX_QUEUEID:postfix_queueid}: from=<%{DATA:postfix_from}>, status=%{WORD:postfix_status}, returned to sender
 
 # pipe patterns
@@ -66,6 +67,7 @@ POSTFIX_DNSBLOG_LISTING addr %{IP:postfix_client_ip} listed by domain %{HOSTNAME
 POSTFIX_TLSPROXY_CONN (DIS)?CONNECT( from)? %{POSTFIX_CLIENT_INFO}
 
 # anvil patterns
+POSTFIX_ANVIL_MSG_RATE statistics: max message rate %{NUMBER:postfix_anvil_msg_rate}/%{POSTFIX_TIME_UNIT:postfix_anvil_msg_period} for \(%{DATA:postfix_service}:%{IP:postfix_client_ip}\) at %{SYSLOGTIMESTAMP:postfix_anvil_timestamp}
 POSTFIX_ANVIL_CONN_RATE statistics: max connection rate %{NUMBER:postfix_anvil_conn_rate}/%{POSTFIX_TIME_UNIT:postfix_anvil_conn_period} for \(%{DATA:postfix_service}:%{IP:postfix_client_ip}\) at %{SYSLOGTIMESTAMP:postfix_anvil_timestamp}
 POSTFIX_ANVIL_CONN_CACHE statistics: max cache size %{NUMBER:postfix_anvil_cache_size} at %{SYSLOGTIMESTAMP:postfix_anvil_timestamp}
 POSTFIX_ANVIL_CONN_COUNT statistics: max connection count %{NUMBER:postfix_anvil_conn_count} for \(%{DATA:postfix_service}:%{IP:postfix_client_ip}\) at %{SYSLOGTIMESTAMP:postfix_anvil_timestamp}
@@ -83,6 +85,7 @@ POSTFIX_MASTER_EXIT terminating on signal %{INT:postfix_termination_signal}
 
 # bounce patterns
 POSTFIX_BOUNCE_NOTIFICATION %{POSTFIX_QUEUEID:postfix_queueid}: sender (non-delivery|delivery status|delay) notification: %{POSTFIX_QUEUEID:postfix_bounce_queueid}
+POSTFIX_BOUNCE_NOT_SENDING %{POSTFIX_QUEUEID:postfix_queueid}: not sending trace/success notification for single-bounce message
 
 # scache patterns
 POSTFIX_SCACHE_LOOKUPS statistics: (address|domain) lookup hits=%{INT:postfix_scache_hits} miss=%{INT:postfix_scache_miss} success=%{INT:postfix_scache_success}
