@@ -1,9 +1,9 @@
 # common postfix patterns
-POSTFIX_QUEUEID ([0-9A-F]{6,}|[0-9a-zA-Z]{15,})
-POSTFIX_CLIENT_INFO %{HOSTNAME:postfix_client_hostname}?\[%{IP:postfix_client_ip}\](:%{INT:postfix_client_port})?
+POSTFIX_QUEUEID ([0-9A-F]{6,}|[0123456789BCDFGHJKLMNPQRSTVWXYZbcdfghjklmnpqrstvwxyz]{10,}z[0123456789BCDFGHJKLMNPQRSTVWXYZbcdfghjklmnpqrstvwxy]{1,})
+POSTFIX_CLIENT_INFO %{HOSTNAME:postfix_client_hostname}?\[(%{IP:postfix_client_ip}|unknown)\](:%{INT:postfix_client_port})?
 POSTFIX_RELAY_INFO %{HOSTNAME:postfix_relay_hostname}?\[(%{IP:postfix_relay_ip}|%{DATA:postfix_relay_service})\](:%{INT:postfix_relay_port})?|%{WORD:postfix_relay_service}
-POSTFIX_SMTP_STAGE (CONNECT|HELO|EHLO|STARTTLS|AUTH|MAIL( FROM)?|RCPT( TO)?|(end of )?DATA|RSET|UNKNOWN|END-OF-MESSAGE|VRFY|\.)
-POSTFIX_ACTION (accept|defer|discard|filter|header-redirect|reject)
+POSTFIX_SMTP_STAGE (CONNECT|HELO|EHLO|STARTTLS|AUTH|MAIL( FROM)?|RCPT( TO)?|(end of )?DATA|RSET|NOOP|QUIT|UNKNOWN|END-OF-MESSAGE|VRFY|\.)
+POSTFIX_ACTION (accept|defer|discard|filter|header-redirect|reject|reject_warning|milter-reject)
 POSTFIX_STATUS_CODE \d{3}
 POSTFIX_STATUS_CODE_ENHANCED \d\.\d\.\d
 POSTFIX_DNSBL_MESSAGE Service unavailable; .* \[%{GREEDYDATA:postfix_status_data}\] %{GREEDYDATA:postfix_status_message};
@@ -14,8 +14,9 @@ POSTFIX_KEYVALUE %{POSTFIX_QUEUEID:postfix_queueid}: %{GREEDYDATA:postfix_keyval
 POSTFIX_WARNING (%{POSTFIX_QUEUEID:postfix_queueid}: )?(warning|fatal): %{GREEDYDATA_NO_SEMICOLON:postfix_warning}(; %{GREEDYDATA:postfix_keyvalue_data})?
 POSTFIX_TLSCONN (Anonymous|Trusted|Untrusted|Verified) TLS connection established (to %{POSTFIX_RELAY_INFO}|from %{POSTFIX_CLIENT_INFO}): %{DATA:postfix_tls_version} with cipher %{DATA:postfix_tls_cipher} \(%{DATA:postfix_tls_cipher_size} bits\)
 POSTFIX_DELAYS %{NUMBER:postfix_delay_before_qmgr}/%{NUMBER:postfix_delay_in_qmgr}/%{NUMBER:postfix_delay_conn_setup}/%{NUMBER:postfix_delay_transmission}
-POSTFIX_LOSTCONN (lost connection|timeout|SSL_accept error)
+POSTFIX_LOSTCONN (lost connection|timeout|SSL_accept error|too many errors|SSL_connect error)
 POSTFIX_PROXY_MESSAGE (%{POSTFIX_STATUS_CODE:postfix_proxy_status_code} )?(%{POSTFIX_STATUS_CODE_ENHANCED:postfix_proxy_status_code_enhanced})?.*
+POSTFIX_TABLE_RESTART table %{WORD:postfix_table_type}:%{GREEDYDATA:postfix_table_path} has changed -- restarting
 
 # helper patterns
 GREEDYDATA_NO_COLON [^:]*
@@ -24,8 +25,8 @@ GREEDYDATA_NO_SEMICOLON [^;]*
 # smtpd patterns
 POSTFIX_SMTPD_CONNECT connect from %{POSTFIX_CLIENT_INFO}
 POSTFIX_SMTPD_DISCONNECT disconnect from %{POSTFIX_CLIENT_INFO}
-POSTFIX_SMTPD_LOSTCONN %{POSTFIX_LOSTCONN:postfix_smtpd_lostconn_data}( after %{POSTFIX_SMTP_STAGE:postfix_smtp_stage}( \(%{INT} bytes\))?)? from %{POSTFIX_CLIENT_INFO}
-POSTFIX_SMTPD_NOQUEUE NOQUEUE: %{POSTFIX_ACTION:postfix_action}: %{POSTFIX_SMTP_STAGE:postfix_smtp_stage} from %{POSTFIX_CLIENT_INFO}:( %{POSTFIX_STATUS_CODE:postfix_status_code} %{POSTFIX_STATUS_CODE_ENHANCED:postfix_status_code_enhanced})?( <%{DATA:postfix_status_data}>:)? (%{POSTFIX_DNSBL_MESSAGE}|%{GREEDYDATA:postfix_status_message};) %{GREEDYDATA:postfix_keyvalue_data}
+POSTFIX_SMTPD_LOSTCONN %{POSTFIX_LOSTCONN:postfix_smtpd_lostconn_data}( after %{POSTFIX_SMTP_STAGE:postfix_smtp_stage}( \(%{INT} bytes\))?)? from %{POSTFIX_CLIENT_INFO}(: %{GREEDYDATA:postfix_smtpd_lostconn_reason})?
+POSTFIX_SMTPD_NOQUEUE (%{POSTFIX_QUEUEID:postfix_queueid}|NOQUEUE): %{POSTFIX_ACTION:postfix_action}: %{POSTFIX_SMTP_STAGE:postfix_smtp_stage} from %{POSTFIX_CLIENT_INFO}:( %{POSTFIX_STATUS_CODE:postfix_status_code} %{POSTFIX_STATUS_CODE_ENHANCED:postfix_status_code_enhanced})?( <%{DATA:postfix_status_data}>:)? (%{POSTFIX_DNSBL_MESSAGE}|%{GREEDYDATA:postfix_status_message};) %{GREEDYDATA:postfix_keyvalue_data}
 POSTFIX_SMTPD_PIPELINING improper command pipelining after %{POSTFIX_SMTP_STAGE:postfix_smtp_stage} from %{POSTFIX_CLIENT_INFO}:
 POSTFIX_SMTPD_PROXY proxy-%{POSTFIX_ACTION:postfix_proxy_result}: (%{POSTFIX_SMTP_STAGE:postfix_proxy_smtp_stage}): %{POSTFIX_PROXY_MESSAGE:postfix_proxy_message}; %{GREEDYDATA:postfix_keyvalue_data}
 
@@ -35,6 +36,7 @@ POSTFIX_CLEANUP_MILTER %{POSTFIX_QUEUEID:postfix_queueid}: milter-%{POSTFIX_ACTI
 # qmgr patterns
 POSTFIX_QMGR_REMOVED %{POSTFIX_QUEUEID:postfix_queueid}: removed
 POSTFIX_QMGR_ACTIVE %{POSTFIX_QUEUEID:postfix_queueid}: %{GREEDYDATA:postfix_keyvalue_data} \(queue active\)
+POSTFIX_QMGR_SKIPPED %{POSTFIX_QUEUEID:postfix_queueid}: skipped, still being delivered
 POSTFIX_QMGR_EXPIRED %{POSTFIX_QUEUEID:postfix_queueid}: from=<%{DATA:postfix_from}>, status=%{WORD:postfix_status}, returned to sender
 
 # pipe patterns
@@ -65,6 +67,7 @@ POSTFIX_DNSBLOG_LISTING addr %{IP:postfix_client_ip} listed by domain %{HOSTNAME
 POSTFIX_TLSPROXY_CONN (DIS)?CONNECT( from)? %{POSTFIX_CLIENT_INFO}
 
 # anvil patterns
+POSTFIX_ANVIL_MSG_RATE statistics: max message rate %{NUMBER:postfix_anvil_msg_rate}/%{POSTFIX_TIME_UNIT:postfix_anvil_msg_period} for \(%{DATA:postfix_service}:%{IP:postfix_client_ip}\) at %{SYSLOGTIMESTAMP:postfix_anvil_timestamp}
 POSTFIX_ANVIL_CONN_RATE statistics: max connection rate %{NUMBER:postfix_anvil_conn_rate}/%{POSTFIX_TIME_UNIT:postfix_anvil_conn_period} for \(%{DATA:postfix_service}:%{IP:postfix_client_ip}\) at %{SYSLOGTIMESTAMP:postfix_anvil_timestamp}
 POSTFIX_ANVIL_CONN_CACHE statistics: max cache size %{NUMBER:postfix_anvil_cache_size} at %{SYSLOGTIMESTAMP:postfix_anvil_timestamp}
 POSTFIX_ANVIL_CONN_COUNT statistics: max connection count %{NUMBER:postfix_anvil_conn_count} for \(%{DATA:postfix_service}:%{IP:postfix_client_ip}\) at %{SYSLOGTIMESTAMP:postfix_anvil_timestamp}
@@ -73,8 +76,13 @@ POSTFIX_ANVIL_CONN_COUNT statistics: max connection count %{NUMBER:postfix_anvil
 POSTFIX_SMTP_DELIVERY %{POSTFIX_KEYVALUE} status=%{WORD:postfix_status}( \(%{GREEDYDATA:postfix_smtp_response}\))?
 POSTFIX_SMTP_CONNERR connect to %{POSTFIX_RELAY_INFO}: (Connection timed out|No route to host|Connection refused|Network is unreachable)
 POSTFIX_SMTP_LOSTCONN %{POSTFIX_QUEUEID:postfix_queueid}: %{POSTFIX_LOSTCONN} with %{POSTFIX_RELAY_INFO}
-POSTFIX_SMTP_TIMEOUT %{POSTFIX_QUEUEID:postfix_queueid}: conversation with %{POSTFIX_RELAY_INFO} timed out while receiving the initial server greeting
+POSTFIX_SMTP_LOSTCONN_NOQUEUE %{POSTFIX_LOSTCONN:postfix_smtp_lostconn_data} to %{POSTFIX_RELAY_INFO}(: %{GREEDYDATA:postfix_smtp_lostconn_reason})?
+POSTFIX_SMTP_TIMEOUT %{POSTFIX_QUEUEID:postfix_queueid}: conversation with %{POSTFIX_RELAY_INFO} timed out while (receiving the initial server greeting|sending message body|sending end of data -- message may be sent more than once)
 POSTFIX_SMTP_RELAYERR %{POSTFIX_QUEUEID:postfix_queueid}: host %{POSTFIX_RELAY_INFO} said: %{GREEDYDATA:postfix_smtp_response} \(in reply to %{POSTFIX_SMTP_STAGE:postfix_smtp_stage} command\)
+POSTFIX_SMTP_RELAYERR_REFUSED %{POSTFIX_QUEUEID:postfix_queueid}: host %{POSTFIX_RELAY_INFO} refused to talk to me: %{GREEDYDATA:postfix_smtp_response}
+POSTFIX_SMTP_TLS_ERROR %{POSTFIX_QUEUEID:postfix_queueid}: Cannot start TLS: %{GREEDYDATA:postfix_tls_error}
+POSTFIX_SMTP_TLS_REQUIRED %{POSTFIX_QUEUEID:postfix_queueid}: TLS is required, but host %{POSTFIX_RELAY_INFO} refused to start TLS: %{GREEDYDATA:postfix_smtp_response}
+POSTFIX_SMTP_PIX_WORKAROUND %{POSTFIX_QUEUEID:postfix_queueid}: enabling PIX workarounds: disable_esmtp delay_dotcrlf for %{POSTFIX_RELAY_INFO}
 
 # master patterns
 POSTFIX_MASTER_START (daemon started|reload) -- version %{DATA:postfix_version}, configuration %{PATH:postfix_config_path}
@@ -82,6 +90,7 @@ POSTFIX_MASTER_EXIT terminating on signal %{INT:postfix_termination_signal}
 
 # bounce patterns
 POSTFIX_BOUNCE_NOTIFICATION %{POSTFIX_QUEUEID:postfix_queueid}: sender (non-delivery|delivery status|delay) notification: %{POSTFIX_QUEUEID:postfix_bounce_queueid}
+POSTFIX_BOUNCE_NOT_SENDING %{POSTFIX_QUEUEID:postfix_queueid}: not sending trace/success notification for single-bounce message
 
 # scache patterns
 POSTFIX_SCACHE_LOOKUPS statistics: (address|domain) lookup hits=%{INT:postfix_scache_hits} miss=%{INT:postfix_scache_miss} success=%{INT:postfix_scache_success}
@@ -89,26 +98,29 @@ POSTFIX_SCACHE_SIMULTANEOUS statistics: max simultaneous domains=%{INT:postfix_s
 POSTFIX_SCACHE_TIMESTAMP statistics: start interval %{SYSLOGTIMESTAMP:postfix_scache_timestamp}
 
 # aggregate all patterns
-POSTFIX_SMTPD %{POSTFIX_SMTPD_CONNECT}|%{POSTFIX_SMTPD_DISCONNECT}|%{POSTFIX_SMTPD_LOSTCONN}|%{POSTFIX_SMTPD_NOQUEUE}|%{POSTFIX_SMTPD_PIPELINING}|%{POSTFIX_TLSCONN}|%{POSTFIX_WARNING}|%{POSTFIX_SMTPD_PROXY}|%{POSTFIX_KEYVALUE}
+POSTFIX_SMTPD %{POSTFIX_SMTPD_CONNECT}|%{POSTFIX_SMTPD_DISCONNECT}|%{POSTFIX_SMTPD_LOSTCONN}|%{POSTFIX_SMTPD_NOQUEUE}|%{POSTFIX_SMTPD_PIPELINING}|%{POSTFIX_TLSCONN}|%{POSTFIX_WARNING}|%{POSTFIX_SMTPD_PROXY}|%{POSTFIX_TABLE_RESTART}|%{POSTFIX_KEYVALUE}
 POSTFIX_CLEANUP %{POSTFIX_CLEANUP_MILTER}|%{POSTFIX_WARNING}|%{POSTFIX_KEYVALUE}
-POSTFIX_QMGR %{POSTFIX_QMGR_REMOVED}|%{POSTFIX_QMGR_ACTIVE}|%{POSTFIX_QMGR_EXPIRED}|%{POSTFIX_WARNING}
+POSTFIX_QMGR %{POSTFIX_QMGR_REMOVED}|%{POSTFIX_QMGR_ACTIVE}|%{POSTFIX_QMGR_SKIPPED}|%{POSTFIX_QMGR_EXPIRED}|%{POSTFIX_WARNING}
 POSTFIX_PIPE %{POSTFIX_PIPE_ANY}
 POSTFIX_POSTSCREEN %{POSTFIX_PS_CONNECT}|%{POSTFIX_PS_ACCESS}|%{POSTFIX_PS_NOQUEUE}|%{POSTFIX_PS_TOOBUSY}|%{POSTFIX_PS_CACHE}|%{POSTFIX_PS_DNSBL}|%{POSTFIX_PS_VIOLATIONS}|%{POSTFIX_WARNING}
 POSTFIX_DNSBLOG %{POSTFIX_DNSBLOG_LISTING}|%{POSTFIX_WARNING}
-POSTFIX_ANVIL %{POSTFIX_ANVIL_CONN_RATE}|%{POSTFIX_ANVIL_CONN_CACHE}|%{POSTFIX_ANVIL_CONN_COUNT}
-POSTFIX_SMTP %{POSTFIX_SMTP_DELIVERY}|%{POSTFIX_SMTP_CONNERR}|%{POSTFIX_SMTP_LOSTCONN}|%{POSTFIX_SMTP_TIMEOUT}|%{POSTFIX_SMTP_RELAYERR}|%{POSTFIX_TLSCONN}|%{POSTFIX_WARNING}
+POSTFIX_ANVIL %{POSTFIX_ANVIL_MSG_RATE}|%{POSTFIX_ANVIL_CONN_RATE}|%{POSTFIX_ANVIL_CONN_CACHE}|%{POSTFIX_ANVIL_CONN_COUNT}
+POSTFIX_SMTP %{POSTFIX_SMTP_DELIVERY}|%{POSTFIX_SMTP_CONNERR}|%{POSTFIX_SMTP_LOSTCONN}|%{POSTFIX_SMTP_LOSTCONN_NOQUEUE}|%{POSTFIX_SMTP_TIMEOUT}|%{POSTFIX_SMTP_RELAYERR}|%{POSTFIX_SMTP_RELAYERR_REFUSED}|%{POSTFIX_TLSCONN}|%{POSTFIX_SMTP_TLS_ERROR}|%{POSTFIX_SMTP_TLS_REQUIRED}|%{POSTFIX_SMTP_PIX_WORKAROUND}|%{POSTFIX_WARNING}
 POSTFIX_DISCARD %{POSTFIX_KEYVALUE} status=%{WORD:postfix_status}
 POSTFIX_LMTP %{POSTFIX_SMTP}
 POSTFIX_PICKUP %{POSTFIX_KEYVALUE}
 POSTFIX_TLSPROXY %{POSTFIX_TLSPROXY_CONN}|%{POSTFIX_WARNING}
 POSTFIX_MASTER %{POSTFIX_MASTER_START}|%{POSTFIX_MASTER_EXIT}|%{POSTFIX_WARNING}
-POSTFIX_BOUNCE %{POSTFIX_BOUNCE_NOTIFICATION}
+POSTFIX_BOUNCE %{POSTFIX_BOUNCE_NOTIFICATION}|%{POSTFIX_BOUNCE_NOT_SENDING}
 POSTFIX_SENDMAIL %{POSTFIX_WARNING}
 POSTFIX_POSTDROP %{POSTFIX_WARNING}
 POSTFIX_SCACHE %{POSTFIX_SCACHE_LOOKUPS}|%{POSTFIX_SCACHE_SIMULTANEOUS}|%{POSTFIX_SCACHE_TIMESTAMP}
-POSTFIX_TRIVIAL_REWRITE %{POSTFIX_WARNING}
+POSTFIX_TRIVIAL_REWRITE %{POSTFIX_WARNING}|%{POSTFIX_TABLE_RESTART}
 POSTFIX_TLSMGR %{POSTFIX_WARNING}
 POSTFIX_LOCAL %{POSTFIX_KEYVALUE}
 POSTFIX_VIRTUAL %{POSTFIX_SMTP_DELIVERY}
 POSTFIX_ERROR %{POSTFIX_ERROR_ANY}
 POSTFIX_POSTSUPER %{POSTFIX_POSTSUPER_ACTION}|%{POSTFIX_POSTSUPER_SUMMARY}
+POSTFIX_SPAWN %{POSTFIX_WARNING}
+POSTFIX_PROXYMAP %{POSTFIX_WARNING}
+POSTFIX_POSTMAP %{POSTFIX_WARNING}
