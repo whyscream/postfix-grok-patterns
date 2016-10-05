@@ -1,4 +1,4 @@
-pattern: POSTFIX_SMTP
+pattern: ^%{POSTFIX_SMTP}$
 data: "ED59C3D: host mail2.example.com[1.74.253.23] said: 450 4.7.1 <user@example.com>: Recipient address rejected: Greylisted for 5 minutes (in reply to RCPT TO command)"
 results:
     postfix_queueid: ED59C3D

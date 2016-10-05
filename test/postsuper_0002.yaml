@@ -1,4 +1,4 @@
-pattern: POSTFIX_POSTSUPER
+pattern: ^%{POSTFIX_POSTSUPER}$
 data: "D4F2023DB: requeued"
 results:
     postfix_queueid: D4F2023DB

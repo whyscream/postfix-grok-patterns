@@ -1,4 +1,4 @@
-pattern: POSTFIX_SMTPD
+pattern: ^%{POSTFIX_SMTPD}$
 data: "lost connection after UNKNOWN from unknown[2001:456:cfb1:1:f5d7:dead:beef:cafe]"
 results:
     postfix_smtpd_lostconn_data: lost connection

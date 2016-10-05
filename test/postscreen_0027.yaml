@@ -1,4 +1,4 @@
-pattern: POSTFIX_POSTSCREEN
+pattern: ^%{POSTFIX_POSTSCREEN}$
 data: "NOQUEUE: reject: RCPT from [182.98.255.184]:2413: 550 5.5.1 Protocol error; from=<lvtowxfdp@yahoo.com>, to=<tom@example.com>, proto=SMTP, helo=<mx32.usaindiamunish.net>"
 results:
     postfix_action: reject

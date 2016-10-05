@@ -1,4 +1,4 @@
-pattern: POSTFIX_CLEANUP
+pattern: ^%{POSTFIX_CLEANUP}$
 data: "warning: dict_ldap_get_values[1]: DN uid=mguiraud,ou=people,dc=neotion,dc=com not found, skipping "
 results:
     postfix_warning: "dict_ldap_get_values[1]: DN uid=mguiraud,ou=people,dc=neotion,dc=com not found, skipping "

@@ -46,7 +46,7 @@ class TestGrokPatterns < MiniTest::Unit::TestCase
     # data:: Input data that should be grokked, f.i. a log line
     # results:: A list of named captures and their expected contents
     def grok_pattern_tester(pattern, data, results)
-        assert @grok.compile("%{" + pattern + "}", true), "Failed to compile pattern #{pattern}"
+        assert @grok.compile(pattern, true), "Failed to compile pattern #{pattern}"
         assert matches = @grok.match(data), "Pattern #{pattern} did not match data."
 
         refute_equal results, nil, "Test case is flawed, no results are defined"

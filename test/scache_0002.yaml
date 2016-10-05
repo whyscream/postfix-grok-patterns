@@ -1,4 +1,4 @@
-pattern: POSTFIX_SCACHE
+pattern: ^%{POSTFIX_SCACHE}$
 data: "statistics: start interval Dec  6 21:20:35"
 results:
     postfix_scache_timestamp: "Dec  6 21:20:35"

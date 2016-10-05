@@ -1,4 +1,4 @@
-pattern: POSTFIX_DNSBLOG
+pattern: ^%{POSTFIX_DNSBLOG}$
 data: "addr 61.238.241.86 listed by domain psbl.surriel.com as 127.0.0.2"
 results:
     postfix_client_ip: 61.238.241.86

@@ -1,4 +1,4 @@
-pattern: POSTFIX_SCACHE
+pattern: ^%{POSTFIX_SCACHE}$
 data: "statistics: max simultaneous domains=1 addresses=1 connection=1"
 results:
     postfix_scache_domains: 1

@@ -1,4 +1,4 @@
-pattern: POSTFIX_SMTP
+pattern: ^%{POSTFIX_SMTP}$
 data: "78D6B41: conversation with mx00.gmx.com[74.208.5.4] timed out while receiving the initial server greeting"
 results:
     postfix_queueid: 78D6B41

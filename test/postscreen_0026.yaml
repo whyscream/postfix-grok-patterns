@@ -1,4 +1,4 @@
-pattern: POSTFIX_POSTSCREEN
+pattern: ^%{POSTFIX_POSTSCREEN}$
 data: "BARE NEWLINE from [88.208.233.4]:42606 after ."
 results:
     postfix_postscreen_violation: BARE NEWLINE

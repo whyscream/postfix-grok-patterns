@@ -1,4 +1,4 @@
-pattern: POSTFIX_POSTSCREEN
+pattern: ^%{POSTFIX_POSTSCREEN}$
 data: "warning: getpeername: Transport endpoint is not connected -- dropping this connection"
 results:
     postfix_warning: "getpeername: Transport endpoint is not connected -- dropping this connection"

@@ -1,4 +1,4 @@
-pattern: POSTFIX_SMTP
+pattern: ^%{POSTFIX_SMTP}$
 data: "B99FE3D: lost connection with mx3.hotmail.com[65.55.37.72] while receiving the initial server greeting"
 results:
     postfix_queueid: B99FE3D

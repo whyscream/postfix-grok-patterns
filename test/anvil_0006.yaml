@@ -1,4 +1,4 @@
-pattern: POSTFIX_ANVIL
+pattern: ^%{POSTFIX_ANVIL}$
 data: "statistics: max connection count 1 for (127.0.0.1:2525:127.0.0.1) at Oct 26 19:46:00"
 results:
     postfix_anvil_conn_count: 1

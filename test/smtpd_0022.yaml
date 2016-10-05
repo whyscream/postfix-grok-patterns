@@ -1,4 +1,4 @@
-pattern: POSTFIX_SMTPD
+pattern: ^%{POSTFIX_SMTPD}$
 data: "proxy-reject: END-OF-MESSAGE: 554 5.7.0 Reject, contact postmaster@example.com, id=31619-02 - spam; from=<> to=<user2@example2.com> proto=SMTP helo=<17.33.12.53>"
 results:
     postfix_proxy_result: reject

@@ -1,4 +1,4 @@
-pattern: POSTFIX_POSTSCREEN
+pattern: ^%{POSTFIX_POSTSCREEN}$
 data: "COMMAND TIME LIMIT from [182.246.250.243]:51799 after CONNECT"
 results:
     postfix_postscreen_violation: COMMAND TIME LIMIT

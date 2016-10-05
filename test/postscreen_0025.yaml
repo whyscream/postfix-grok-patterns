@@ -1,4 +1,4 @@
-pattern: POSTFIX_POSTSCREEN
+pattern: ^%{POSTFIX_POSTSCREEN}$
 data: "COMMAND PIPELINING from [88.208.233.4]:42606 after .: \n"
 results:
     postfix_postscreen_violation: COMMAND PIPELINING

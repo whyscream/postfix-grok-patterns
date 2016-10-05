@@ -1,4 +1,4 @@
-pattern: POSTFIX_SMTP
+pattern: ^%{POSTFIX_SMTP}$
 data: "Verified TLS connection established to mail.sys4.de[2001:1578:400:111::7]:25: TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits)"
 results:
     postfix_relay_hostname: mail.sys4.de

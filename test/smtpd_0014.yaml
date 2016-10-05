@@ -1,4 +1,4 @@
-pattern: POSTFIX_SMTPD
+pattern: ^%{POSTFIX_SMTPD}$
 data: "timeout after END-OF-MESSAGE from unknown[72.13.58.7]"
 results:
     postfix_smtpd_lostconn_data: timeout

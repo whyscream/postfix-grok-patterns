@@ -1,4 +1,4 @@
-pattern: POSTFIX_POSTSUPER
+pattern: ^%{POSTFIX_POSTSUPER}$
 data: "Deleted: 115 messages"
 results:
     postfix_postsuper_summary_action: Deleted

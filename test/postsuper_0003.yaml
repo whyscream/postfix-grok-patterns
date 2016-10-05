@@ -1,4 +1,4 @@
-pattern: POSTFIX_POSTSUPER
+pattern: ^%{POSTFIX_POSTSUPER}$
 data: "D4F2023DB: placed on hold"
 results:
     postfix_queueid: D4F2023DB

@@ -1,4 +1,4 @@
-pattern: POSTFIX_SMTPD
+pattern: ^%{POSTFIX_SMTPD}$
 data: "NOQUEUE: discard: MAIL from ccm231.constantcontact.com[208.75.123.231]: <bsdbdsfbw==_4343_sdfbddw==@in.constantcontact.com>: Sender address SPAM; from=<bsdbdsfbw==_4343_sdfbddw==@in.constantcontact.com> proto=ESMTP helo=<ccm231.constantcontact.com>"
 results:
     postfix_action: discard

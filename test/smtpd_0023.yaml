@@ -1,4 +1,4 @@
-pattern: POSTFIX_SMTPD
+pattern: ^%{POSTFIX_SMTPD}$
 data: "SSL_accept error from unknown[72.13.58.7]: Connection timed out"
 results:
     postfix_smtpd_lostconn_data: SSL_accept error

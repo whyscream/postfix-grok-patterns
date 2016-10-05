@@ -1,4 +1,4 @@
-pattern: POSTFIX_BOUNCE
+pattern: ^%{POSTFIX_BOUNCE}$
 data: "65AFB8B5: sender delivery status notification: 1DF35917"
 results:
     postfix_queueid: 65AFB8B5
