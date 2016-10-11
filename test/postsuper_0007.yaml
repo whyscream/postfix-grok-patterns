@@ -1,4 +1,4 @@
-pattern: POSTFIX_POSTSUPER
+pattern: ^%{POSTFIX_POSTSUPER}$
 data: "Placed on hold: 67 messages"
 results:
     postfix_postsuper_summary_action: Placed on hold

@@ -1,4 +1,4 @@
-pattern: POSTFIX_TLSMGR
+pattern: ^%{POSTFIX_TLSMGR}$
 data: "warning: request to update table btree:/var/spool/postfix/smtpd_scache in non-postfix directory /var/spool/postfix"
 results:
     postfix_warning: "request to update table btree:/var/spool/postfix/smtpd_scache in non-postfix directory /var/spool/postfix"

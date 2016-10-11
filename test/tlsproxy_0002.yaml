@@ -1,4 +1,4 @@
-pattern: POSTFIX_TLSPROXY
+pattern: ^%{POSTFIX_TLSPROXY}$
 data: "CONNECT from [82.118.17.142]:51637"
 results:
     postfix_client_ip: 82.118.17.142

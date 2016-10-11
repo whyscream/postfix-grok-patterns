@@ -1,6 +1,6 @@
 # this is a VRFY for a non-local domain
 
-pattern: POSTFIX_SMTPD
+pattern: ^%{POSTFIX_SMTPD}$
 data: "NOQUEUE: reject: VRFY from unknown[2001:968:9999:20:88b:9b7d:2a54:2bd2]: 454 4.7.1 <aap@henk.com>: Relay access denied; to=<aap@henk.com> proto=SMTP helo=<me>"
 results:
     postfix_action: reject

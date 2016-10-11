@@ -1,4 +1,4 @@
-pattern: POSTFIX_MASTER
+pattern: ^%{POSTFIX_MASTER}$
 data: "reload -- version 2.11.0, configuration /etc/postfix"
 results:
     postfix_version: 2.11.0

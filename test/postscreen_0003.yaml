@@ -1,4 +1,4 @@
-pattern: POSTFIX_POSTSCREEN
+pattern: ^%{POSTFIX_POSTSCREEN}$
 data: "DISCONNECT [216.81.72.72]:43421"
 results:
     postfix_client_ip: 216.81.72.72

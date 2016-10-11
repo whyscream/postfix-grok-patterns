@@ -1,5 +1,5 @@
 # this data is derived after the keyvalue data is expanded in logstash to a 'postfix_delays' field.
-pattern: POSTFIX_DELAYS
+pattern: ^%{POSTFIX_DELAYS}$
 data: "0.2/0.02/0.04/3.3"
 results:
     postfix_delay_before_qmgr: 0.2

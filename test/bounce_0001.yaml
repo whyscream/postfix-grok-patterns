@@ -1,4 +1,4 @@
-pattern: POSTFIX_BOUNCE
+pattern: ^%{POSTFIX_BOUNCE}$
 data: "17CCA8044: sender non-delivery notification: ADD2F8052"
 results:
     postfix_queueid: 17CCA8044

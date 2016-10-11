@@ -1,4 +1,4 @@
-pattern: POSTFIX_SMTP
+pattern: ^%{POSTFIX_SMTP}$
 data: "connect to aspmx.l.google.com[2a00:1450:400b:c02::1a]:25: Network is unreachable"
 results:
     postfix_relay_hostname: aspmx.l.google.com

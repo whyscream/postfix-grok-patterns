@@ -1,4 +1,4 @@
-pattern: POSTFIX_SMTP
+pattern: ^%{POSTFIX_SMTP}$
 data: "1234ABCDEF: host relay.example.com[192.0.2.1] said: 450 4.1.8 root@localhost.localdomain: Sender address rejected: Domain not found (in reply to RCPT TO command)"
 results:
     postfix_queueid: 1234ABCDEF

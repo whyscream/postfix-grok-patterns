@@ -1,4 +1,4 @@
-pattern: POSTFIX_SMTPD
+pattern: ^%{POSTFIX_SMTPD}$
 data: "timeout after CONNECT from unknown[177.227.18.3]"
 results:
     postfix_smtpd_lostconn_data: timeout

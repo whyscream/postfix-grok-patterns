@@ -1,4 +1,4 @@
-pattern: POSTFIX_SMTPD
+pattern: ^%{POSTFIX_SMTPD}$
 data: "SSL_accept error from ssl-tools.net[185.55.116.145]: -1"
 results:
     postfix_smtpd_lostconn_data: SSL_accept error

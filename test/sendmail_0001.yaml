@@ -1,4 +1,4 @@
-pattern: POSTFIX_SENDMAIL
+pattern: ^%{POSTFIX_SENDMAIL}$
 data: "fatal: root(0): message file too big"
 results:
     postfix_warning: "root(0): message file too big"

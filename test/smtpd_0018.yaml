@@ -1,6 +1,6 @@
 # this is a VRFY for an unknown user in a known domain
 
-pattern: POSTFIX_SMTPD
+pattern: ^%{POSTFIX_SMTPD}$
 data: "NOQUEUE: reject: VRFY from unknown[2001:968:9999:20:88b:9b7d:2a54:2bd2]: 550 5.1.1 <does-not-exist@example.com>: Recipient address rejected: User unknown in virtual mailbox table; to=<does-not-exist@example.com> proto=SMTP helo=<me>"
 results:
     postfix_action: reject
