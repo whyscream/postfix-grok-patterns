@@ -1,4 +1,5 @@
 pattern: ^%{POSTFIX_MASTER}$
 data: "warning: process /usr/local/libexec/postfix/smtpd pid 46234 killed by signal 11"
 results:
-    postfix_warning: process /usr/local/libexec/postfix/smtpd pid 46234 killed by signal 11
+    postfix_message_level: warning
+    postfix_message: process /usr/local/libexec/postfix/smtpd pid 46234 killed by signal 11

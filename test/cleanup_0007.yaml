@@ -1,0 +1,7 @@
+pattern: ^%{POSTFIX_CLEANUP}$
+data: "D95341E50350: info: header Subject: =?utf-8?Q?Gr=C3=BC=C3=9Fe?= =?utf-8?Q?_=E2=80=92?= test from local; from=<from@example.com> to=<to@example.com>"
+results:
+    postfix_queueid: D95341E50350
+    postfix_message_level: info
+    postfix_message: "header Subject: =?utf-8?Q?Gr=C3=BC=C3=9Fe?= =?utf-8?Q?_=E2=80=92?= test from local"
+    postfix_keyvalue_data: from=<from@example.com> to=<to@example.com>

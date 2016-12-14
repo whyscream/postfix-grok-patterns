@@ -1,4 +1,5 @@
 pattern: ^%{POSTFIX_DNSBLOG}$
 data: "warning: dnsblog_query: lookup error for DNS query 198.204.82.110.list.dnswl.org: Host or domain name not found. Name service error for name=198.204.82.110.list.dnswl.org type=A: Host not found, try again"
 results:
-    postfix_warning: "dnsblog_query: lookup error for DNS query 198.204.82.110.list.dnswl.org: Host or domain name not found. Name service error for name=198.204.82.110.list.dnswl.org type=A: Host not found, try again"
+    postfix_message_level: warning
+    postfix_message: "dnsblog_query: lookup error for DNS query 198.204.82.110.list.dnswl.org: Host or domain name not found. Name service error for name=198.204.82.110.list.dnswl.org type=A: Host not found, try again"

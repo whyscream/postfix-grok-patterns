@@ -1,4 +1,5 @@
 pattern: ^%{POSTFIX_POSTDROP}$
 data: "warning: uid=0: File too large"
 results:
-    postfix_warning: "uid=0: File too large"
+    postfix_message_level: warning
+    postfix_message: "uid=0: File too large"
