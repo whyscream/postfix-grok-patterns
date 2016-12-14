@@ -1,4 +1,5 @@
 pattern: ^%{POSTFIX_TRIVIAL_REWRITE}$
 data: "warning: virtual_alias_domains lookup failure"
 results:
-    postfix_warning: "virtual_alias_domains lookup failure"        
+    postfix_message_level: warning
+    postfix_message: "virtual_alias_domains lookup failure"        

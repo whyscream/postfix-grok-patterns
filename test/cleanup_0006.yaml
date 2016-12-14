@@ -2,5 +2,6 @@ pattern: ^%{POSTFIX_CLEANUP}$
 data: "D8B07E3DB6: warning: header Subject: https://drive.google.com/file/d/0B8wxcvprDYVdlVsdf1kzOVkdisarmed/view?usp=sharing from o1678917x173.outbound-mail.sendgrid.net[167.89.17.173]; from=<bounces+2320708-7653-frank.test=hsdjasdd.co.uk@sendgrid.net> to=<frank.test@hsdjasdd.co.uk> proto=ESMTP helo=<o1678917x173.outbound-mail.sendgrid.net>"
 results:
     postfix_queueid: D8B07E3DB6
-    postfix_warning: "header Subject: https://drive.google.com/file/d/0B8wxcvprDYVdlVsdf1kzOVkdisarmed/view?usp=sharing from o1678917x173.outbound-mail.sendgrid.net[167.89.17.173]"
+    postfix_message_level: warning
+    postfix_message: "header Subject: https://drive.google.com/file/d/0B8wxcvprDYVdlVsdf1kzOVkdisarmed/view?usp=sharing from o1678917x173.outbound-mail.sendgrid.net[167.89.17.173]"
     postfix_keyvalue_data: "from=<bounces+2320708-7653-frank.test=hsdjasdd.co.uk@sendgrid.net> to=<frank.test@hsdjasdd.co.uk> proto=ESMTP helo=<o1678917x173.outbound-mail.sendgrid.net>"

@@ -1,4 +1,5 @@
 pattern: ^%{POSTFIX_SENDMAIL}$
 data: "fatal: root(0): message file too big"
 results:
-    postfix_warning: "root(0): message file too big"
+    postfix_message_level: fatal
+    postfix_message: "root(0): message file too big"

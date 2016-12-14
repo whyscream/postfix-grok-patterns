@@ -1,4 +1,5 @@
 pattern: ^%{POSTFIX_SMTPD}$
 data: "warning: hostname exemple.com does not resolve to address 185.14.29.32"
 results:
-    postfix_warning: hostname exemple.com does not resolve to address 185.14.29.32
+    postfix_message_level: warning
+    postfix_message: hostname exemple.com does not resolve to address 185.14.29.32
