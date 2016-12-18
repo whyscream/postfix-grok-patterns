@@ -25,7 +25,7 @@ Tests
 
 In the `test/` directory, there is a test suite that tries to make sure that no previously supported log line will break because of changing common patterns and such. It also returns results a lot faster than doing `sudo service logstash restart` :-).
 
-The test suite needs the patterns provided by Logstash, you can easily pull these from github by running `git submodule update --init`. To run the test suite, you also need `ruby 1.9` or higher, and the `jls-grok` gem. Then simply execute `ruby test/test.rb`.
+The test suite needs the patterns provided by Logstash, you can easily pull these from github by running `git submodule update --init`. To run the test suite, you also need `ruby 2.2` or higher, and the `jls-grok` gem. Then simply execute `ruby test/test.rb`.
 
 Adding new test cases can easily be done by creating new yaml files in the test directory. Each file specifies a grok pattern to validate, a sample log line, and a list of expected results.
 
@@ -34,7 +34,7 @@ Also, the example Logstash config file adds some informative tags that aid in fi
 Contributing
 ------------
 
-I only have access to my own log samples, and my setup does not support or use every feature in postfix. If you miss anything, please do a pull request on github. If you're not very well versed in regular expressions, it's also fine to only submit sample unsupported log lines.
+I only have access to my own log samples, and my setup does not support or use every feature in postfix. If you miss anything, please open a pull request on github. If you're not very well versed in regular expressions, it's also fine to only submit sample unsupported log lines.
 
 License
 -------
@@ -43,5 +43,5 @@ Everything in this repository is available under the New (3-clause) BSD license.
 
 Acknowledgement
 ---------------
-I use postfix (2.11), logstash (1.4.2), elasticsearch (1.4.0-beta1) and kibana (3.1.3) in order to get everything working.
+I use postfix, logstash, elasticsearch and kibana in order to get everything working.
 For writing the grok patterns I depend heavily on [grokdebug](https://grokdebug.herokuapp.com/), and I looked a lot at [antispin's useful logstash grok patterns](http://antisp.in/2014/04/useful-logstash-grok-patterns/).
