@@ -1,0 +1,5 @@
+pattern: ^%{POSTFIX_SMTP}$
+data: "virtual_dns_lookup: example.com (MX)"
+results:
+    dns_name: "example.com"
+    dns_type: "MX"
