@@ -1,0 +1,7 @@
+pattern: "^%{POSTFIX_CLEANUP}$"
+data: "413E164734: info: header Content-Disposition: attachment;? filename=\"=?UTF-8?B?SU5WT0lDRV/Dtl/DpF/DvF/igqxfZGhrZmpzX2pkb2ZrYWpzbGRrZmpfbHNq?= =?UTF-8?B?ZGFsa2ZqaF9hZGprZnNhaGZkamtfR3LDvMOfZV9paGtmaHNha2pfZGZhaHNf?= =?UTF-8?B? from localhost[127.0.0.1]; from=<from@example.com> to=<to@example.com> proto=ESMTP helo=<localhost.localdomain>"
+results:
+    postfix_queueid: 413E164734
+    postfix_message_level: info
+    postfix_message: "header Content-Disposition: attachment;? filename=\"=?UTF-8?B?SU5WT0lDRV/Dtl/DpF/DvF/igqxfZGhrZmpzX2pkb2ZrYWpzbGRrZmpfbHNq?= =?UTF-8?B?ZGFsa2ZqaF9hZGprZnNhaGZkamtfR3LDvMOfZV9paGtmaHNha2pfZGZhaHNf?= =?UTF-8?B? from localhost[127.0.0.1]"
+    postfix_keyvalue_data: from=<from@example.com> to=<to@example.com> proto=ESMTP helo=<localhost.localdomain>

@@ -10,9 +10,10 @@ POSTFIX_DNSBL_MESSAGE Service unavailable; .* \[%{GREEDYDATA:postfix_status_data
 POSTFIX_PS_ACCESS_ACTION (DISCONNECT|BLACKLISTED|WHITELISTED|WHITELIST VETO|PASS NEW|PASS OLD)
 POSTFIX_PS_VIOLATION (BARE NEWLINE|COMMAND (TIME|COUNT|LENGTH) LIMIT|COMMAND PIPELINING|DNSBL|HANGUP|NON-SMTP COMMAND|PREGREET)
 POSTFIX_TIME_UNIT %{NUMBER}[smhd]
+POSTFIX_KEYVALUE_DATA \w+=[^;]*
 POSTFIX_KEYVALUE %{POSTFIX_QUEUEID:postfix_queueid}: %{GREEDYDATA:postfix_keyvalue_data}
 POSTFIX_WARNING_LEVEL (warning|fatal|info)
-POSTFIX_WARNING (%{POSTFIX_QUEUEID:postfix_queueid}: )?%{POSTFIX_WARNING_LEVEL:postfix_message_level}: %{GREEDYDATA_NO_SEMICOLON:postfix_message}(; %{GREEDYDATA:postfix_keyvalue_data})?
+
 POSTFIX_TLSCONN (Anonymous|Trusted|Untrusted|Verified) TLS connection established (to %{POSTFIX_RELAY_INFO}|from %{POSTFIX_CLIENT_INFO}): %{DATA:postfix_tls_version} with cipher %{DATA:postfix_tls_cipher} \(%{DATA:postfix_tls_cipher_size} bits\)
 POSTFIX_DELAYS %{NUMBER:postfix_delay_before_qmgr}/%{NUMBER:postfix_delay_in_qmgr}/%{NUMBER:postfix_delay_conn_setup}/%{NUMBER:postfix_delay_transmission}
 POSTFIX_LOSTCONN (lost connection|timeout|SSL_accept error)
@@ -22,6 +23,11 @@ POSTFIX_PROXY_MESSAGE (%{POSTFIX_STATUS_CODE:postfix_proxy_status_code} )?(%{POS
 # helper patterns
 GREEDYDATA_NO_COLON [^:]*
 GREEDYDATA_NO_SEMICOLON [^;]*
+
+# warning patterns
+POSTFIX_WARNING_WITH_KV (%{POSTFIX_QUEUEID:postfix_queueid}: )?%{POSTFIX_WARNING_LEVEL:postfix_message_level}: %{GREEDYDATA:postfix_message}; %{POSTFIX_KEYVALUE_DATA:postfix_keyvalue_data}
+POSTFIX_WARNING_WITHOUT_KV (%{POSTFIX_QUEUEID:postfix_queueid}: )?%{POSTFIX_WARNING_LEVEL:postfix_message_level}: %{GREEDYDATA:postfix_message}
+POSTFIX_WARNING %{POSTFIX_WARNING_WITH_KV}|%{POSTFIX_WARNING_WITHOUT_KV}
 
 # smtpd patterns
 POSTFIX_SMTPD_CONNECT connect from %{POSTFIX_CLIENT_INFO}
