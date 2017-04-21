@@ -1,0 +1,5 @@
+pattern: ^%{POSTFIX_MC_MILTER}$
+data: "D087C1A7A0D: from=<toto@example.com>, firstto=<titi@example.org>, nrcpt=1, size=8879, status=WHITE, subject=\"  =?Windows-1252?Q?RE_:_ollicitation_pour_intervention_sur_for...\" "
+results:
+    postfix_queueid: "D087C1A7A0D"
+    postfix_keyvalue_data: "from=<toto@example.com>, firstto=<titi@example.org>, nrcpt=1, size=8879, status=WHITE, subject=\"  =?Windows-1252?Q?RE_:_ollicitation_pour_intervention_sur_for...\" "

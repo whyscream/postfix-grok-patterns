@@ -1,0 +1,4 @@
+pattern: ^%{POSTFIX_MC_MILTER}$
+data: "userstats=true, from=<toto@example.com>, rcpt=<titi@example.org>, vrscore=300, vrstate=1, status=spam, action=quser(1)"
+results:
+    postfix_keyvalue_data: "userstats=true, from=<toto@example.com>, rcpt=<titi@example.org>, vrscore=300, vrstate=1, status=spam, action=quser(1)"
