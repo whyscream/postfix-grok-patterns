@@ -7,4 +7,4 @@ results:
   postfix_cmd_unknown_accepted: 0
   postfix_cmd_unknown: 2
   postfix_cmd_count_accepted: 2
-  postfix_cmd_count_all: 4
+  postfix_cmd_count: 4
