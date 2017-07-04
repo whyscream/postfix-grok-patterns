@@ -8,4 +8,4 @@ results:
   postfix_cmd_data: 1
   postfix_cmd_rset: 1
   postfix_cmd_quit: 1
-  postfix_cmd_count_all: 7
+  postfix_cmd_count: 7

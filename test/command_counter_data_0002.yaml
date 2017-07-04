@@ -6,4 +6,4 @@ results:
   postfix_cmd_ehlo: 2
   postfix_cmd_quit: 1
   postfix_cmd_count_accepted: 3
-  postfix_cmd_count_all: 4
+  postfix_cmd_count: 4
