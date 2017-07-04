@@ -1,0 +1,9 @@
+pattern: ^%{POSTFIX_COMMAND_COUNTER_DATA}
+data: helo=1 ehlo=1/2 quit=1 commands=3/4
+results:
+  postfix_cmd_helo: 1
+  postfix_cmd_ehlo_accepted: 1
+  postfix_cmd_ehlo: 2
+  postfix_cmd_quit: 1
+  postfix_cmd_count_accepted: 3
+  postfix_cmd_count_all: 4
