@@ -1,0 +1,13 @@
+pattern: ^%{POSTFIX_COMMAND_COUNTER_DATA}
+data: ehlo=2 starttls=1 mail=1 rcpt=0/1 data=0/1 quit=1 commands=5/7
+results:
+  postfix_cmd_ehlo: 2
+  postfix_cmd_starttls: 1
+  postfix_cmd_mail: 1
+  postfix_cmd_rcpt_accepted: 0
+  postfix_cmd_rcpt: 1
+  postfix_cmd_data_accepted: 0
+  postfix_cmd_data: 1
+  postfix_cmd_quit: 1
+  postfix_cmd_count_accepted: 5
+  postfix_cmd_count_all: 7

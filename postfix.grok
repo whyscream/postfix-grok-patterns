@@ -17,6 +17,7 @@ POSTFIX_DELAYS %{NUMBER:postfix_delay_before_qmgr}/%{NUMBER:postfix_delay_in_qmg
 POSTFIX_LOSTCONN (lost connection|timeout|SSL_accept error)
 POSTFIX_LOSTCONN_REASONS (receiving the initial server greeting|sending message body|sending end of data -- message may be sent more than once)
 POSTFIX_PROXY_MESSAGE (%{POSTFIX_STATUS_CODE:postfix_proxy_status_code} )?(%{POSTFIX_STATUS_CODE_ENHANCED:postfix_proxy_status_code_enhanced})?.*
+POSTFIX_COMMAND_COUNTER_DATA (helo=(%{INT:postfix_cmd_helo_accepted}/)?%{INT:postfix_cmd_helo} )?(ehlo=(%{INT:postfix_cmd_ehlo_accepted}/)?%{INT:postfix_cmd_ehlo} )?(starttls=(%{INT:postfix_cmd_starttls_accepted}/)?%{INT:postfix_cmd_starttls} )?(mail=(%{INT:postfix_cmd_mail_accepted}/)?%{INT:postfix_cmd_mail} )?(rcpt=(%{INT:postfix_cmd_rcpt_accepted}/)?%{INT:postfix_cmd_rcpt} )?(data=(%{INT:postfix_cmd_data_accepted}/)?%{INT:postfix_cmd_data} )?(rset=(%{INT:postfix_cmd_rset_accepted}/)?%{INT:postfix_cmd_rset} )?(quit=(%{INT:postfix_cmd_quit_accepted}/)?%{INT:postfix_cmd_quit} )?(unknown=(%{INT:postfix_cmd_unknown_accepted}/)?%{INT:postfix_cmd_unknown} )?commands=(%{INT:postfix_cmd_count_accepted}/)?%{INT:postfix_cmd_count_all}
 
 # helper patterns
 GREEDYDATA_NO_COLON [^:]*
