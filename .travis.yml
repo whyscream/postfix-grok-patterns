@@ -2,7 +2,7 @@ language: ruby
 rvm:
     - "2.2"
 before_script: 
-    - gem install jls-grok
+    - gem install jls-grok minitest
 script:
     - ruby test/test.rb
 sudo: false
