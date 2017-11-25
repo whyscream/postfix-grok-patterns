@@ -1,0 +1,5 @@
+pattern: ^%{POSTFIX_LOCAL}$
+data: "warning: dict_nis_init: NIS domain name not set - NIS lookups disabled"
+results:
+    postfix_message_level: warning
+    postfix_message: "dict_nis_init: NIS domain name not set - NIS lookups disabled"
