@@ -1,0 +1,7 @@
+pattern: ^%{POSTFIX_ERROR}$
+data: "3E29030F8637E: to=<user@yahoo.com>, relay=none, delay=0.01, delays=0.01/0/0/0, dsn=5.1.1, status=undeliverable-but-not-cached (User unknown in virtual alias table)"
+results:
+    postfix_queueid: "3E29030F8637E"
+    postfix_keyvalue_data: "to=<user@yahoo.com>, relay=none, delay=0.01, delays=0.01/0/0/0, dsn=5.1.1"
+    postfix_status: undeliverable-but-not-cached
+    postfix_error_response: "User unknown in virtual alias table"
