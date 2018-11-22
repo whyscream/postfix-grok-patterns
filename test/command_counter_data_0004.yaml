@@ -1,0 +1,10 @@
+
+pattern: ^%{POSTFIX_COMMAND_COUNTER_DATA}
+data: helo=1 quit=1 unknown=0/2 commands=2/4
+results:
+  postfix_cmd_helo: 1
+  postfix_cmd_quit: 1
+  postfix_cmd_unknown_accepted: 0
+  postfix_cmd_unknown: 2
+  postfix_cmd_count_accepted: 2
+  postfix_cmd_count: 4
