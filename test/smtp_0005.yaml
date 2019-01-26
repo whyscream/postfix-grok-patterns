@@ -4,3 +4,4 @@ results:
     postfix_relay_hostname: intern.nl
     postfix_relay_ip: 194.109.6.98
     postfix_relay_port: 25
+    postfix_smtp_lostconn_data: Connection timed out
