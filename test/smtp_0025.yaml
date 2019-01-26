@@ -4,3 +4,4 @@ results:
     postfix_relay_hostname: aspmx.l.google.com
     postfix_relay_ip: 2a00:1450:400b:c02::1a
     postfix_relay_port: 25
+    postfix_smtp_lostconn_data: Network is unreachable

@@ -4,3 +4,4 @@ results:
     postfix_relay_hostname: mail2.crabruzzo.it
     postfix_relay_ip: 2.115.207.21
     postfix_relay_port: 25
+    postfix_smtp_lostconn_data: No route to host
