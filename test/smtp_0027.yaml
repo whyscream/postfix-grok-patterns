@@ -1,0 +1,7 @@
+pattern: ^%{POSTFIX_SMTP}$
+data: "certificate verification failed for mail.example.com[113.169.17.115]:25: self-signed certificate."
+results:
+    postfix_relay_hostname: mail.example.com
+    postfix_relay_ip: 113.169.17.115
+    postfix_relay_port: 25
+    postfix_tls_error: self-signed certificate.
