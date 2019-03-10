@@ -1,0 +1,6 @@
+pattern: ^%{POSTFIX_SMTPD}$
+data: "warning: ec2-3-84-57-208.compute-1.amazonaws.com[3.84.57.208]: SASL LOGIN authentication failed: UGFzc3dvcmQ6"
+results:
+    postfix_client_hostname: ec2-3-84-57-208.compute-1.amazonaws.com
+    postfix_client_ip: 3.84.57.208
+    postfix_message: "SASL LOGIN authentication failed: UGFzc3dvcmQ6"
