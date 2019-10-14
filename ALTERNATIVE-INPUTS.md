@@ -8,8 +8,8 @@ Various other Logstash filters can produce the needed input fields (`program` an
 
 ``` 
 grok {
-    match => { "message" => "%{SYSLOGTIMESTAMP} %{SYSLOGHOST} %{DATA:program}(?:\[%{POSINT}\])?: %{GREEDYDATA:message}" }
-    overwrite => "message"
+    match => { "message" => "%{SYSLOGTIMESTAMP:timestamp} %{SYSLOGHOST} %{DATA:program}(?:\[%{POSINT}\])?: %{GREEDYDATA:message}" }
+    overwrite => ["timestamp", "message"]
 }
 ```
 
