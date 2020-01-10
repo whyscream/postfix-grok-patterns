@@ -2,4 +2,4 @@ pattern: ^%{POSTFIX_CLEANUP}$
 data: "4104E3D: message-id=<>"
 results:
     postfix_queueid: 4104E3D
-    postfix_keyvalue_data: message-id=<>
+    postfix_message-id: ""
