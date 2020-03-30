@@ -1,0 +1,8 @@
+pattern: "^%{POSTFIX_CLEANUP}$"
+data: "48rT2v1hQrz1J0N: prepend: header X-Spam-Status: Yes, score=45.1 required=10.0 tests=ADVANCE_FE from mx2.example.org[192.0.2.41]; from=<SRS0=1sN3=5P=example.org=noreply@srs.example.org> to=<recipient@example.net> proto=ESMTP helo=<mx2.example.org>: X-Spam-Status: Yes"
+results:
+    postfix_queueid: "48rT2v1hQrz1J0N"
+    postfix_prepend_type: "header"
+    postfix_prepend_trigger: "X-Spam-Status: Yes, score=45.1 required=10.0 tests=ADVANCE_FE"
+    postfix_prepend_value: "X-Spam-Status: Yes"
+    postfix_keyvalue_data: "from=<SRS0=1sN3=5P=example.org=noreply@srs.example.org> to=<recipient@example.net> proto=ESMTP helo=<mx2.example.org>"
