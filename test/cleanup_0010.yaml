@@ -1,0 +1,5 @@
+pattern: "^%{POSTFIX_CLEANUP}$"
+data: "ADD961003206D: message-id==?UTF-8?B?PDE5?=? =?UTF-8?B?MTIyMDExMjkxNjYxMUBDbGllbnQtMDQ1LnJ1YmluZXR0ZXJpZS5sb2NhbD4=?="
+results:
+    postfix_queueid: ADD961003206D
+    postfix_message-id: =?UTF-8?B?PDE5?=? =?UTF-8?B?MTIyMDExMjkxNjYxMUBDbGllbnQtMDQ1LnJ1YmluZXR0ZXJpZS5sb2NhbD4=?=
