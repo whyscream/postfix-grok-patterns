@@ -8,7 +8,7 @@ Usage
 
 - Install logstash
 - Add `50-filter-postfix.conf` to `/etc/logstash/conf.d` or `pipeline` dir for dockerized Logstash
-- Add `51-filter-postfix-aggregate.conf` to `/etc/logstash/conf.d` or `pipeline` dir for dockerized Logstash
+- Add `51-filter-postfix-aggregate.conf` to `/etc/logstash/conf.d` or `pipeline` dir for dockerized Logstash (optional)
 - Make dir `/etc/logstash/patterns.d`
 - Add `postfix.grok` to `/etc/logstash/patterns.d`
 - Restart logstash
@@ -19,6 +19,15 @@ The included Logstash config file requires two input fields to exist in input ev
 - `message`: the log message payload without additional fields (program, pid, etc), f.i. `connect from 1234.static.ctinets.com[45.238.241.123]`
 
 This event format is supported by the Logstash `syslog` input plugin out of the box, but several other plugins produce input that can be adapted fairly easy to produce these fields too. See [ALTERNATIVE INPUTS](ALTERNATIVE-INPUTS.md) for details.
+
+Aggregation filter
+-----
+
+Aggregation filter is used to combine fields from different log lines. For example:
+
+![Alt text](aggregation_example_pic.jpg?raw=true)
+
+In this example filter take 'postfix_from' from postfix/qmgr log line and put to postfix/smtp.
 
 Tests
 -----
