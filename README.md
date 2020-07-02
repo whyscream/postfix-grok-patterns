@@ -8,7 +8,6 @@ Usage
 
 - Install logstash
 - Add `50-filter-postfix.conf` to `/etc/logstash/conf.d` or `pipeline` dir for dockerized Logstash
-- Add `51-filter-postfix-aggregate.conf` to `/etc/logstash/conf.d` or `pipeline` dir for dockerized Logstash (optional)
 - Make dir `/etc/logstash/patterns.d`
 - Add `postfix.grok` to `/etc/logstash/patterns.d`
 - Restart logstash
@@ -23,11 +22,14 @@ This event format is supported by the Logstash `syslog` input plugin out of the 
 Aggregation filter
 -----
 
-Aggregation filter is used to combine fields from different log lines. For example:
+A optional aggregation filter is available, that will combine fields from different log lines. The key on which log lines are aggregated is the postfix queue id. For example:
 
 ![Alt text](aggregation_example_pic.jpg?raw=true)
 
-In this example filter take 'postfix_from' from postfix/qmgr log line and put to postfix/smtp.
+In this example, the `postfix_from` field from a `postfix/qmgr` log line is reused, and added to a log line from `postfix/smtp`.
+
+To use the aggregation filter, add `51-filter-postfix-aggregate.conf` to `/etc/logstash/conf.d` or `pipeline` dir for dockerized Logstash.
+
 
 Tests
 -----
