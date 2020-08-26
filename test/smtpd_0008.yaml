@@ -1,6 +1,7 @@
 pattern: ^%{POSTFIX_SMTPD}$
 data: "NOQUEUE: reject: RCPT from unknown[2001:980:cfb1:1:82f:f74e:a45c:3033]: 504 5.5.2 <aap@henk>: Sender address rejected: need fully-qualified address; from=<aap@henk> to=<user@example.com> proto=SMTP helo=<test>"
 results:
+    postfix_queueid: NOQUEUE
     postfix_action: reject
     postfix_smtp_stage: RCPT
     postfix_client_hostname: unknown
