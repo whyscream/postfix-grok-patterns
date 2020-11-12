@@ -6,5 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1.50.4
+        with:
+          ruby-version: 2.5.3
       - run: gem install jls-grok minitest
       - run: ruby test/test.rb
