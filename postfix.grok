@@ -1,3 +1,5 @@
+# Version: 1.0.0
+
 # common postfix patterns
 POSTFIX_QUEUEID ([0-9A-F]{6,}|[0-9a-zA-Z]{12,}|NOQUEUE)
 POSTFIX_CLIENT_INFO %{HOSTNAME:postfix_client_hostname}?\[%{IP:postfix_client_ip}\](:%{INT:postfix_client_port})?
