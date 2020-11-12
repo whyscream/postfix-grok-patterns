@@ -1,0 +1,14 @@
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - uses: ruby/setup-ruby@v1.50.4
+        with:
+          ruby-version: 2.5.3
+      - run: gem install jls-grok minitest
+      - run: ruby test/test.rb
