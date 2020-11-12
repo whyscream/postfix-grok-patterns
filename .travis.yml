@@ -1,8 +1,0 @@
-dist: xenial
-language: ruby
-rvm:
-    - "2.5.3"
-before_script: 
-    - gem install jls-grok minitest
-script:
-    - ruby test/test.rb
