@@ -1,0 +1,5 @@
+pattern: "^%{POSTFIX_CLEANUP}$"
+data: "246884008A: message-id==?utf-8?B?PDIwMjAwNjEzXzE0MzE1Ml8xMDcyZjVhZDdlZjU0M2Q0OWQ0?=? =?utf-8?B?NzQxOGVkM2YyOGFjOEBuZXdzLWFpZ2xlLmNvbQ0KPg==?="
+results:
+    postfix_queueid: 246884008A
+    postfix_message-id: =?utf-8?B?PDIwMjAwNjEzXzE0MzE1Ml8xMDcyZjVhZDdlZjU0M2Q0OWQ0?=? =?utf-8?B?NzQxOGVkM2YyOGFjOEBuZXdzLWFpZ2xlLmNvbQ0KPg==?=
