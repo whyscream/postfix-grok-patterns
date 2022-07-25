@@ -1,5 +1,4 @@
 pattern: "^%{POSTFIX_SMTP}$"
-#data: "SSL_connect error to mail.example.org[112.63.65.2]:25: lost connection"
 data: "SSL_connect error to mail.example.org[112.63.65.2]:25: lost connection"
 results:
     postfix_relay_hostname: mail.example.org

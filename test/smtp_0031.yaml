@@ -1,0 +1,7 @@
+pattern: "^%{POSTFIX_SMTP}$"
+data: "B0ADE20FC7: enabling PIX workarounds: disable_esmtp delay_dotcrlf for example.com[93.184.216.34]:25"
+results:
+    postfix_pix_workaround: "disable_esmtp delay_dotcrlf"
+    postfix_relay_hostname: example.com
+    postfix_relay_ip: 93.184.216.34
+    postfix_relay_port: 25
