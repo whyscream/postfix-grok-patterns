@@ -1,0 +1,13 @@
+pattern: ^%{POSTFIX_SMTPD}$
+data: "NOQUEUE: reject_warning: RCPT from example.com[93.184.216.34]: 553 5.7.1 <sender@example.com>: Sender address rejected: not owned by user ph123; from=<sender@example.com> to=<recipient@example.com> proto=ESMTP helo=<example.com>"
+results:
+    postfix_queueid: NOQUEUE
+    postfix_action: reject_warning
+    postfix_smtp_stage: RCPT
+    postfix_client_hostname: example.com
+    postfix_client_ip: 93.184.216.34
+    postfix_status_code: 553
+    postfix_status_code_enhanced: 5.7.1
+    postfix_status_data: sender@example.com
+    postfix_status_message: "Sender address rejected: not owned by user ph123"
+    postfix_keyvalue_data: from=<sender@example.com> to=<recipient@example.com> proto=ESMTP helo=<example.com>
