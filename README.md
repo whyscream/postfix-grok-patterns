@@ -49,6 +49,10 @@ Contributing
 
 I only have access to my own log samples, and my setup does not support or use every feature in postfix. If you miss anything, please open a pull request on github. If you're not very well versed in regular expressions, it's also fine to only submit sample unsupported log lines.
 
+Other guidelines:
+- There is no goal to parse every possible Postfix log line. The goal is to extract useful data from the logs in a generic way.
+- The target for data extraction is logging from a local server. There have been requests to parse SMTP replies from remote (Postfix) servers that are logged by the SMTP client (`postfix/smtp` program name). There is no way to parse these replies in a generic way, they differ from implementation to implementation (f.i. Postfix vs Exim) and from server to server (every admin can customize the message format). Parsing stock replies from remote Postfix servers could be done, but would be confusing since the messages don't originate from the local server. Requests for parsing these are not honoured. If you like to do that, implement it yourself, or start a separate project, I'd be happy to add a link to it. :)
+
 License
 -------
 

@@ -1,0 +1,7 @@
+pattern: "^%{POSTFIX_SMTP}$"
+data: "D0F29603B4: SASL authentication failed; server xyz.example.com[1.2.3.4] said: 535 5.7.8 Error: authentication failed: authentication failure"
+results:
+    postfix_queueid: D0F29603B4
+    postfix_relay_hostname: xyz.example.com
+    postfix_relay_ip: 1.2.3.4
+    postfix_smtp_response: "535 5.7.8 Error: authentication failed: authentication failure"

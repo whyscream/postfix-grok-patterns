@@ -1,4 +1,3 @@
-
 pattern: ^%{POSTFIX_COMMAND_COUNTER_DATA}
 data: helo=1 mail=2 rcpt=1 data=1 rset=1 quit=1 commands=7
 results:

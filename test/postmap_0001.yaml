@@ -1,0 +1,5 @@
+pattern: ^%{POSTFIX_POSTMAP}$
+data: "warning: /etc/postfix/conf.d/users.db: duplicate entry: \"xxx@yyy.com\""
+results:
+    postfix_message_level: warning
+    postfix_message: "/etc/postfix/conf.d/users.db: duplicate entry: \"xxx@yyy.com\""

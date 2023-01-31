@@ -1,0 +1,5 @@
+pattern: ^%{POSTFIX_SCRIPT}$
+data: "warning: symlink leaves directory: /etc/postfix/./makedefs.out"
+results:
+    postfix_message_level: warning
+    postfix_message: "symlink leaves directory: /etc/postfix/./makedefs.out"
