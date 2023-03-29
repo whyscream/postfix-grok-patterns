@@ -56,7 +56,7 @@ Other guidelines:
 License
 -------
 
-Everything in this repository is available under the New (3-clause) BSD license.
+Everything in this repository is available under the New (3-clause) BSD license. See ![LICENSE](LICENSE) for details.
 
 Acknowledgement
 ---------------
