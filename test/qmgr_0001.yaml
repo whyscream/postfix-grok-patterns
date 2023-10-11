@@ -2,3 +2,4 @@ pattern: ^%{POSTFIX_QMGR}$
 data: "0F5383D: removed"
 results:
     postfix_queueid: 0F5383D
+    postfix_message: removed

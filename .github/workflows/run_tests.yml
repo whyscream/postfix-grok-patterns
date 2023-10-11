@@ -1,6 +1,6 @@
 on: [push]
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -9,6 +9,6 @@ jobs:
           submodules: true
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.1
+          ruby-version: 3.2
       - run: gem install jls-grok minitest
       - run: ruby test/test.rb

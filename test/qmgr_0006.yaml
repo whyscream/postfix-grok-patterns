@@ -1,0 +1,5 @@
+pattern: ^%{POSTFIX_QMGR}$
+data: "ED06590130AA1C9D6D862: skipped, still being delivered"
+results:
+    postfix_queueid: ED06590130AA1C9D6D862
+    postfix_message: skipped, still being delivered
