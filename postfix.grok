@@ -23,6 +23,7 @@ POSTFIX_TIME_UNIT %{NUMBER}[smhd]
 POSTFIX_KEYVALUE_DATA [\w-]+=[^;]*
 POSTFIX_KEYVALUE %{POSTFIX_QUEUEID:postfix_queueid}: %{POSTFIX_KEYVALUE_DATA:postfix_keyvalue_data}
 POSTFIX_WARNING_LEVEL (warning|fatal|info)
+POSTFIX_VERIFY_CLEANUP_TYPE (full|partial)
 
 POSTFIX_TLSCONN (Anonymous|Trusted|Untrusted|Verified) TLS connection established (to %{POSTFIX_RELAY_INFO}|from %{POSTFIX_CLIENT_INFO}): %{DATA:postfix_tls_version} with cipher %{DATA:postfix_tls_cipher} \(%{DATA:postfix_tls_cipher_size} bits\)
 POSTFIX_TLSVERIFICATION certificate verification failed for %{POSTFIX_RELAY_INFO}: %{GREEDYDATA:postfix_tls_error}
@@ -117,6 +118,9 @@ POSTFIX_SCACHE_LOOKUPS statistics: (address|domain) lookup hits=%{INT:postfix_sc
 POSTFIX_SCACHE_SIMULTANEOUS statistics: max simultaneous domains=%{INT:postfix_scache_domains} addresses=%{INT:postfix_scache_addresses} connection=%{INT:postfix_scache_connection}
 POSTFIX_SCACHE_TIMESTAMP statistics: start interval %{SYSLOGTIMESTAMP:postfix_scache_timestamp}
 
+# verify patterns
+POSTFIX_VERIFY_CACHE cache %{DATA} %{POSTFIX_VERIFY_CLEANUP_TYPE:postfix_verify_cleanup_type} cleanup: retained=%{INT:postfix_verify_cache_retained} dropped=%{INT:postfix_verify_cache_dropped} entries
+
 # aggregate all patterns
 POSTFIX_SMTPD %{POSTFIX_SMTPD_CONNECT}|%{POSTFIX_SMTPD_DISCONNECT}|%{POSTFIX_SMTPD_LOSTCONN}|%{POSTFIX_SMTPD_NOQUEUE}|%{POSTFIX_SMTPD_PIPELINING}|%{POSTFIX_TLSCONN}|%{POSTFIX_WARNING}|%{POSTFIX_SMTPD_PROXY}|%{POSTFIX_KEYVALUE}
 POSTFIX_CLEANUP %{POSTFIX_CLEANUP_MESSAGEID}|%{POSTFIX_CLEANUP_MILTER}|%{POSTFIX_CLEANUP_PREPEND}|%{POSTFIX_WARNING}|%{POSTFIX_KEYVALUE}
@@ -143,3 +147,4 @@ POSTFIX_ERROR %{POSTFIX_ERROR_ANY}
 POSTFIX_POSTSUPER %{POSTFIX_POSTSUPER_ACTION}|%{POSTFIX_POSTSUPER_SUMMARY}
 POSTFIX_POSTMAP %{POSTFIX_WARNING}
 POSTFIX_SCRIPT %{POSTFIX_WARNING}
+POSTFIX_VERIFY %{POSTFIX_VERIFY_CACHE}
