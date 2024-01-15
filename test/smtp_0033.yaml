@@ -1,0 +1,8 @@
+pattern: ^%{POSTFIX_SMTP}$
+data: "745137AA: lost connection with hotmail-com.olc.protection.outlook.com[104.47.55.161] while sending RCPT TO"
+results:
+    postfix_queueid: 745137AA
+    postfix_smtp_lostconn_data: lost connection
+    postfix_smtp_lostconn_reason: sending RCPT TO
+    postfix_relay_hostname: hotmail-com.olc.protection.outlook.com
+    postfix_relay_ip: 104.47.55.161
