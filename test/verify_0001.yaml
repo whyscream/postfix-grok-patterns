@@ -1,0 +1,6 @@
+pattern: ^%{POSTFIX_VERIFY}$
+data: "cache lmdb:/var/lib/postfix/verify_cache full cleanup: retained=724 dropped=6 entries"
+results:
+    postfix_verify_cleanup_type: full
+    postfix_verify_cache_retained: 724
+    postfix_verify_cache_dropped: 6

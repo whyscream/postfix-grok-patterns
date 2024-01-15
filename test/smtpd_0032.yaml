@@ -1,0 +1,7 @@
+pattern: ^%{POSTFIX_SMTPD}$
+data: "disconnect from unknown[unknown] commands=0/0"
+results:
+    postfix_client_hostname: unknown
+    postfix_client_ip_unknown: unknown
+    postfix_command_counter_data: commands=0/0
+

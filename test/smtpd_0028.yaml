@@ -4,4 +4,3 @@ results:
     postfix_client_hostname: unknown
     postfix_client_ip: 72.10.165.66
     postfix_command_counter_data: ehlo=2 starttls=1 mail=1 rcpt=0/1 data=0/1 quit=1 commands=5/7
-
