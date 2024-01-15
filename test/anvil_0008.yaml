@@ -1,0 +1,7 @@
+pattern: ^%{POSTFIX_ANVIL}$
+data: "statistics: max connection count 1 for (smtp:unknown) at Sep 7 07:14:19"
+results:
+    postfix_anvil_conn_count: 1
+    postfix_service: smtp
+    postfix_client_ip_unknown: unknown
+    postfix_anvil_timestamp: Sep 7 07:14:19
