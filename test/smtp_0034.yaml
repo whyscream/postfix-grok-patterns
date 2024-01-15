@@ -1,0 +1,7 @@
+pattern: ^%{POSTFIX_SMTP}$
+data: "40197AA: host mg2.egov.bg[213.91.191.86] refused to talk to me: 450 4.3.2 try again later"
+results:
+    postfix_queueid: 40197AA
+    postfix_relay_hostname: mg2.egov.bg
+    postfix_relay_ip: 213.91.191.86
+    postfix_smtp_response: 450 4.3.2 try again later

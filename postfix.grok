@@ -29,7 +29,7 @@ POSTFIX_TLSCONN (Anonymous|Trusted|Untrusted|Verified) TLS connection establishe
 POSTFIX_TLSVERIFICATION certificate verification failed for %{POSTFIX_RELAY_INFO}: %{GREEDYDATA:postfix_tls_error}
 
 POSTFIX_DELAYS %{NUMBER:postfix_delay_before_qmgr}/%{NUMBER:postfix_delay_in_qmgr}/%{NUMBER:postfix_delay_conn_setup}/%{NUMBER:postfix_delay_transmission}
-POSTFIX_LOSTCONN (Connection timed out|No route to host|Connection refused|Network is unreachable|lost connection|timeout|SSL_accept error|-1|Address not available|Operation timed out)
+POSTFIX_LOSTCONN (Connection timed out|No route to host|Connection refused|Network is unreachable|lost connection|timeout|SSL_accept error|-1|Address not available|Operation timed out|Address not available|Operation timed out)
 POSTFIX_LOSTCONN_REASONS (receiving the initial server greeting|sending message body|sending end of data -- message may be sent more than once|sending %{POSTFIX_SMTP_STAGE:postfix_smtp_stage})
 POSTFIX_PROXY_MESSAGE (%{POSTFIX_STATUS_CODE:postfix_proxy_status_code} )?(%{POSTFIX_STATUS_CODE_ENHANCED:postfix_proxy_status_code_enhanced})?.*
 POSTFIX_COMMAND_COUNTER_DATA (helo=(%{INT:postfix_cmd_helo_accepted}/)?%{INT:postfix_cmd_helo} )?(ehlo=(%{INT:postfix_cmd_ehlo_accepted}/)?%{INT:postfix_cmd_ehlo} )?(starttls=(%{INT:postfix_cmd_starttls_accepted}/)?%{INT:postfix_cmd_starttls} )?(auth=(%{INT:postfix_cmd_auth_accepted}/)?%{INT:postfix_cmd_auth} )?(mail=(%{INT:postfix_cmd_mail_accepted}/)?%{INT:postfix_cmd_mail} )?(rcpt=(%{INT:postfix_cmd_rcpt_accepted}/)?%{INT:postfix_cmd_rcpt} )?(bdat=(%{INT:postfix_cmd_bdat_accepted}/)?%{INT:postfix_cmd_bdat} )?(data=(%{INT:postfix_cmd_data_accepted}/)?%{INT:postfix_cmd_data} )?(rset=(%{INT:postfix_cmd_rset_accepted}/)?%{INT:postfix_cmd_rset} )?(noop=(%{INT:postfix_cmd_noop_accepted}/)?%{INT:postfix_cmd_noop} )?(quit=(%{INT:postfix_cmd_quit_accepted}/)?%{INT:postfix_cmd_quit} )?(unknown=(%{INT:postfix_cmd_unknown_accepted}/)?%{INT:postfix_cmd_unknown} )?commands=(%{INT:postfix_cmd_count_accepted}/)?%{INT:postfix_cmd_count}
@@ -102,6 +102,7 @@ POSTFIX_SMTP_SSLCONNERR SSL_connect error to %{POSTFIX_RELAY_INFO}: %{POSTFIX_LO
 POSTFIX_SMTP_LOSTCONN %{POSTFIX_QUEUEID:postfix_queueid}: %{POSTFIX_LOSTCONN:postfix_smtp_lostconn_data} with %{POSTFIX_RELAY_INFO}( while %{POSTFIX_LOSTCONN_REASONS:postfix_smtp_lostconn_reason})?
 POSTFIX_SMTP_TIMEOUT %{POSTFIX_QUEUEID:postfix_queueid}: conversation with %{POSTFIX_RELAY_INFO} timed out( while %{POSTFIX_LOSTCONN_REASONS:postfix_smtp_lostconn_reason})?
 POSTFIX_SMTP_RELAYERR %{POSTFIX_QUEUEID:postfix_queueid}: host %{POSTFIX_RELAY_INFO} said: %{GREEDYDATA:postfix_smtp_response} \(in reply to %{POSTFIX_SMTP_STAGE:postfix_smtp_stage} command\)
+POSTFIX_SMTP_RELAYREFUSED %{POSTFIX_QUEUEID:postfix_queueid}: host %{POSTFIX_RELAY_INFO} refused to talk to me: %{GREEDYDATA:postfix_smtp_response}
 POSTFIX_SMTP_SSLAUTHERR %{POSTFIX_QUEUEID:postfix_queueid}: SASL authentication failed; server %{POSTFIX_RELAY_INFO} said: %{GREEDYDATA:postfix_smtp_response}
 POSTFIX_SMTP_UTF8 host %{POSTFIX_RELAY_INFO} offers SMTPUTF8 support, but not 8BITMIME
 POSTFIX_SMTP_PIX %{POSTFIX_QUEUEID:postfix_queueid}: enabling PIX workarounds: %{DATA:postfix_pix_workaround} for %{POSTFIX_RELAY_INFO}
@@ -129,7 +130,7 @@ POSTFIX_PIPE %{POSTFIX_PIPE_ANY}
 POSTFIX_POSTSCREEN %{POSTFIX_PS_CONNECT}|%{POSTFIX_PS_ACCESS}|%{POSTFIX_PS_NOQUEUE}|%{POSTFIX_PS_TOOBUSY}|%{POSTFIX_PS_CACHE}|%{POSTFIX_PS_DNSBL}|%{POSTFIX_PS_VIOLATIONS}|%{POSTFIX_WARNING}
 POSTFIX_DNSBLOG %{POSTFIX_DNSBLOG_LISTING}|%{POSTFIX_WARNING}
 POSTFIX_ANVIL %{POSTFIX_ANVIL_CONN_RATE}|%{POSTFIX_ANVIL_CONN_CACHE}|%{POSTFIX_ANVIL_CONN_COUNT}
-POSTFIX_SMTP %{POSTFIX_SMTP_DELIVERY}|%{POSTFIX_SMTP_CONNERR}|%{POSTFIX_SMTP_SSLCONNERR}|%{POSTFIX_SMTP_SSLAUTHERR}|%{POSTFIX_SMTP_LOSTCONN}|%{POSTFIX_SMTP_TIMEOUT}|%{POSTFIX_SMTP_RELAYERR}|%{POSTFIX_TLSCONN}|%{POSTFIX_WARNING}|%{POSTFIX_SMTP_UTF8}|%{POSTFIX_TLSVERIFICATION}|%{POSTFIX_SMTP_PIX}
+POSTFIX_SMTP %{POSTFIX_SMTP_DELIVERY}|%{POSTFIX_SMTP_CONNERR}|%{POSTFIX_SMTP_SSLCONNERR}|%{POSTFIX_SMTP_SSLAUTHERR}|%{POSTFIX_SMTP_LOSTCONN}|%{POSTFIX_SMTP_TIMEOUT}|%{POSTFIX_SMTP_RELAYERR}|%{POSTFIX_SMTP_RELAYREFUSED}|%{POSTFIX_TLSCONN}|%{POSTFIX_WARNING}|%{POSTFIX_SMTP_UTF8}|%{POSTFIX_TLSVERIFICATION}|%{POSTFIX_SMTP_PIX}
 POSTFIX_DISCARD %{POSTFIX_DISCARD_ANY}|%{POSTFIX_WARNING}
 POSTFIX_LMTP %{POSTFIX_SMTP}
 POSTFIX_PICKUP %{POSTFIX_KEYVALUE}
