@@ -1,0 +1,6 @@
+pattern: ^%{POSTFIX_CLEANUP}$
+data: "warning: 9BECF3F19D: sender_canonical_maps map lookup problem for sender@example.com -- message not accepted, try again later"
+results:
+    postfix_queueid: 9BECF3F19D
+    postfix_message_level: warning
+    postfix_message: "sender_canonical_maps map lookup problem for sender@example.com -- message not accepted, try again later"
