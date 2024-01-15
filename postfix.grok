@@ -1,5 +1,3 @@
-# Version: 1.0.0
-
 # helper patterns
 GREEDYDATA_NO_COLON [^:]*
 GREEDYDATA_NO_SEMICOLON [^;]*
