@@ -1,0 +1,7 @@
+pattern: ^%{POSTFIX_SMTPD}$
+data: "lost connection after BDAT from example.net[158.247.23.50]"
+results:
+    postfix_smtpd_lostconn_data: lost connection
+    postfix_smtp_stage: BDAT
+    postfix_client_hostname: example.net
+    postfix_client_ip: 158.247.23.50

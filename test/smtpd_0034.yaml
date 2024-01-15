@@ -1,0 +1,6 @@
+pattern: ^%{POSTFIX_SMTPD}$
+data: "disconnect from example.net[158.247.23.50] ehlo=2 starttls=1 mail=1 rcpt=0/1 bdat=0/1 commands=4/6"
+results:
+    postfix_client_hostname: example.net
+    postfix_client_ip: 158.247.23.50
+    postfix_command_counter_data: ehlo=2 starttls=1 mail=1 rcpt=0/1 bdat=0/1 commands=4/6
