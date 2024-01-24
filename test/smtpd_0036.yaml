@@ -1,0 +1,7 @@
+pattern: ^%{POSTFIX_SMTPD}$
+data: "bare <LF> received after CONNECT from example.net[1.2.3.4]"
+results:
+    postfix_smtpd_lostconn_data: bare <LF> received
+    postfix_smtp_stage: CONNECT
+    postfix_client_hostname: example.net
+    postfix_client_ip: 1.2.3.4
