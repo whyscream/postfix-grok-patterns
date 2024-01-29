@@ -2,4 +2,6 @@ pattern: ^%{POSTFIX_LOCAL}$
 data: "892A0205B6: to=ghdsgfhdslfh@localhost, relay=local, delay=0.05, delays=0.02/0/0/0.02, dsn=5.1.1, status=bounced (unknown user: \"ghdsgfhdslfh\")"
 results:
     postfix_queueid: 892A0205B6
-    postfix_keyvalue_data: "to=ghdsgfhdslfh@localhost, relay=local, delay=0.05, delays=0.02/0/0/0.02, dsn=5.1.1, status=bounced (unknown user: \"ghdsgfhdslfh\")"
+    postfix_keyvalue_data: "to=ghdsgfhdslfh@localhost, relay=local, delay=0.05, delays=0.02/0/0/0.02, dsn=5.1.1,"
+    postfix_status: bounced
+    postfix_smtp_response: "unknown user: \"ghdsgfhdslfh\""
