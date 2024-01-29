@@ -6,7 +6,7 @@ results:
     postfix_tls_version: TLSv1.3
     postfix_tls_cipher: TLS_AES_256_GCM_SHA384
     postfix_tls_cipher_size: 256/256
-    postfix_tls_key-exchange: X25519 
-    postfix_tls_server-signature: RSA-PSS 
-    postfix_tls_server-signature_size: 4096
-    postfix_tls_server-digest: SHA256
+    postfix_tls_key_exchange: X25519
+    postfix_tls_server_signature: RSA-PSS
+    postfix_tls_server_signature_size: 4096
+    postfix_tls_server_digest: SHA256

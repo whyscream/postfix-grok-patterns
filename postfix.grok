@@ -23,7 +23,7 @@ POSTFIX_KEYVALUE %{POSTFIX_QUEUEID:postfix_queueid}: %{POSTFIX_KEYVALUE_DATA:pos
 POSTFIX_WARNING_LEVEL (warning|fatal|info)
 POSTFIX_VERIFY_CLEANUP_TYPE (full|partial)
 
-POSTFIX_TLSCONN (Anonymous|Trusted|Untrusted|Verified) TLS connection established (to %{POSTFIX_RELAY_INFO}|from %{POSTFIX_CLIENT_INFO}): %{DATA:postfix_tls_version} with cipher %{DATA:postfix_tls_cipher} \(%{DATA:postfix_tls_cipher_size} bits\)( key-exchange %{DATA:postfix_tls_key-exchange} server-signature %{DATA:postfix_tls_server-signature} \(%{DATA:postfix_tls_server-signature_size} bits\) server-digest %{DATA:postfix_tls_server-digest})?
+POSTFIX_TLSCONN (Anonymous|Trusted|Untrusted|Verified) TLS connection established (to %{POSTFIX_RELAY_INFO}|from %{POSTFIX_CLIENT_INFO}): %{DATA:postfix_tls_version} with cipher %{DATA:postfix_tls_cipher} \(%{DATA:postfix_tls_cipher_size} bits\)( key-exchange %{DATA:postfix_tls_key_exchange} server-signature %{DATA:postfix_tls_server_signature} \(%{DATA:postfix_tls_server_signature_size} bits\) server-digest %{DATA:postfix_tls_server_digest})?
 POSTFIX_TLSVERIFICATION certificate verification failed for %{POSTFIX_RELAY_INFO}: %{GREEDYDATA:postfix_tls_error}
 
 POSTFIX_DELAYS %{NUMBER:postfix_delay_before_qmgr}/%{NUMBER:postfix_delay_in_qmgr}/%{NUMBER:postfix_delay_conn_setup}/%{NUMBER:postfix_delay_transmission}
