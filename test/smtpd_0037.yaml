@@ -1,6 +1,7 @@
 pattern: ^%{POSTFIX_SMTPD}$
 data: "Anonymous TLS connection established from julie.example.com[10.163.89.202]: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits) key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256"
 results:
+    postfix_tls_trustlevel: Anonymous
     postfix_client_hostname: julie.example.com
     postfix_client_ip: 10.163.89.202
     postfix_tls_version: TLSv1.3
