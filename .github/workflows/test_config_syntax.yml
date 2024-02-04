@@ -1,0 +1,13 @@
+name: Validate configuration syntax
+on: [push]
+jobs:
+  test-syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          docker run --rm \
+          --volume ./postfix.grok:/etc/logstash/patterns.d/postfix.grok \
+          --volume ./50-filter-postfix.conf:/usr/share/logstash/pipeline/50-filter-postfix.conf \
+          logstash:8.12.0 \
+          logstash --config.test_and_exit -f /usr/share/logstash/pipeline/50-filter-postfix.conf

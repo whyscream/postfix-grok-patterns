@@ -1,6 +1,7 @@
+name: Test grok patterns
 on: [push]
 jobs:
-  test:
+  test-patterns:
     runs-on: ubuntu-latest
 
     steps:
