@@ -19,18 +19,6 @@ The included Logstash config file requires two input fields to exist in input ev
 
 This event format is supported by the Logstash `syslog` input plugin out of the box, but several other plugins produce input that can be adapted fairly easy to produce these fields too. See [ALTERNATIVE INPUTS](ALTERNATIVE-INPUTS.md) for details.
 
-Aggregation filter
------
-
-A optional aggregation filter is available, that will combine fields from different log lines. The key on which log lines are aggregated is the postfix queue id. For example:
-
-![Alt text](aggregation_example_pic.jpg?raw=true)
-
-In this example, the `postfix_from` field from a `postfix/qmgr` log line is reused, and added to a log line from `postfix/smtp`.
-
-To use the aggregation filter, add `51-filter-postfix-aggregate.conf` to `/etc/logstash/conf.d` or `pipeline` dir for dockerized Logstash.
-
-
 Tests
 -----
 
