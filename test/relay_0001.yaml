@@ -1,5 +1,5 @@
-# this data is derived after the keyvalue data is expanded in logstash to a 'postfix_relay_info' field.
-pattern: ^%{POSTFIX_RELAY_INFO}$
+# this data is derived after the keyvalue data is expanded in logstash to a 'postfix_relay' field.
+pattern: ^%{POSTFIX_RELAY}$
 data: "1.example.com.si[private/dovecot-lmtp]"
 results:
     postfix_relay_hostname: 1.example.com.si
