@@ -183,7 +183,7 @@ cat >> 'pipeline.json' << EOT
     "remove": {
       "field": "${field}",
       "ignore_missing": true,
-      "if": "ctx?.tags?.contains('_grok_kv_${field}_nomatch')==false",
+      "if": "ctx?.tags==null || ctx?.tags?.contains('_grok_kv_${field}_nomatch')==false",
       "description": "${field}"
     }
   },
@@ -243,7 +243,7 @@ cat >> 'pipeline.json' << EOT
     "remove": {
       "field": "${field}",
       "ignore_missing": true,
-      "if": "ctx?.tags?.contains('_grok_${field}_nomatch')==false",
+      "if": "ctx?.tags==null || ctx?.tags?.contains('_grok_${field}_nomatch')==false",
       "description": "${field}"
     }
   },
