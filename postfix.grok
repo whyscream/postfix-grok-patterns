@@ -4,6 +4,7 @@ GREEDYDATA_NO_SEMICOLON [^;]*
 GREEDYDATA_NO_BRACKET [^<>]*
 STATUS_WORD [\w-]*
 IP_UNKNOWN unknown
+CURVE_WORD [PBK]-[0-9]+
 
 # common postfix patterns
 POSTFIX_QUEUEID ([0-9A-F]{6,}|[0-9a-zA-Z]{12,}|NOQUEUE)
@@ -24,7 +25,7 @@ POSTFIX_WARNING_LEVEL (warning|fatal|info)
 POSTFIX_VERIFY_CLEANUP_TYPE (full|partial)
 
 
-POSTFIX_TLSCONN %{DATA:postfix_tls_trustlevel} TLS connection established (to %{POSTFIX_RELAY}|from %{POSTFIX_CLIENT}): %{DATA:postfix_tls_version} with cipher %{DATA:postfix_tls_cipher} \(%{DATA:postfix_tls_cipher_size} bits\)( key-exchange %{DATA:postfix_tls_key_exchange} server-signature %{DATA:postfix_tls_server_signature} \(%{DATA:postfix_tls_server_signature_size} bits\) server-digest %{DATA:postfix_tls_server_digest})?
+POSTFIX_TLSCONN %{DATA:postfix_tls_trustlevel} TLS connection established (to %{POSTFIX_RELAY}|from %{POSTFIX_CLIENT}): %{DATA:postfix_tls_version} with cipher %{DATA:postfix_tls_cipher} \(%{DATA:postfix_tls_cipher_size} bits\)( key-exchange %{DATA:postfix_tls_key_exchange} server-signature %{DATA:postfix_tls_server_signature} \((%{INT:postfix_tls_server_signature_size} bits|%{CURVE_WORD:postfix_tls_server_signature_curve})\) server-digest %{DATA:postfix_tls_server_digest})?
 POSTFIX_TLSVERIFICATION certificate verification failed for %{POSTFIX_RELAY}: %{GREEDYDATA:postfix_tls_error}
 
 POSTFIX_DELAYS %{NUMBER:postfix_delay_before_qmgr}/%{NUMBER:postfix_delay_in_qmgr}/%{NUMBER:postfix_delay_conn_setup}/%{NUMBER:postfix_delay_transmission}

@@ -1,0 +1,14 @@
+pattern: ^%{POSTFIX_SMTP}$
+data: "Untrusted TLS connection established to gmail-smtp-in.l.google.com[74.125.128.27]:25: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits) key-exchange X25519 server-signature ECDSA (P-256) server-digest SHA256"
+results:
+    postfix_tls_trustlevel: Untrusted
+    postfix_relay_hostname: gmail-smtp-in.l.google.com
+    postfix_relay_ip: 74.125.128.27
+    postfix_relay_port: 25
+    postfix_tls_version: TLSv1.3
+    postfix_tls_cipher: TLS_AES_256_GCM_SHA384
+    postfix_tls_cipher_size: 256/256
+    postfix_tls_key_exchange: X25519
+    postfix_tls_server_signature: ECDSA
+    postfix_tls_server_signature_curve: P-256
+    postfix_tls_server_digest: SHA256
