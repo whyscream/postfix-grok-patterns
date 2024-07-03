@@ -1,0 +1,12 @@
+pattern: ^%{POSTFIX_SMTPD}$
+data: "NOQUEUE: milter-reject: RCPT from mailrelay.example.com[8.8.8.8]: 451 4.7.1 Greylisting in action, please come back later; from=<support@example.com> to=<example@example.org> proto=ESMTP helo=<mailrelay.example.com>"
+results:
+  postfix_queueid: NOQUEUE
+  postfix_status_code_enhanced: 4.7.1
+  postfix_keyvalue_data: from=<support@example.com> to=<example@example.org> proto=ESMTP helo=<mailrelay.example.com>
+  postfix_action: milter-reject
+  postfix_smtp_stage: RCPT
+  postfix_status_code: 451
+  postfix_client_ip: 8.8.8.8
+  postfix_status_message: "Greylisting in action, please come back later"
+  postfix_client_hostname: mailrelay.example.com
