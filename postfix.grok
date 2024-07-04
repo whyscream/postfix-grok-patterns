@@ -21,7 +21,6 @@ POSTFIX_TIME_UNIT %{NUMBER}[smhd]
 POSTFIX_KEYVALUE_DATA [\w-]+=[^;]*
 POSTFIX_KEYVALUE %{POSTFIX_QUEUEID:postfix_queueid}: %{POSTFIX_KEYVALUE_DATA:postfix_keyvalue_data}
 POSTFIX_WARNING_LEVEL (warning|fatal|info)
-POSTFIX_VERIFY_CLEANUP_TYPE (full|partial)
 
 
 POSTFIX_TLSCONN %{DATA:postfix_tls_trustlevel} TLS connection established (to %{POSTFIX_RELAY}|from %{POSTFIX_CLIENT}): %{DATA:postfix_tls_version} with cipher %{DATA:postfix_tls_cipher} \(%{DATA:postfix_tls_cipher_size} bits\)( key-exchange %{DATA:postfix_tls_key_exchange} server-signature %{DATA:postfix_tls_server_signature} \((%{INT:postfix_tls_server_signature_size} bits|(?<postfix_tls_server_signature_curve>[PBK]-\d+))\) server-digest %{DATA:postfix_tls_server_digest})?
@@ -119,7 +118,7 @@ POSTFIX_SCACHE_SIMULTANEOUS statistics: max simultaneous domains=%{INT:postfix_s
 POSTFIX_SCACHE_TIMESTAMP statistics: start interval %{SYSLOGTIMESTAMP:postfix_scache_timestamp}
 
 # verify patterns
-POSTFIX_VERIFY_CACHE cache %{DATA} %{POSTFIX_VERIFY_CLEANUP_TYPE:postfix_verify_cleanup_type} cleanup: retained=%{INT:postfix_verify_cache_retained} dropped=%{INT:postfix_verify_cache_dropped} entries
+POSTFIX_VERIFY_CACHE cache %{DATA} (?<postfix_verify_cleanup_type>(full|partial)) cleanup: retained=%{INT:postfix_verify_cache_retained} dropped=%{INT:postfix_verify_cache_dropped} entries
 
 # local patterns
 POSTFIX_LOCAL_DELIVERY %{POSTFIX_KEYVALUE} status=%{STATUS_WORD:postfix_status}( \(%{GREEDYDATA:postfix_local_response}\))?
