@@ -1,0 +1,7 @@
+pattern: ^%{POSTFIX_BOUNCE}$
+data: "482E4404AC8: postmaster non-delivery notification: 47335405A44"
+results:
+    postfix_queueid: 482E4404AC8
+    postfix_bounce_queueid: 47335405A44
+    postfix_bounce_recipient: postmaster
+    postfix_bounce_reason: non-delivery
