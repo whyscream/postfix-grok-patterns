@@ -1,5 +1,5 @@
 name: Test grok patterns
-on: [push]
+on: [push, workflow_dispatch]
 jobs:
   test-patterns:
     runs-on: ubuntu-latest

@@ -1,5 +1,5 @@
 name: Validate configuration syntax
-on: [push]
+on: [push, workflow_dispatch]
 jobs:
   test-syntax:
     runs-on: ubuntu-latest
