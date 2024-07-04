@@ -1,5 +1,11 @@
 #!/bin/sh
 
+#
+# This script is used to test the config syntax of the 50-filter-postfix.conf file.
+#
+# The configuration file is validated using the logstash --config.test_and_exit command in a docker container.
+#
+
 set -eux
 
 docker run --rm -it \

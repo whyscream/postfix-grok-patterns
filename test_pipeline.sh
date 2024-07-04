@@ -1,5 +1,12 @@
 #!/bin/sh
 
+#
+# This script is used to test the logstash pipeline configuration.
+#
+# It sets up a logstash pipeline with the postfix configuration,
+# sends a test logline through the pipeline and checks the results.
+#
+
 set -eux
 
 INPUT=$(mktemp tmp.logstash.in.XXXXX)
