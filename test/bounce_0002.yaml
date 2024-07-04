@@ -3,3 +3,5 @@ data: "65AFB8B5: sender delivery status notification: 1DF35917"
 results:
     postfix_queueid: 65AFB8B5
     postfix_bounce_queueid: 1DF35917
+    postfix_bounce_recipient: sender
+    postfix_bounce_reason: delivery status

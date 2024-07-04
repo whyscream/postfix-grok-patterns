@@ -112,7 +112,7 @@ POSTFIX_MASTER_START (daemon started|reload) -- version %{DATA:postfix_version},
 POSTFIX_MASTER_EXIT terminating on signal %{INT:postfix_termination_signal}
 
 # bounce patterns
-POSTFIX_BOUNCE_NOTIFICATION %{POSTFIX_QUEUEID:postfix_queueid}: sender (non-delivery|delivery status|delay) notification: %{POSTFIX_QUEUEID:postfix_bounce_queueid}
+POSTFIX_BOUNCE_NOTIFICATION %{POSTFIX_QUEUEID:postfix_queueid}: (?<postfix_bounce_recipient>(sender|postmaster)) (?<postfix_bounce_reason>(non-delivery|delivery status|delay)) notification: %{POSTFIX_QUEUEID:postfix_bounce_queueid}
 
 # scache patterns
 POSTFIX_SCACHE_LOOKUPS statistics: (address|domain) lookup hits=%{INT:postfix_scache_hits} miss=%{INT:postfix_scache_miss} success=%{INT:postfix_scache_success}%

@@ -3,3 +3,5 @@ data: "17CCA8044: sender non-delivery notification: ADD2F8052"
 results:
     postfix_queueid: 17CCA8044
     postfix_bounce_queueid: ADD2F8052
+    postfix_bounce_recipient: sender
+    postfix_bounce_reason: non-delivery
