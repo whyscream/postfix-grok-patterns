@@ -17,7 +17,6 @@ POSTFIX_STATUS_CODE_ENHANCED \d\.\d+\.\d+
 POSTFIX_DNSBL_MESSAGE Service unavailable; .* \[%{GREEDYDATA:postfix_status_data}\] %{GREEDYDATA:postfix_status_message};
 POSTFIX_PS_ACCESS_ACTION (DISCONNECT|DENYLISTED|BLACKLISTED|ALLOWLISTED|WHITELISTED|ALLOWLIST VETO|WHITELIST VETO|PASS NEW|PASS OLD)
 POSTFIX_PS_VIOLATION (BARE NEWLINE|COMMAND (TIME|COUNT|LENGTH) LIMIT|COMMAND PIPELINING|DNSBL|HANGUP|NON-SMTP COMMAND|PREGREET)
-POSTFIX_TIME_UNIT %{NUMBER}[smhd]
 POSTFIX_KEYVALUE_DATA [\w-]+=[^;]*
 POSTFIX_KEYVALUE %{POSTFIX_QUEUEID:postfix_queueid}: %{POSTFIX_KEYVALUE_DATA:postfix_keyvalue_data}
 
@@ -88,7 +87,7 @@ POSTFIX_DNSBLOG_LISTING addr %{IP:postfix_client_ip} listed by domain %{HOSTNAME
 POSTFIX_TLSPROXY_CONN (DIS)?CONNECT( from)? %{POSTFIX_CLIENT}
 
 # anvil patterns
-POSTFIX_ANVIL_CONN_RATE statistics: max connection rate %{NUMBER:postfix_anvil_conn_rate}/%{POSTFIX_TIME_UNIT:postfix_anvil_conn_period} for \(%{DATA:postfix_service}:(%{IP_UNKNOWN:postfix_client_ip_unknown}|%{IP:postfix_client_ip})\) at %{SYSLOGTIMESTAMP:postfix_anvil_timestamp}
+POSTFIX_ANVIL_CONN_RATE statistics: max connection rate %{NUMBER:postfix_anvil_conn_rate}/(?<postfix_anvil_conn_period>\d+[smhd]) for \(%{DATA:postfix_service}:(%{IP_UNKNOWN:postfix_client_ip_unknown}|%{IP:postfix_client_ip})\) at %{SYSLOGTIMESTAMP:postfix_anvil_timestamp}
 POSTFIX_ANVIL_CONN_CACHE statistics: max cache size %{NUMBER:postfix_anvil_cache_size} at %{SYSLOGTIMESTAMP:postfix_anvil_timestamp}
 POSTFIX_ANVIL_CONN_COUNT statistics: max connection count %{NUMBER:postfix_anvil_conn_count} for \(%{DATA:postfix_service}:(%{IP_UNKNOWN:postfix_client_ip_unknown}|%{IP:postfix_client_ip})\) at %{SYSLOGTIMESTAMP:postfix_anvil_timestamp}
 
