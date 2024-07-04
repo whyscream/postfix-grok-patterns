@@ -1,8 +1,8 @@
 pattern: ^%{POSTFIX_ANVIL}$
-data: "statistics: max connection rate 1/60s for (smtp:unknown) at Sep 7 07:14:19"
+data: "statistics: max connection rate 1/7d for (smtp:unknown) at Sep 7 07:14:19"
 results:
     postfix_anvil_conn_rate: 1
-    postfix_anvil_conn_period: 60s
+    postfix_anvil_conn_period: 7d
     postfix_service: smtp
     postfix_client_ip_unknown: unknown
     postfix_anvil_timestamp: Sep 7 07:14:19

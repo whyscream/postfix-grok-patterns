@@ -4,7 +4,6 @@ GREEDYDATA_NO_SEMICOLON [^;]*
 GREEDYDATA_NO_BRACKET [^<>]*
 STATUS_WORD [\w-]*
 IP_UNKNOWN unknown
-CURVE_WORD [PBK]-[0-9]+
 
 # common postfix patterns
 POSTFIX_QUEUEID ([0-9A-F]{6,}|[0-9a-zA-Z]{12,}|NOQUEUE)
@@ -18,14 +17,11 @@ POSTFIX_STATUS_CODE_ENHANCED \d\.\d+\.\d+
 POSTFIX_DNSBL_MESSAGE Service unavailable; .* \[%{GREEDYDATA:postfix_status_data}\] %{GREEDYDATA:postfix_status_message};
 POSTFIX_PS_ACCESS_ACTION (DISCONNECT|DENYLISTED|BLACKLISTED|ALLOWLISTED|WHITELISTED|ALLOWLIST VETO|WHITELIST VETO|PASS NEW|PASS OLD)
 POSTFIX_PS_VIOLATION (BARE NEWLINE|COMMAND (TIME|COUNT|LENGTH) LIMIT|COMMAND PIPELINING|DNSBL|HANGUP|NON-SMTP COMMAND|PREGREET)
-POSTFIX_TIME_UNIT %{NUMBER}[smhd]
 POSTFIX_KEYVALUE_DATA [\w-]+=[^;]*
 POSTFIX_KEYVALUE %{POSTFIX_QUEUEID:postfix_queueid}: %{POSTFIX_KEYVALUE_DATA:postfix_keyvalue_data}
-POSTFIX_WARNING_LEVEL (warning|fatal|info)
-POSTFIX_VERIFY_CLEANUP_TYPE (full|partial)
 
 
-POSTFIX_TLSCONN %{DATA:postfix_tls_trustlevel} TLS connection established (to %{POSTFIX_RELAY}|from %{POSTFIX_CLIENT}): %{DATA:postfix_tls_version} with cipher %{DATA:postfix_tls_cipher} \(%{DATA:postfix_tls_cipher_size} bits\)( key-exchange %{DATA:postfix_tls_key_exchange} server-signature %{DATA:postfix_tls_server_signature} \((%{INT:postfix_tls_server_signature_size} bits|%{CURVE_WORD:postfix_tls_server_signature_curve})\) server-digest %{DATA:postfix_tls_server_digest})?
+POSTFIX_TLSCONN %{DATA:postfix_tls_trustlevel} TLS connection established (to %{POSTFIX_RELAY}|from %{POSTFIX_CLIENT}): %{DATA:postfix_tls_version} with cipher %{DATA:postfix_tls_cipher} \(%{DATA:postfix_tls_cipher_size} bits\)( key-exchange %{DATA:postfix_tls_key_exchange} server-signature %{DATA:postfix_tls_server_signature} \((%{INT:postfix_tls_server_signature_size} bits|(?<postfix_tls_server_signature_curve>[PBK]-\d+))\) server-digest %{DATA:postfix_tls_server_digest})?
 POSTFIX_TLSVERIFICATION certificate verification failed for %{POSTFIX_RELAY}: %{GREEDYDATA:postfix_tls_error}
 
 POSTFIX_DELAYS %{NUMBER:postfix_delay_before_qmgr}/%{NUMBER:postfix_delay_in_qmgr}/%{NUMBER:postfix_delay_conn_setup}/%{NUMBER:postfix_delay_transmission}
@@ -36,8 +32,8 @@ POSTFIX_COMMAND_COUNTER_DATA (helo=(%{INT:postfix_cmd_helo_accepted}/)?%{INT:pos
 
 
 # warning patterns
-POSTFIX_WARNING_WITH_KV (%{POSTFIX_QUEUEID:postfix_queueid}: )?%{POSTFIX_WARNING_LEVEL:postfix_message_level}: (%{POSTFIX_QUEUEID:postfix_queueid}: )?(%{POSTFIX_CLIENT}: )?%{GREEDYDATA:postfix_message}; %{POSTFIX_KEYVALUE_DATA:postfix_keyvalue_data}
-POSTFIX_WARNING_WITHOUT_KV (%{POSTFIX_QUEUEID:postfix_queueid}: )?%{POSTFIX_WARNING_LEVEL:postfix_message_level}: (%{POSTFIX_QUEUEID:postfix_queueid}: )?(%{POSTFIX_CLIENT}: )?%{GREEDYDATA:postfix_message}
+POSTFIX_WARNING_WITH_KV (%{POSTFIX_QUEUEID:postfix_queueid}: )?(?<postfix_message_level>(warning|fatal|info)): (%{POSTFIX_QUEUEID:postfix_queueid}: )?(%{POSTFIX_CLIENT}: )?%{GREEDYDATA:postfix_message}; %{POSTFIX_KEYVALUE_DATA:postfix_keyvalue_data}
+POSTFIX_WARNING_WITHOUT_KV (%{POSTFIX_QUEUEID:postfix_queueid}: )?(?<postfix_message_level>(warning|fatal|info)): (%{POSTFIX_QUEUEID:postfix_queueid}: )?(%{POSTFIX_CLIENT}: )?%{GREEDYDATA:postfix_message}
 POSTFIX_WARNING %{POSTFIX_WARNING_WITH_KV}|%{POSTFIX_WARNING_WITHOUT_KV}
 
 # smtpd patterns
@@ -91,7 +87,7 @@ POSTFIX_DNSBLOG_LISTING addr %{IP:postfix_client_ip} listed by domain %{HOSTNAME
 POSTFIX_TLSPROXY_CONN (DIS)?CONNECT( from)? %{POSTFIX_CLIENT}
 
 # anvil patterns
-POSTFIX_ANVIL_CONN_RATE statistics: max connection rate %{NUMBER:postfix_anvil_conn_rate}/%{POSTFIX_TIME_UNIT:postfix_anvil_conn_period} for \(%{DATA:postfix_service}:(%{IP_UNKNOWN:postfix_client_ip_unknown}|%{IP:postfix_client_ip})\) at %{SYSLOGTIMESTAMP:postfix_anvil_timestamp}
+POSTFIX_ANVIL_CONN_RATE statistics: max connection rate %{NUMBER:postfix_anvil_conn_rate}/(?<postfix_anvil_conn_period>\d+[smhd]) for \(%{DATA:postfix_service}:(%{IP_UNKNOWN:postfix_client_ip_unknown}|%{IP:postfix_client_ip})\) at %{SYSLOGTIMESTAMP:postfix_anvil_timestamp}
 POSTFIX_ANVIL_CONN_CACHE statistics: max cache size %{NUMBER:postfix_anvil_cache_size} at %{SYSLOGTIMESTAMP:postfix_anvil_timestamp}
 POSTFIX_ANVIL_CONN_COUNT statistics: max connection count %{NUMBER:postfix_anvil_conn_count} for \(%{DATA:postfix_service}:(%{IP_UNKNOWN:postfix_client_ip_unknown}|%{IP:postfix_client_ip})\) at %{SYSLOGTIMESTAMP:postfix_anvil_timestamp}
 
@@ -120,7 +116,7 @@ POSTFIX_SCACHE_SIMULTANEOUS statistics: max simultaneous domains=%{INT:postfix_s
 POSTFIX_SCACHE_TIMESTAMP statistics: start interval %{SYSLOGTIMESTAMP:postfix_scache_timestamp}
 
 # verify patterns
-POSTFIX_VERIFY_CACHE cache %{DATA} %{POSTFIX_VERIFY_CLEANUP_TYPE:postfix_verify_cleanup_type} cleanup: retained=%{INT:postfix_verify_cache_retained} dropped=%{INT:postfix_verify_cache_dropped} entries
+POSTFIX_VERIFY_CACHE cache %{DATA} (?<postfix_verify_cleanup_type>(full|partial)) cleanup: retained=%{INT:postfix_verify_cache_retained} dropped=%{INT:postfix_verify_cache_dropped} entries
 
 # local patterns
 POSTFIX_LOCAL_DELIVERY %{POSTFIX_KEYVALUE} status=%{STATUS_WORD:postfix_status}( \(%{GREEDYDATA:postfix_local_response}\))?
