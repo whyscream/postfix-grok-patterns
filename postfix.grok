@@ -20,7 +20,6 @@ POSTFIX_PS_VIOLATION (BARE NEWLINE|COMMAND (TIME|COUNT|LENGTH) LIMIT|COMMAND PIP
 POSTFIX_TIME_UNIT %{NUMBER}[smhd]
 POSTFIX_KEYVALUE_DATA [\w-]+=[^;]*
 POSTFIX_KEYVALUE %{POSTFIX_QUEUEID:postfix_queueid}: %{POSTFIX_KEYVALUE_DATA:postfix_keyvalue_data}
-POSTFIX_WARNING_LEVEL (warning|fatal|info)
 
 
 POSTFIX_TLSCONN %{DATA:postfix_tls_trustlevel} TLS connection established (to %{POSTFIX_RELAY}|from %{POSTFIX_CLIENT}): %{DATA:postfix_tls_version} with cipher %{DATA:postfix_tls_cipher} \(%{DATA:postfix_tls_cipher_size} bits\)( key-exchange %{DATA:postfix_tls_key_exchange} server-signature %{DATA:postfix_tls_server_signature} \((%{INT:postfix_tls_server_signature_size} bits|(?<postfix_tls_server_signature_curve>[PBK]-\d+))\) server-digest %{DATA:postfix_tls_server_digest})?
@@ -34,8 +33,8 @@ POSTFIX_COMMAND_COUNTER_DATA (helo=(%{INT:postfix_cmd_helo_accepted}/)?%{INT:pos
 
 
 # warning patterns
-POSTFIX_WARNING_WITH_KV (%{POSTFIX_QUEUEID:postfix_queueid}: )?%{POSTFIX_WARNING_LEVEL:postfix_message_level}: (%{POSTFIX_QUEUEID:postfix_queueid}: )?(%{POSTFIX_CLIENT}: )?%{GREEDYDATA:postfix_message}; %{POSTFIX_KEYVALUE_DATA:postfix_keyvalue_data}
-POSTFIX_WARNING_WITHOUT_KV (%{POSTFIX_QUEUEID:postfix_queueid}: )?%{POSTFIX_WARNING_LEVEL:postfix_message_level}: (%{POSTFIX_QUEUEID:postfix_queueid}: )?(%{POSTFIX_CLIENT}: )?%{GREEDYDATA:postfix_message}
+POSTFIX_WARNING_WITH_KV (%{POSTFIX_QUEUEID:postfix_queueid}: )?(?<postfix_message_level>(warning|fatal|info)): (%{POSTFIX_QUEUEID:postfix_queueid}: )?(%{POSTFIX_CLIENT}: )?%{GREEDYDATA:postfix_message}; %{POSTFIX_KEYVALUE_DATA:postfix_keyvalue_data}
+POSTFIX_WARNING_WITHOUT_KV (%{POSTFIX_QUEUEID:postfix_queueid}: )?(?<postfix_message_level>(warning|fatal|info)): (%{POSTFIX_QUEUEID:postfix_queueid}: )?(%{POSTFIX_CLIENT}: )?%{GREEDYDATA:postfix_message}
 POSTFIX_WARNING %{POSTFIX_WARNING_WITH_KV}|%{POSTFIX_WARNING_WITHOUT_KV}
 
 # smtpd patterns
