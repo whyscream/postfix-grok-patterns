@@ -7,13 +7,20 @@
 # sends a test logline through the pipeline and checks the results.
 #
 
-set -eux
+set -eu
 
 LOGSTASH_VERSION=8.14.1
 
 INPUT=$(mktemp tmp.logstash.in.XXXXX)
 OUTPUT=$(mktemp tmp.logstash.out.XXXXX)
 PIPELINE=$(mktemp tmp.logstash.pipeline.XXXXX)
+
+perform_cleanup() {
+  echo Cleaning up
+  test -n "CONTAINER_ID" && docker stop --time 1 "$CONTAINER_ID" > /dev/null
+  rm -f "$INPUT" "$OUTPUT" "$PIPELINE"
+}
+trap perform_cleanup INT TERM
 
 echo Preparing input data
 echo "postfix/smtp[123]: 7EE668039: to=<admin@example.com>, relay=127.0.0.1[127.0.0.1]:2525, delay=3.6, delays=0.2/0.02/0.04/3.3, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as 153053D)" > "$INPUT"
@@ -61,8 +68,6 @@ until test -s "$OUTPUT"; do
 done
 echo
 
-docker stop --time 1 "$CONTAINER_ID" > /dev/null
-
 if test "$(jq .tags[0] "$OUTPUT")" = '"_grok_postfix_success"'; then
   echo Grok processing successful!
   jq . "$OUTPUT"
@@ -72,7 +77,6 @@ else
   exit 1
 fi
 
-echo Cleaning up
-rm -f "$INPUT" "$OUTPUT" "$PIPELINE"
+perform_cleanup
 
 echo Done
