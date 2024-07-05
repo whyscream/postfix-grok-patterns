@@ -9,6 +9,8 @@
 
 set -eux
 
+LOGSTASH_VERSION=8.14.1
+
 INPUT=$(mktemp tmp.logstash.in.XXXXX)
 OUTPUT=$(mktemp tmp.logstash.out.XXXXX)
 PIPELINE=$(mktemp tmp.logstash.pipeline.XXXXX)
@@ -49,7 +51,7 @@ CONTAINER_ID=$(docker run --rm --detach \
   --volume ./"${OUTPUT}":/tmp/logstash.out \
   --volume ./postfix.grok:/etc/logstash/patterns.d/postfix.grok \
   --volume ./"${PIPELINE}":/usr/share/logstash/pipeline/pipeline.conf \
-  logstash:8.12.0 \
+  logstash:"$LOGSTASH_VERSION" \
   logstash -f /usr/share/logstash/pipeline/pipeline.conf)
 
 printf "Waiting for output from logstash "
