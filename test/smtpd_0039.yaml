@@ -1,0 +1,4 @@
+pattern: ^%{POSTFIX_SMTPD}$
+data: "discarding EHLO keywords: CHUNKING"
+results:
+    postfix_message: "discarding EHLO keywords: CHUNKING"
