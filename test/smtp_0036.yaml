@@ -1,0 +1,13 @@
+pattern: ^%{POSTFIX_SMTP}$
+data: "Trusted TLS connection established to mail.example.com[127.0.0.1]:25: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits) key-exchange X25519 server-signature RSA-PSS (4096 bits)"
+results:
+    postfix_tls_trustlevel: Trusted
+    postfix_relay_hostname: mail.example.com
+    postfix_relay_ip: 127.0.0.1
+    postfix_relay_port: 25
+    postfix_tls_version: TLSv1.3
+    postfix_tls_cipher: TLS_AES_256_GCM_SHA384
+    postfix_tls_cipher_size: 256/256
+    postfix_tls_key_exchange: X25519
+    postfix_tls_server_signature: RSA-PSS
+    postfix_tls_server_signature_size: 4096
