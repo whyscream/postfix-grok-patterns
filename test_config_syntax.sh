@@ -8,7 +8,7 @@
 
 set -eu
 
-LOGSTASH_VERSION=8.14.1
+LOGSTASH_VERSION=9.2.1
 
 docker run \
   --rm \
