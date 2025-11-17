@@ -23,7 +23,7 @@ perform_cleanup() {
 trap perform_cleanup INT TERM
 
 echo Preparing input data
-echo "postfix/smtp[123]: 7EE668039: to=<admin@example.com>, relay=127.0.0.1[127.0.0.1]:2525, delay=3.6, delays=0.2/0.02/0.04/3.3, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as 153053D)" > "$INPUT"
+echo "postfix/smtp[123]: 7EE668039: to=<admin@example.com>, relay=127.0.0.1[127.0.0.1]:2525, delay=3.6, delays=0.2/0.02/0.04/3.3, dsn=2.0.0, tls=dane:none/!requiretls:nostarttls, status=sent (250 2.0.0 Ok: queued as 153053D)" > "$INPUT"
 
 echo Preparing pipeline config
 cat > "$PIPELINE" << EOF
@@ -70,10 +70,10 @@ echo
 
 if test "$(jq .tags[0] "$OUTPUT")" = '"_grok_postfix_success"'; then
   echo Grok processing successful!
-  jq . "$OUTPUT"
+  jq --sort-keys . "$OUTPUT"
 else
   echo "Grok processing failed :<"
-  jq . "$OUTPUT"
+  jq --sort-keys . "$OUTPUT"
   exit 1
 fi
 
