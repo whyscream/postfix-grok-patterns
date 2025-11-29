@@ -63,6 +63,8 @@ CONTAINER_ID=$(docker run --rm --detach \
 
 printf "Waiting for output from logstash "
 until test -s "$OUTPUT"; do
+  # For debugging a crashing container (probably invalid configuration)
+  # docker inspect "$CONTAINER_ID" | jq '.[0].State'
   printf "."
   sleep 2
 done
