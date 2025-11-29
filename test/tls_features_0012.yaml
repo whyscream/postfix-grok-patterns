@@ -1,0 +1,7 @@
+pattern: "^%{POSTFIX_TLS_FEATURES}$"
+data: "dane/!requiretls:nostarttls"
+results:
+    postfix_tls_security_level: dane
+    postfix_requiretls: requiretls
+    postfix_requiretls_policy_violation: "!"
+    postfix_requiretls_downgrade_level: nostarttls

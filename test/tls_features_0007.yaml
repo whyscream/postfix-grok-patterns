@@ -1,0 +1,4 @@
+pattern: "^%{POSTFIX_TLS_FEATURES}$"
+data: "dane"
+results:
+    postfix_tls_security_level: dane

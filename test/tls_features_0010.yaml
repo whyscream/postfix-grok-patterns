@@ -1,0 +1,5 @@
+pattern: "^%{POSTFIX_TLS_FEATURES}$"
+data: "dane/requiretls"
+results:
+    postfix_tls_security_level: dane
+    postfix_requiretls: requiretls
