@@ -44,6 +44,7 @@ EOF
 
 cat 50-filter-postfix.conf >> "$PIPELINE"
 
+echo Preparing output config
 cat >> "$PIPELINE" << EOF
 output {
   file {
