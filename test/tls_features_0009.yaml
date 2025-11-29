@@ -1,0 +1,5 @@
+pattern: "^%{POSTFIX_TLS_FEATURES}$"
+data: "may?"
+results:
+    postfix_tls_security_level: may
+    postfix_tls_policy_undecided: "?"
