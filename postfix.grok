@@ -122,8 +122,8 @@ POSTFIX_VERIFY_CACHE cache %{DATA} (?<postfix_verify_cleanup_type>(full|partial)
 POSTFIX_LOCAL_DELIVERY %{POSTFIX_KEYVALUE} status=%{STATUS_WORD:postfix_status}( \(%{GREEDYDATA:postfix_local_response}\))?
 
 # TLS features
-POSTFIX_TLS_POLICY_UNDECIDED \?
-POSTFIX_TLS_FEATURES %{STATUS_WORD:postfix_tls_security_level}(:%{STATUS_WORD:postfix_tls_downgrade_level})?(%{POSTFIX_TLS_POLICY_UNDECIDED:postfix_tls_policy_undecided})?
+POSTFIX_TLS_FEAT_REQUIRETLS (?<postfix_requiretls_policy_violation>\!)?(?<postfix_requiretls>requiretls)(:(?<postfix_requiretls_downgrade_level>\w+))?(?<postfix_requiretls_policy_undecided>\?)?
+POSTFIX_TLS_FEATURES (?<postfix_tls_security_level>\w+)(:(?<postfix_tls_downgrade_level>\w+))?(?<postfix_tls_policy_undecided>\?)?(/%{POSTFIX_TLS_FEAT_REQUIRETLS})?
 
 # aggregate all patterns
 POSTFIX_SMTPD %{POSTFIX_SMTPD_CONNECT}|%{POSTFIX_SMTPD_DISCONNECT}|%{POSTFIX_SMTPD_LOSTCONN}|%{POSTFIX_SMTPD_NOQUEUE}|%{POSTFIX_SMTPD_PIPELINING}|%{POSTFIX_TLSCONN}|%{POSTFIX_WARNING}|%{POSTFIX_SMTPD_PROXY}|%{POSTFIX_KEYVALUE}
