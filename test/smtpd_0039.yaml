@@ -1,0 +1,4 @@
+pattern: ^%{POSTFIX_SMTPD}$
+data: "discarding EHLO keywords: CHUNKING ETRN DSN 8BITMIME"
+results:
+    postfix_discarded_ehlo_keywords: "CHUNKING ETRN DSN 8BITMIME"
