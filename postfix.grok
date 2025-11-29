@@ -43,7 +43,7 @@ POSTFIX_SMTPD_LOSTCONN %{POSTFIX_LOSTCONN:postfix_smtpd_lostconn_data}( after %{
 POSTFIX_SMTPD_NOQUEUE %{POSTFIX_QUEUEID:postfix_queueid}: %{POSTFIX_ACTION:postfix_action}: %{POSTFIX_SMTP_STAGE:postfix_smtp_stage} from %{POSTFIX_CLIENT}:( %{POSTFIX_STATUS_CODE:postfix_status_code} %{POSTFIX_STATUS_CODE_ENHANCED:postfix_status_code_enhanced})?( <%{DATA:postfix_status_data}>:)? (%{POSTFIX_DNSBL_MESSAGE}|%{GREEDYDATA:postfix_status_message};) %{POSTFIX_KEYVALUE_DATA:postfix_keyvalue_data}
 POSTFIX_SMTPD_PIPELINING improper command pipelining after %{POSTFIX_SMTP_STAGE:postfix_smtp_stage} from %{POSTFIX_CLIENT}: %{GREEDYDATA:postfix_improper_pipelining_data}
 POSTFIX_SMTPD_PROXY proxy-%{POSTFIX_ACTION:postfix_proxy_result}: (%{POSTFIX_SMTP_STAGE:postfix_proxy_smtp_stage}): %{POSTFIX_PROXY_MESSAGE:postfix_proxy_message}; %{POSTFIX_KEYVALUE_DATA:postfix_keyvalue_data}
-POSTFIX_SMTPD_INFO (?<postfix_message>discarding EHLO keywords: %{GREEDYDATA})
+POSTFIX_SMTPD_DISCARD_EHLO discarding EHLO keywords: (?<postfix_discarded_ehlo_keywords>%{GREEDYDATA})
 
 # cleanup patterns
 POSTFIX_CLEANUP_MILTER %{POSTFIX_QUEUEID:postfix_queueid}: milter-%{POSTFIX_ACTION:postfix_milter_result}: %{GREEDYDATA:postfix_milter_message}; %{GREEDYDATA_NO_COLON:postfix_keyvalue_data}(: %{GREEDYDATA:postfix_milter_data})?
@@ -127,7 +127,7 @@ POSTFIX_TLS_FEAT_REQUIRETLS (?<postfix_requiretls_policy_violation>\!)?(?<postfi
 POSTFIX_TLS_FEATURES (?<postfix_tls_security_level>\w+)(:(?<postfix_tls_downgrade_level>\w+))?(?<postfix_tls_policy_undecided>\?)?(/%{POSTFIX_TLS_FEAT_REQUIRETLS})?
 
 # aggregate all patterns
-POSTFIX_SMTPD %{POSTFIX_SMTPD_CONNECT}|%{POSTFIX_SMTPD_DISCONNECT}|%{POSTFIX_SMTPD_LOSTCONN}|%{POSTFIX_SMTPD_NOQUEUE}|%{POSTFIX_SMTPD_PIPELINING}|%{POSTFIX_TLSCONN}|%{POSTFIX_WARNING}|%{POSTFIX_SMTPD_PROXY}|%{POSTFIX_SMTPD_INFO}|%{POSTFIX_KEYVALUE}
+POSTFIX_SMTPD %{POSTFIX_SMTPD_CONNECT}|%{POSTFIX_SMTPD_DISCONNECT}|%{POSTFIX_SMTPD_LOSTCONN}|%{POSTFIX_SMTPD_NOQUEUE}|%{POSTFIX_SMTPD_PIPELINING}|%{POSTFIX_TLSCONN}|%{POSTFIX_WARNING}|%{POSTFIX_SMTPD_PROXY}|%{POSTFIX_SMTPD_DISCARD_EHLO}|%{POSTFIX_KEYVALUE}
 POSTFIX_CLEANUP %{POSTFIX_CLEANUP_MESSAGEID}|%{POSTFIX_CLEANUP_MILTER}|%{POSTFIX_CLEANUP_PREPEND}|%{POSTFIX_WARNING}|%{POSTFIX_KEYVALUE}
 POSTFIX_QMGR %{POSTFIX_QMGR_INFO}|%{POSTFIX_QMGR_ACTIVE}|%{POSTFIX_QMGR_EXPIRED}|%{POSTFIX_WARNING}
 POSTFIX_PIPE %{POSTFIX_PIPE_ANY}
